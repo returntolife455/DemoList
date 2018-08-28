@@ -4,5 +4,6 @@
     <string-array name="demo_list">
         <item>下拉刷新</item>
         <item>绘制锁屏</item>
+        <item>断点续传</item>
     </string-array>
 </resources>

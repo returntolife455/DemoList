@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DemoListActivity" />
+        <activity android:name=".putorefresh.PutoRefreshActivity" />
+        <activity android:name=".drawlockscreen.DrawLockScreenActivity" />
+        <activity android:name=".resumedownload.ResumeDownloadActivity" />
     </application>
 
 </manifest>

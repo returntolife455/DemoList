@@ -1,5 +1,6 @@
 package com.returntolife.jjcode.mydemolist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
+import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
+import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonDelegateAdapter;
 
@@ -83,10 +87,13 @@ public class DemoListActivity extends AppCompatActivity {
     private void startDemoActivity(String s) {
             switch (s){
                 case "下拉刷新":
-                    Toast.makeText(this, "下拉刷新", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DemoListActivity.this, PutoRefreshActivity.class));
                     break;
                 case "绘制锁屏":
-                    Toast.makeText(this, "绘制锁屏", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DemoListActivity.this, DrawLockScreenActivity.class));
+                    break;
+                case "断点续传":
+                    startActivity(new Intent(DemoListActivity.this, ResumeDownloadActivity.class));
                     break;
             }
     }
