@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tools</string>
+
+
+    <string name="tip">提示</string>
+    <string name="cancel">取消</string>
+    <string name="set">设置</string>
+
+    <!--非直译命名  模块名_逻辑名-->
+    <string name="permission_dialog_fail">缺少必要的运行权限</string>
+</resources>

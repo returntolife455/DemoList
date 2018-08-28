@@ -1,0 +1,94 @@
+package com.returntolife.jjcode.mydemolist;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
+
+import com.alibaba.android.vlayout.DelegateAdapter;
+import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
+import com.tools.jj.tools.adapter.CommonDelegateAdapter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by HeJiaJun on 2018/8/28.
+ * des:
+ * version:1.0.0
+ */
+
+public class DemoListActivity extends AppCompatActivity {
+
+
+    @BindView(R.id.recyclerview)
+    RecyclerView recyclerview;
+
+    private DelegateAdapter adapter;
+    private CommonDelegateAdapter<String> commonDelegateAdapter;
+    private List<String> dataList;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_demolist);
+        ButterKnife.bind(this);
+
+        initData();
+
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        VirtualLayoutManager manager=new VirtualLayoutManager(this);
+        recyclerview.setLayoutManager(manager);
+        adapter=new DelegateAdapter(manager);
+        LinearLayoutHelper helper=new LinearLayoutHelper();
+        commonDelegateAdapter=new CommonDelegateAdapter<String>(this,R.layout.item_demolist,dataList,helper,0) {
+            @Override
+            public void convert(BaseRecyclerViewHolder holder, final String s, int position) {
+                 holder.setBtnText(R.id.btn_demo,s);
+                 holder.setOnClickListener(R.id.btn_demo, new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         startDemoActivity(s);
+                     }
+                 });
+            }
+
+            @Override
+            public void convert(BaseRecyclerViewHolder holder, int position) {
+
+            }
+        };
+        adapter.addAdapter(commonDelegateAdapter);
+        recyclerview.setAdapter(adapter);
+    }
+
+
+
+    private void initData() {
+        String[] data=getResources().getStringArray(R.array.demo_list);
+        dataList=new ArrayList<>();
+        Collections.addAll(dataList, data);
+    }
+    private void startDemoActivity(String s) {
+            switch (s){
+                case "下拉刷新":
+                    Toast.makeText(this, "下拉刷新", Toast.LENGTH_SHORT).show();
+                    break;
+                case "绘制锁屏":
+                    Toast.makeText(this, "绘制锁屏", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+    }
+
+}

@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.jakewharton.butterknife'
+
+//android配置
+def config = rootProject.ext.android
+
+//相关库依赖
+def librarys = rootProject.ext.supportDependencies
+
+
+android {
+    compileSdkVersion config.compileSdkVersion
+    defaultConfig {
+        applicationId "com.returntolife.jjcode.mydemolist"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation librarys.supportAppcompat
+    implementation librarys.recyclerview
+    testImplementation librarys.junit
+    androidTestImplementation librarys.runner
+    androidTestImplementation librarys.espresso
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation project(':toollibrary')
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}

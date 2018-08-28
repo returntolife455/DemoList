@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <!--非常用颜色命名 module_逻辑_颜色-->
+    <color name="permission_bg_green">#1DBEAE</color>
+    <color name="permission_dialog_line_darkgrey">#A9A9A9</color>
+</resources>

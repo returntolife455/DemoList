@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyDemoList</string>
+
+    <string-array name="demo_list">
+        <item>下拉刷新</item>
+        <item>绘制锁屏</item>
+    </string-array>
+</resources>
