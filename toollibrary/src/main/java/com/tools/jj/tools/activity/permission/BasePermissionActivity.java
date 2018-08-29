@@ -4,6 +4,7 @@ package com.tools.jj.tools.activity.permission;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 
 import com.tools.jj.tools.utils.LogUtil;
@@ -15,7 +16,7 @@ import com.tools.jj.tools.utils.LogUtil;
  * version: 1.0.0
  */
 
-public abstract class BasePermissionActivity extends Activity {
+public abstract class BasePermissionActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0; // 请求码
 
@@ -35,12 +36,12 @@ public abstract class BasePermissionActivity extends Activity {
         super.onResume();
         // 缺少权限时, 进入权限配置页面
         if (mPermissionsChecker.lacksPermissions(permissionList)) {
-            LogUtil.d("缺少权限");
-            PermissionsActivity.startActivityForResult(this, REQUEST_CODE, permissionList);
-        } else {
             //必须先处理完毕权限授权后才可以执行以下方法
             LogUtil.d("全部授权");
             initActivity();
+        } else {
+            LogUtil.d("缺少权限");
+            PermissionsActivity.startActivityForResult(this, REQUEST_CODE, permissionList);
         }
     }
 

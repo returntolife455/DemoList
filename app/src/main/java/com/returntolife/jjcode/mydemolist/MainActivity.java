@@ -15,8 +15,11 @@ public class MainActivity extends BasePermissionActivity {
                 Manifest.permission.READ_EXTERNAL_STORAGE};
     }
 
+
+
     @Override
     public void initActivity() {
         startActivity(new Intent(this,DemoListActivity.class));
+        finish();
     }
 }

@@ -54,7 +54,6 @@ public class PermissionsChecker {
      * @return returns true if the Activity or Fragment has access to all given permissions.
      */
     private boolean hasSelfPermissions(String... permissions) {
-        if(permissions==null)return false;
         for (String permission : permissions) {
             if (permissionExists(permission) && !hasSelfPermission(permission)) {
                 return false;

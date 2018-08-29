@@ -1,6 +1,7 @@
 package com.tools.jj.tools.activity.permission;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -9,11 +10,15 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.tools.jj.tools.R;
+import com.tools.jj.tools.utils.LogUtil;
 
 
 /**
@@ -130,22 +135,27 @@ public class PermissionsActivity extends AppCompatActivity {
 
     // 显示缺失权限提示
     private void showMissingPermissionDialog() {
-    //    LogUtil.d("显示缺失权限提示");
-//        new AlertDialog(this).builder()
-//                .setTitle("帮助")
-//                .setMsg(getString(R.string.string_help_text))
-//                .setPositiveButton("设置", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        startAppSettings();
-//                    }
-//                }).setNegativeButton("退出", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setResult(PERMISSIONS_DENIED);
-//                finish();
-//            }
-//        }).show();
+        LogUtil.d("显示缺失权限提示");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder .setTitle("帮助")
+                .setMessage("申请的权限为demo所需要的权限，不会侵犯个人隐私，可以查看源码" +
+                        "")
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        startAppSettings();
+                    }
+                })
+                .setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setResult(PERMISSIONS_DENIED);
+                        finish();
+
+                    }
+                })
+                .create().show();
     }
 
     // 启动应用的设置
