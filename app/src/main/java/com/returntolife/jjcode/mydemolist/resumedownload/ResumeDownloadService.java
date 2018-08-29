@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by 455 on 2017/8/7.
  */
 
-public class MyService extends Service {
+public class ResumeDownloadService extends Service {
 
     public   final  static String ACTION_START="ACTION_START";
     public   final  static String ACTION_STOP="ACTION_STOP";
@@ -45,7 +45,7 @@ public class MyService extends Service {
                     FileInfo fileInfo=(FileInfo) msg.obj;
                     Log.i("text",fileInfo.toString()+"\n"+"文件初始化成功");
 
-                    DownloadTask task = new DownloadTask(MyService.this, fileInfo);
+                    DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
                     task.download();
                     // 把下载任务添加到集合中
                     mTasks.put(fileInfo.getId(), task);

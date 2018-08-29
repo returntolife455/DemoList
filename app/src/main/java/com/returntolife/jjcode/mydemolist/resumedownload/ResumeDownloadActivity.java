@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.returntolife.jjcode.mydemolist.MainActivity;
 import com.returntolife.jjcode.mydemolist.R;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class ResumeDownloadActivity extends Activity {
 
 
     private List<FileInfo> mFileList;
-    private MyAdapter mAdapter;
+    private ResumeDownloadAdapter mAdapter;
 
     private UpdateProgressBar updateProgressBar;
 
@@ -69,15 +68,15 @@ public class ResumeDownloadActivity extends Activity {
         mFileList.add(fileInfo3);
 
         mNotificationUtil = new NotificationUtil(ResumeDownloadActivity.this);
-        mAdapter = new MyAdapter(this, mFileList);
+        mAdapter = new ResumeDownloadAdapter(this, mFileList);
 
         listView.setAdapter(mAdapter);
 
         mRecive = new UpdateProgressBar();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(MyService.ACTION_UPDATE);
-        intentFilter.addAction(MyService.ACTION_FINISHED);
-        intentFilter.addAction(MyService.ACTION_START);
+        intentFilter.addAction(ResumeDownloadService.ACTION_UPDATE);
+        intentFilter.addAction(ResumeDownloadService.ACTION_FINISHED);
+        intentFilter.addAction(ResumeDownloadService.ACTION_START);
         registerReceiver(mRecive, intentFilter);
     }
 
@@ -99,19 +98,19 @@ public class ResumeDownloadActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
 
             switch (intent.getAction()) {
-                case MyService.ACTION_UPDATE:
+                case ResumeDownloadService.ACTION_UPDATE:
                     int finished = intent.getIntExtra("finished", 0);
                     int id = intent.getIntExtra("id", 0);
                     mAdapter.updataProgress(id, finished);
                     mNotificationUtil.updataNotification(id, finished);
                     break;
-                case MyService.ACTION_FINISHED:
+                case ResumeDownloadService.ACTION_FINISHED:
                     FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
                     mAdapter.updataProgress(fileInfo.getId(), 0);
                     Toast.makeText(ResumeDownloadActivity.this, mFileList.get(fileInfo.getId()).getFileName() + "下载完毕", Toast.LENGTH_SHORT).show();
                     mNotificationUtil.cancelNotification(fileInfo.getId());
                     break;
-                case MyService.ACTION_START:
+                case ResumeDownloadService.ACTION_START:
                     mNotificationUtil.showNotification((FileInfo) intent.getSerializableExtra("fileInfo"));
                     break;
             }

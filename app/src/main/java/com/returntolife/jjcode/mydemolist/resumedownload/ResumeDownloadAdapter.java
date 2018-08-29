@@ -18,7 +18,7 @@ import java.util.List;
  * Created by 455 on 2017/8/7.
  */
 
-public class MyAdapter extends BaseAdapter {
+public class ResumeDownloadAdapter extends BaseAdapter {
 
     private Context mContext = null;
     private List<FileInfo> mFilelist = null;
@@ -26,7 +26,7 @@ public class MyAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
 
 
-    public MyAdapter(Context mContext, List<FileInfo> mFilelist) {
+    public ResumeDownloadAdapter(Context mContext, List<FileInfo> mFilelist) {
         super();
         this.mContext = mContext;
         this.mFilelist = mFilelist;
@@ -68,8 +68,8 @@ public class MyAdapter extends BaseAdapter {
 
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, MyService.class);
-                    intent.setAction(MyService.ACTION_START);
+                    Intent intent = new Intent(mContext, ResumeDownloadService.class);
+                    intent.setAction(ResumeDownloadService.ACTION_START);
                     intent.putExtra("fileInfo", mFileInfo);
                     mContext.startService(intent);
                 }
@@ -78,8 +78,8 @@ public class MyAdapter extends BaseAdapter {
 
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, MyService.class);
-                    intent.setAction(MyService.ACTION_STOP);
+                    Intent intent = new Intent(mContext, ResumeDownloadService.class);
+                    intent.setAction(ResumeDownloadService.ACTION_STOP);
                     intent.putExtra("fileInfo", mFileInfo);
                     mContext.startService(intent);
                 }

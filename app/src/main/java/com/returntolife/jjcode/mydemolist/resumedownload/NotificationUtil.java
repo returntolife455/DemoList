@@ -48,15 +48,15 @@ public class NotificationUtil {
 			// 设置远程试图RemoteViews对象
 			RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.resume_download_notification);
 			// 控制远程试图，设置开始点击事件
-			Intent intentStart = new Intent(mContext, MyService.class);
-			intentStart.setAction(MyService.ACTION_START);
+			Intent intentStart = new Intent(mContext, ResumeDownloadService.class);
+			intentStart.setAction(ResumeDownloadService.ACTION_START);
 			intentStart.putExtra("fileInfo", fileInfo);
 			PendingIntent piStart = PendingIntent.getService(mContext, 0, intentStart, 0);
 			remoteViews.setOnClickPendingIntent(R.id.start_button, piStart);
 
 			// 控制远程试图，设置结束点击事件
-			Intent intentStop = new Intent(mContext, MyService.class);
-			intentStop.setAction(MyService.ACTION_STOP);
+			Intent intentStop = new Intent(mContext, ResumeDownloadService.class);
+			intentStop.setAction(ResumeDownloadService.ACTION_STOP);
 			intentStop.putExtra("fileInfo", fileInfo);
 			PendingIntent piStop = PendingIntent.getService(mContext, 0, intentStop, 0);
 			remoteViews.setOnClickPendingIntent(R.id.stop_button, piStop);

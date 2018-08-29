@@ -89,7 +89,7 @@ public class DownloadTask {
         if(allFinished){
             threadDAO.deleteThread(fileInfo.getUrl());
             // 通知UI哪个线程完成下载
-            Intent intent = new Intent(MyService.ACTION_FINISHED);
+            Intent intent = new Intent(ResumeDownloadService.ACTION_FINISHED);
             intent.putExtra("fileInfo", fileInfo);
             context.sendBroadcast(intent);
             Log.i("DownloadTask", "下载完成");
@@ -136,7 +136,7 @@ public class DownloadTask {
                     return;
                 }
 
-                File file=new File(MyService.DownloadPath,fileInfo.getFileName());
+                File file=new File(ResumeDownloadService.DownloadPath,fileInfo.getFileName());
                 raf=new RandomAccessFile(file,"rw");
                 raf.seek(start);
 
@@ -146,7 +146,7 @@ public class DownloadTask {
 
 
                 Intent intent=new Intent();
-                intent.setAction(MyService.ACTION_UPDATE);
+                intent.setAction(ResumeDownloadService.ACTION_UPDATE);
 
                 long time= System.currentTimeMillis();
                 while((len=is.read(buf))!=-1){
