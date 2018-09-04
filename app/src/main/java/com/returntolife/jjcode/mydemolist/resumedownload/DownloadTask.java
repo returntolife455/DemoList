@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.tools.jj.tools.utils.LogUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,9 +44,8 @@ public class DownloadTask {
 
 
     public void download(){
-
         List<ThreadInfo> list = threadDAO.queryThread(fileInfo.getUrl());
-        Log.i("text","线程数量:"+list.size());
+
         if(list.size()==0){
             int length = fileInfo.getLength();
             int block = length / 3;
@@ -62,7 +63,7 @@ public class DownloadTask {
                 threadDAO.insertThread(threadInfo);
             }
         }
-        mThreadlist = new ArrayList<DownloadRunnable>();
+        mThreadlist = new ArrayList<>();
         for(ThreadInfo info:list){
             DownloadRunnable thread = new DownloadRunnable(info);
 //			thread.start();
@@ -117,7 +118,7 @@ public class DownloadTask {
 
             try {
                 URL url=new URL(threadInfo.getUrl());
-                Log.i("text","url:"+threadInfo.getUrl());
+
                 conn=(HttpURLConnection)url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setReadTimeout(3000);
@@ -131,7 +132,7 @@ public class DownloadTask {
 
 
                 conn.connect();
-                Log.i("text","请求响应码:"+conn.getResponseCode());
+                LogUtil.d("请求响应码:"+conn.getResponseCode());
                 if(!(conn.getResponseCode()== HttpURLConnection.HTTP_PARTIAL||conn.getResponseCode()== HttpURLConnection.HTTP_OK)){
                     return;
                 }
@@ -158,10 +159,10 @@ public class DownloadTask {
 
                     if((System.currentTimeMillis()-time)>1000) {
                         time= System.currentTimeMillis();
-                        intent.putExtra("finished", current_finished * 100 / fileInfo.getLength());
+                        intent.putExtra("finished", current_finished * 100f / fileInfo.getLength());
                         intent.putExtra("id", fileInfo.getId());
                         context.sendBroadcast(intent);
-                        Log.i("text", "下载进度:" + current_finished   / fileInfo.getLength() + "\n" + "已下载：" + current_finished + "总量:" + fileInfo.getLength());
+                      //  LogUtil.d("下载进度:" + current_finished*1.0f   / fileInfo.getLength() + "\n" + "已下载：" + current_finished + "总量:" + fileInfo.getLength());
                     }
 
                     if(isPause){
@@ -174,10 +175,6 @@ public class DownloadTask {
                 checkAllFinished();
 
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }finally {

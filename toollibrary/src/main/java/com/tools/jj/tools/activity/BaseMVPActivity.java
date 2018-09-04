@@ -32,7 +32,7 @@ import rx.Subscriber;
  * 2.0将evebus改为rxbus
  */
 
-public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatActivity implements IBaseView {
+public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompatActivity implements IBaseView {
 
     protected T mBasePresenter;
     protected Context mContext;

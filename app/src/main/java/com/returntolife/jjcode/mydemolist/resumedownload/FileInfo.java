@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 
 public class FileInfo implements Serializable {
-	private int id;
-	private String url;
-	private String fileName;
-	private int length;
-	private int finished;
+	private int id;   //标识id
+	private String url; //下载地址
+	private String fileName; //文件名
+	private int length; //文件长度
+	private int finished; //下载进度
 
 	public FileInfo() {
 		super();

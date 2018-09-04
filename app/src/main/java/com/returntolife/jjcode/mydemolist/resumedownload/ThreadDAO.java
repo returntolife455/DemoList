@@ -52,7 +52,7 @@ public class ThreadDAO {
 
         SQLiteDatabase db=dbHelper.getWritableDatabase();
 
-        db.execSQL("update thread_info set finished = ? where url = ? and thread_id = ?",
+        db.execSQL("update thread_info set finished =? where url = ? and thread_id = ?",
                 new Object[]{finished,url,thread_id});
 
         db.close();

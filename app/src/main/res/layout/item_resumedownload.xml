@@ -3,35 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
     tools:context=".MainActivity" >
 
      <TextView
-        android:id="@+id/file_textview"
+        android:id="@+id/tv_filename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/pb"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/file_textview" />
+        android:layout_below="@+id/tv_filename" />
 
     <Button
-        android:id="@+id/start_button"
+        android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar2"
-        android:layout_toLeftOf="@+id/stop_button"
-        android:text="start" />
+        android:layout_below="@+id/pb"
+        android:layout_toStartOf="@+id/btn_stop"
+        android:text="@string/start" />
 
     <Button
-        android:id="@+id/stop_button"
+        android:id="@+id/btn_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/progressBar2"
-        android:text="stop" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/pb"
+        android:text="@string/stop" />
 
 </RelativeLayout>

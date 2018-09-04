@@ -6,7 +6,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
+
+import com.tools.jj.tools.utils.LogUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,12 +30,14 @@ public class ResumeDownloadService extends Service {
     public   final  static String ACTION_UPDATE="ACTION_UPDATE";
     public static final String ACTION_FINISHED = "ACTION_FINISHED";
 
+    public static final String INTENT_DATA_FILEINFO="intent_data_fileinfo";
+
     private  final int MSG_FILEINFO=1;
 
     private DownloadTask task;
 
     public static final String DownloadPath = Environment.getExternalStorageDirectory()
-            + "/chengxiaozhu/";
+            + "/mydemolist/";
 
     private Map<Integer, DownloadTask> mTasks = new LinkedHashMap<Integer, DownloadTask>();
 
@@ -43,16 +48,16 @@ public class ResumeDownloadService extends Service {
             switch (msg.what){
                 case MSG_FILEINFO:
                     FileInfo fileInfo=(FileInfo) msg.obj;
-                    Log.i("text",fileInfo.toString()+"\n"+"文件初始化成功");
+                    LogUtil.d(fileInfo.toString()+"\n"+"文件初始化成功");
 
                     DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
                     task.download();
                     // 把下载任务添加到集合中
                     mTasks.put(fileInfo.getId(), task);
                     // 发送启动下载的通知
-                    Intent intent = new Intent(ACTION_START);
-                    intent.putExtra("fileInfo", fileInfo);
-                    sendBroadcast(intent);
+//                    Intent intent = new Intent(ACTION_START);
+//                    intent.putExtra("fileInfo", fileInfo);
+//                    sendBroadcast(intent);
                     break;
             }
             return false;
@@ -64,22 +69,25 @@ public class ResumeDownloadService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        FileInfo fileInfo=(FileInfo) intent.getSerializableExtra("fileInfo");
-        switch (intent.getAction()){
-            case ACTION_START:
-                Log.i("text",fileInfo.toString());
-                DownloadTask.sExecutorService.execute(  new Thread(new FileInfoRunnable(fileInfo)));
-                break;
-            case ACTION_STOP:
-                DownloadTask task = mTasks.get(fileInfo.getId());
-                if (task != null) {
-                    // 停止下载任务
-                    task.isPause = true;
-                }
-                break;
-            case ACTION_UPDATE:
-                break;
+        FileInfo fileInfo=(FileInfo) intent.getSerializableExtra(INTENT_DATA_FILEINFO);
+        String action=intent.getAction();
+        if(!TextUtils.isEmpty(action)){
+            switch (action){
+                case ACTION_START:
+                    DownloadTask.sExecutorService.execute( new Thread(new FileInfoRunnable(fileInfo)));
+                    break;
+                case ACTION_STOP:
+                    DownloadTask task = mTasks.get(fileInfo.getId());
+                    if (task != null) {
+                        // 停止下载任务
+                        task.isPause = true;
+                    }
+                    break;
+                case ACTION_UPDATE:
+                    break;
+            }
         }
+
 
 
 
@@ -122,13 +130,14 @@ public class ResumeDownloadService extends Service {
                 if(length<=0){
                     return;
                 }
-
+                LogUtil.d("fileinfo length="+length);
 
                 File dir=new File(DownloadPath);
                 if(!dir.exists()){
                     dir.mkdir();
                 }
 
+                LogUtil.d("fileinfo DownloadPath="+DownloadPath);
                 fileInfo.setLength(length);
 
                 Message msg= Message.obtain();
@@ -139,11 +148,9 @@ public class ResumeDownloadService extends Service {
 
 
             } catch (MalformedURLException e) {
-                Log.i("text","URL输入不正确");
-                e.printStackTrace();
+                LogUtil.e("URL输入不正确 e="+e.toString());
             } catch (IOException e) {
-                Log.i("text","建立http连接对象失败");
-                e.printStackTrace();
+                LogUtil.e("建立http连接对象失败 e="+e.toString());
             }
 
         }
