@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">MyDemoList</string>
     <string name="resume_text">下载地址：</string>
-    <string name="start">start</string>
-    <string name="stop">stop</string>
+    <string name="start">开始</string>
+    <string name="stop">停止</string>
+    <string name="pause">暂停</string>
+    <string name="download_address">下载地址</string>
+    <string name="download">下载</string>
+    <string name="delete">删除</string>
 
     <string-array name="demo_list">
         <item>下拉刷新</item>

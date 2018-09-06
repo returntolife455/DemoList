@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,12 +20,17 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.returntolife.jjcode.mydemolist.R;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonDelegateAdapter;
+import com.tools.jj.tools.http.RxBus2;
+import com.tools.jj.tools.utils.StringUtil;
+import com.tools.jj.tools.view.ClearEditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import rx.functions.Action1;
 
 /**
  * Created by HeJiaJun on 2018/8/28.
@@ -38,6 +43,10 @@ public class ResumeDownloadActivity extends Activity {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
+    @BindView(R.id.clear_et)
+    ClearEditText clearEt;
+    @BindView(R.id.btn_start)
+    Button btnStart;
 
     private String urlone = "http://f4.market.xiaomi.com/download/AppStore/0bc59a541cfb546f425715027a1a3271281145ef1/com.tencent.wok.apk";
 
@@ -62,40 +71,46 @@ public class ResumeDownloadActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumedownload);
         ButterKnife.bind(this);
-
-
         initData();
+        initEvent();
+
+
         initAdapter();
+
+    }
+
+    private void initEvent() {
+        RxBus2.getInstance().tObservable(EventFileInfo.class).subscribe(new Action1<EventFileInfo>() {
+            @Override
+            public void call(EventFileInfo eventFileInfo) {
+                if(eventFileInfo.state==EventFileInfo.STATE_START){
+                    mFileList.add(eventFileInfo.fileInfo);
+                    commonDelegateAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private void initAdapter() {
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
-        mAdapter=new DelegateAdapter(manager);
-        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        commonDelegateAdapter=new CommonDelegateAdapter<FileInfo>(this,R.layout.item_resumedownload,mFileList,linearLayoutHelper,0) {
+        mAdapter = new DelegateAdapter(manager);
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        commonDelegateAdapter = new CommonDelegateAdapter<FileInfo>(this, R.layout.item_resumedownload, mFileList, linearLayoutHelper, 0) {
             @Override
             public void convert(BaseRecyclerViewHolder holder, final FileInfo fileInfo, int position) {
-                holder.setText(R.id.tv_filename,fileInfo.getFileName());
+                holder.setText(R.id.tv_filename, fileInfo.getFileName());
                 holder.setOnClickListener(R.id.btn_start, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(ResumeDownloadActivity.this,ResumeDownloadService.class);
+                        Intent intent = new Intent(ResumeDownloadActivity.this, ResumeDownloadService.class);
                         intent.setAction(ResumeDownloadService.ACTION_START);
                         intent.putExtra(ResumeDownloadService.INTENT_DATA_FILEINFO, fileInfo);
                         ResumeDownloadActivity.this.startService(intent);
                     }
                 });
-                holder.setOnClickListener(R.id.btn_stop, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(ResumeDownloadActivity.this,ResumeDownloadService.class);
-                        intent.setAction(ResumeDownloadService.ACTION_STOP);
-                        intent.putExtra(ResumeDownloadService.INTENT_DATA_FILEINFO, fileInfo);
-                        ResumeDownloadActivity.this.startService(intent);
-                    }
-                });
-                ProgressBar progressBar=holder.getView(R.id.pb);
+
+                ProgressBar progressBar = holder.getView(R.id.pb);
                 progressBar.setMax(100);
                 progressBar.setProgress(fileInfo.getFinished());
             }
@@ -111,27 +126,24 @@ public class ResumeDownloadActivity extends Activity {
     }
 
     private void initData() {
-        // 初始化文件对象
-        FileInfo fileInfo1 = new FileInfo(0, urlone, getFileName(urlone), 0, 0);
-        FileInfo fileInfo2 = new FileInfo(1, urltwo, getFileName(urltwo), 0, 0);
-        FileInfo fileInfo3 = new FileInfo(2, urlThree, getFileName(urlThree), 0, 0);
-
         mFileList = new ArrayList<>();
-        mFileList.add(fileInfo1);
-        mFileList.add(fileInfo2);
-        mFileList.add(fileInfo3);
+        // 初始化文件对象
+//        FileInfo fileInfo1 = new FileInfo(0, urlone, getFileName(urlone), 0, 0);
+//        FileInfo fileInfo2 = new FileInfo(1, urltwo, getFileName(urltwo), 0, 0);
+//        FileInfo fileInfo3 = new FileInfo(2, urlThree, getFileName(urlThree), 0, 0);
+//
+//        mFileList = new ArrayList<>();
+//        mFileList.add(fileInfo1);
+//        mFileList.add(fileInfo2);
+//        mFileList.add(fileInfo3);
 
 
-
-
-
-
-        mRecive = new UpdateProgressBar();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ResumeDownloadService.ACTION_UPDATE);
-        intentFilter.addAction(ResumeDownloadService.ACTION_FINISHED);
-        intentFilter.addAction(ResumeDownloadService.ACTION_START);
-        registerReceiver(mRecive, intentFilter);
+//        mRecive = new UpdateProgressBar();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(ResumeDownloadService.ACTION_UPDATE);
+//        intentFilter.addAction(ResumeDownloadService.ACTION_FINISHED);
+//        intentFilter.addAction(ResumeDownloadService.ACTION_START);
+//        registerReceiver(mRecive, intentFilter);
     }
 
 
@@ -145,13 +157,39 @@ public class ResumeDownloadActivity extends Activity {
         return str.substring(str.lastIndexOf("/") + 1);
     }
 
+    @OnClick(R.id.btn_start)
+    public void onViewClicked() {
+        String url=clearEt.getText().toString();
+        if(!StringUtil.isEmpty(url)){
+            clearEt.setText("");
+            if(mFileList==null){
+                mFileList=new ArrayList<>();
+            }else{
+                for (FileInfo info : mFileList) {
+                    if(info.getUrl().equals(url)){
+                        Toast.makeText(this, "已在列表中", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+            FileInfo fileInfo=new FileInfo();
+            fileInfo.setFileName(getFileName(url));
+            fileInfo.setId(mFileList.size());
+            fileInfo.setUrl(url);
+            Intent intent = new Intent(ResumeDownloadActivity.this, ResumeDownloadService.class);
+            intent.setAction(ResumeDownloadService.ACTION_START);
+            intent.putExtra(ResumeDownloadService.INTENT_DATA_FILEINFO, fileInfo);
+            ResumeDownloadActivity.this.startService(intent);
+        }
+    }
+
 
     public class UpdateProgressBar extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action=intent.getAction();
-            if(TextUtils.isEmpty(action)){
+            String action = intent.getAction();
+            if (TextUtils.isEmpty(action)) {
                 return;
             }
             switch (intent.getAction()) {

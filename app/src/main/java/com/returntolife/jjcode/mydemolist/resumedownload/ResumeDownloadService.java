@@ -9,6 +9,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.tools.jj.tools.http.RxBus2;
 import com.tools.jj.tools.utils.LogUtil;
 
 import java.io.File;
@@ -18,6 +19,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by 455 on 2017/8/7.
@@ -31,6 +34,9 @@ public class ResumeDownloadService extends Service {
     public static final String ACTION_FINISHED = "ACTION_FINISHED";
 
     public static final String INTENT_DATA_FILEINFO="intent_data_fileinfo";
+    public static final String INTENT_DATA_DOWNLOAD_URL="intent_data_download_url";
+
+    private  ExecutorService mExecutorService;
 
     private  final int MSG_FILEINFO=1;
 
@@ -49,11 +55,12 @@ public class ResumeDownloadService extends Service {
                 case MSG_FILEINFO:
                     FileInfo fileInfo=(FileInfo) msg.obj;
                     LogUtil.d(fileInfo.toString()+"\n"+"文件初始化成功");
+                    RxBus2.getInstance().post(new EventFileInfo(EventFileInfo.STATE_START,fileInfo));
 
-                    DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
-                    task.download();
-                    // 把下载任务添加到集合中
-                    mTasks.put(fileInfo.getId(), task);
+//                    DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
+//                    task.download();
+//                    // 把下载任务添加到集合中
+//                    mTasks.put(fileInfo.getId(), task);
                     // 发送启动下载的通知
 //                    Intent intent = new Intent(ACTION_START);
 //                    intent.putExtra("fileInfo", fileInfo);
@@ -64,7 +71,11 @@ public class ResumeDownloadService extends Service {
         }
     });
 
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mExecutorService= Executors.newCachedThreadPool();
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -74,7 +85,7 @@ public class ResumeDownloadService extends Service {
         if(!TextUtils.isEmpty(action)){
             switch (action){
                 case ACTION_START:
-                    DownloadTask.sExecutorService.execute( new Thread(new FileInfoRunnable(fileInfo)));
+                    mExecutorService.execute(new FileInfoRunnable(fileInfo));
                     break;
                 case ACTION_STOP:
                     DownloadTask task = mTasks.get(fileInfo.getId());

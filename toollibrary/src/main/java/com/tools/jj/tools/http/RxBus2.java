@@ -20,7 +20,7 @@ public class RxBus2 {
         bus= PublishSubject.create().toSerialized();
     }
 
-    public RxBus2 getInstance(){
+    public static RxBus2 getInstance(){
         if(null==defaultRxBus){
             synchronized(RxBus2.class){
                 if(null==defaultRxBus){

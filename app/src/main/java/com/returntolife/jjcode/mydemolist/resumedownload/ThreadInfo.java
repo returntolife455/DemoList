@@ -6,11 +6,11 @@ package com.returntolife.jjcode.mydemolist.resumedownload;
 
 public class ThreadInfo {
 
-    int id;
-    String url;
-    int begin;
-    int end;
-    int finished;
+    private int id;
+    private String url;
+    private int begin;
+    private int end;
+    private int finished;
 
     public ThreadInfo(){
 

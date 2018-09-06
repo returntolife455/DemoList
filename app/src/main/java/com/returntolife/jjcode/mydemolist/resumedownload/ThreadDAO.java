@@ -39,8 +39,6 @@ public class ThreadDAO {
 
     public  synchronized  void deleteThread(String url){
 
-
-
         SQLiteDatabase db=dbHelper.getWritableDatabase();
 
         db.delete("thread_info","url = ?" ,new String[]{url});
