@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.tools.jj.tools.http.RxBus2;
 import com.tools.jj.tools.utils.LogUtil;
 
 import java.io.File;
@@ -31,7 +32,7 @@ public class DownloadTask {
 
     public static ExecutorService sExecutorService = Executors.newCachedThreadPool();
 
-    int current_finished=0;
+    private int current_finished=0;
     public   boolean isPause=false;
 
     private List<DownloadRunnable> mThreadlist = null;
@@ -47,6 +48,7 @@ public class DownloadTask {
         List<ThreadInfo> list = threadDAO.queryThread(fileInfo.getUrl());
 
         if(list.size()==0){
+            LogUtil.d("没有历史下载数据");
             int length = fileInfo.getLength();
             int block = length / 3;
             for (int i = 0; i < 3; i++) {
@@ -62,9 +64,12 @@ public class DownloadTask {
 
                 threadDAO.insertThread(threadInfo);
             }
+        }else {
+            LogUtil.d("有历史下载数据");
         }
         mThreadlist = new ArrayList<>();
         for(ThreadInfo info:list){
+
             DownloadRunnable thread = new DownloadRunnable(info);
 //			thread.start();
             // 使用线程池执行下载任务
@@ -90,12 +95,16 @@ public class DownloadTask {
         if(allFinished){
             threadDAO.deleteThread(fileInfo.getUrl());
             // 通知UI哪个线程完成下载
-            Intent intent = new Intent(ResumeDownloadService.ACTION_FINISHED);
-            intent.putExtra("fileInfo", fileInfo);
-            context.sendBroadcast(intent);
-            Log.i("DownloadTask", "下载完成");
+            RxBus2.getInstance().post(new EventFileInfo(EventFileInfo.STATE_FINISHED,fileInfo));
+            LogUtil.d("下载完成");
 
         }
+    }
+
+
+    public void delete(){
+        isPause=true;
+        threadDAO.deleteThread(fileInfo.getUrl());
     }
 
 
@@ -117,6 +126,7 @@ public class DownloadTask {
             RandomAccessFile raf=null;
 
             try {
+
                 URL url=new URL(threadInfo.getUrl());
 
                 conn=(HttpURLConnection)url.openConnection();
@@ -132,7 +142,6 @@ public class DownloadTask {
 
 
                 conn.connect();
-                LogUtil.d("请求响应码:"+conn.getResponseCode());
                 if(!(conn.getResponseCode()== HttpURLConnection.HTTP_PARTIAL||conn.getResponseCode()== HttpURLConnection.HTTP_OK)){
                     return;
                 }
@@ -143,11 +152,7 @@ public class DownloadTask {
 
                 is=conn.getInputStream();
                 byte[] buf=new byte[1024*1024];
-                int len=-1;
-
-
-                Intent intent=new Intent();
-                intent.setAction(ResumeDownloadService.ACTION_UPDATE);
+                int len;
 
                 long time= System.currentTimeMillis();
                 while((len=is.read(buf))!=-1){
@@ -157,18 +162,19 @@ public class DownloadTask {
                     //每个线程进度
                     threadInfo.setFinished(threadInfo.getFinished()+len);
 
-                    if((System.currentTimeMillis()-time)>1000) {
-                        time= System.currentTimeMillis();
-                        intent.putExtra("finished", current_finished * 100f / fileInfo.getLength());
-                        intent.putExtra("id", fileInfo.getId());
-                        context.sendBroadcast(intent);
-                      //  LogUtil.d("下载进度:" + current_finished*1.0f   / fileInfo.getLength() + "\n" + "已下载：" + current_finished + "总量:" + fileInfo.getLength());
-                    }
 
                     if(isPause){
                         threadDAO.updateThread(threadInfo.getUrl(),threadInfo.getId(),threadInfo.getFinished());
                         return;
                     }
+
+                    if((System.currentTimeMillis()-time)>1500) {
+                        time= System.currentTimeMillis();
+                        fileInfo.setFinished(current_finished);
+                        RxBus2.getInstance().post(new EventFileInfo(EventFileInfo.STATE_UPDATE_PROGRESS,fileInfo));
+                        threadDAO.updateThread(threadInfo.getUrl(),threadInfo.getId(),threadInfo.getFinished());
+                    }
+
                 }
 
                 isFinished=true;

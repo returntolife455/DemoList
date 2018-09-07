@@ -28,13 +28,14 @@ import java.util.concurrent.Executors;
 
 public class ResumeDownloadService extends Service {
 
-    public   final  static String ACTION_START="ACTION_START";
-    public   final  static String ACTION_STOP="ACTION_STOP";
-    public   final  static String ACTION_UPDATE="ACTION_UPDATE";
-    public static final String ACTION_FINISHED = "ACTION_FINISHED";
+    public final static String ACTION_START = "ACTION_START";
+    public final static String ACTION_STOP = "ACTION_STOP";
+    public final static String ACTION_PAUSE = "ACTION_PAUSE";
+    public final static String ACTION_CONTINUE = "ACTION_CONTINUE";
 
-    public static final String INTENT_DATA_FILEINFO="intent_data_fileinfo";
-    public static final String INTENT_DATA_DOWNLOAD_URL="intent_data_download_url";
+
+    public static final String INTENT_DATA_FILEINFO = "intent_data_fileinfo";
+    public static final String INTENT_DATA_DOWNLOAD_URL = "intent_data_download_url";
 
     private  ExecutorService mExecutorService;
 
@@ -54,17 +55,11 @@ public class ResumeDownloadService extends Service {
             switch (msg.what){
                 case MSG_FILEINFO:
                     FileInfo fileInfo=(FileInfo) msg.obj;
-                    LogUtil.d(fileInfo.toString()+"\n"+"文件初始化成功");
                     RxBus2.getInstance().post(new EventFileInfo(EventFileInfo.STATE_START,fileInfo));
 
-//                    DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
-//                    task.download();
-//                    // 把下载任务添加到集合中
-//                    mTasks.put(fileInfo.getId(), task);
-                    // 发送启动下载的通知
-//                    Intent intent = new Intent(ACTION_START);
-//                    intent.putExtra("fileInfo", fileInfo);
-//                    sendBroadcast(intent);
+                    DownloadTask task = new DownloadTask(ResumeDownloadService.this, fileInfo);
+                    task.download();
+                    mTasks.put(fileInfo.getId(), task);
                     break;
             }
             return false;
@@ -87,14 +82,21 @@ public class ResumeDownloadService extends Service {
                 case ACTION_START:
                     mExecutorService.execute(new FileInfoRunnable(fileInfo));
                     break;
-                case ACTION_STOP:
+                case ACTION_PAUSE:
                     DownloadTask task = mTasks.get(fileInfo.getId());
                     if (task != null) {
                         // 停止下载任务
                         task.isPause = true;
                     }
                     break;
-                case ACTION_UPDATE:
+                case ACTION_CONTINUE:
+                    DownloadTask task2 = mTasks.get(fileInfo.getId());
+                    task2.isPause=false;
+                    task2.download();
+                    break;
+                case ACTION_STOP:
+                    DownloadTask taskStop=mTasks.get(fileInfo.getId());
+                    taskStop.delete();
                     break;
             }
         }

@@ -67,6 +67,8 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+
+
     /**
      * 加载本地资源图片
      * @param viewId

@@ -17,6 +17,7 @@ public class ThreadDAO {
     private DBHelper dbHelper;
 
 
+
     public ThreadDAO(Context context){
         this.dbHelper=DBHelper.getDbHelper(context,1);
     }
@@ -79,6 +80,32 @@ public class ThreadDAO {
 
         return  list;
     }
+
+    public List<ThreadInfo> queryThread(){
+
+        List<ThreadInfo> list=new ArrayList<>();
+
+        SQLiteDatabase db=dbHelper.getReadableDatabase();
+
+        Cursor cursor=db.query("thread_info",null,null,null,null,null,null);
+
+        while(cursor.moveToNext()){
+            ThreadInfo threadInfo=new ThreadInfo();
+            threadInfo.setId(cursor.getInt(cursor.getColumnIndex("thread_id")));
+            threadInfo.setUrl(cursor.getString(cursor.getColumnIndex("url")));
+            threadInfo.setBegin(cursor.getInt(cursor.getColumnIndex("begin")));
+            threadInfo.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
+            threadInfo.setFinished(cursor.getInt(cursor.getColumnIndex("finished")));
+            list.add(threadInfo);
+        }
+
+        cursor.close();
+        db.close();
+
+        return  list;
+    }
+
+
 
     public boolean isExists(String url){
 
