@@ -20,6 +20,8 @@
         <activity android:name=".putorefresh.PutoRefreshActivity" />
         <activity android:name=".drawlockscreen.DrawLockScreenActivity" />
         <activity android:name=".resumedownload.ResumeDownloadActivity" />
+        <activity android:name=".editimage.InvertedImageActivity" />
+        <activity android:name=".editimage.PickingPictureActivity" />
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
     </application>

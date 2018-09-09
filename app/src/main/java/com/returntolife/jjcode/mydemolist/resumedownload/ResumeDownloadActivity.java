@@ -59,12 +59,6 @@ public class ResumeDownloadActivity extends Activity {
     private DelegateAdapter mAdapter;
     private CommonDelegateAdapter<FileInfo> commonDelegateAdapter;
 
-
-
-    private NotificationUtil mNotificationUtil = null;
-
-
-
     private ThreadDAO threadDAO;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -178,7 +172,6 @@ public class ResumeDownloadActivity extends Activity {
 
     private void initData() {
         mFileList = new ArrayList<>();
-
 
 
         // 初始化文件对象

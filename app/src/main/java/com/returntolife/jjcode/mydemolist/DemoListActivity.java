@@ -6,12 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
+import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;
+import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
@@ -95,6 +96,12 @@ public class DemoListActivity extends AppCompatActivity {
                 case "断点续传":
                     startActivity(new Intent(DemoListActivity.this, ResumeDownloadActivity.class));
                     break;
+                case "图片处理_倒影":
+                    startActivity(new Intent(DemoListActivity.this, InvertedImageActivity.class));
+                    break;
+                case "图片处理_取色":
+                    startActivity(new Intent(DemoListActivity.this, PickingPictureActivity.class));
+                   break;
             }
     }
 

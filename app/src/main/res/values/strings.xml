@@ -12,5 +12,7 @@
         <item>下拉刷新</item>
         <item>绘制锁屏</item>
         <item>断点续传</item>
+        <item>图片处理_倒影</item>
+        <item>图片处理_取色</item>
     </string-array>
 </resources>
