@@ -1,14 +1,10 @@
 package com.returntolife.jjcode.mydemolist.resumedownload;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -48,18 +44,12 @@ public class ResumeDownloadActivity extends Activity {
     @BindView(R.id.btn_start)
     Button btnStart;
 
-    private String urlone = "http://f4.market.xiaomi.com/download/AppStore/0bc59a541cfb546f425715027a1a3271281145ef1/com.tencent.wok.apk";
-
-    //private String urlone = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502039037885&di=3b76f156e639418d448822c1533c2010&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F5%2F57b6cfcd3f313.jpg";
-    private String urltwo = "http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1210/08/c1/14307187_1349676294934.jpg";
-    private String urlThree = "http://img2.imgtn.bdimg.com/it/u=3185469209,1916946967&fm=26&gp=0.jpg";
-
 
     private List<FileInfo> mFileList;
     private DelegateAdapter mAdapter;
     private CommonDelegateAdapter<FileInfo> commonDelegateAdapter;
 
-    private ThreadDAO threadDAO;
+//    private ThreadDAO threadDAO;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,25 +162,6 @@ public class ResumeDownloadActivity extends Activity {
 
     private void initData() {
         mFileList = new ArrayList<>();
-
-
-        // 初始化文件对象
-//        FileInfo fileInfo1 = new FileInfo(0, urlone, getFileName(urlone), 0, 0);
-//        FileInfo fileInfo2 = new FileInfo(1, urltwo, getFileName(urltwo), 0, 0);
-//        FileInfo fileInfo3 = new FileInfo(2, urlThree, getFileName(urlThree), 0, 0);
-//
-//        mFileList = new ArrayList<>();
-//        mFileList.add(fileInfo1);
-//        mFileList.add(fileInfo2);
-//        mFileList.add(fileInfo3);
-
-
-//        mRecive = new UpdateProgressBar();
-//        IntentFilter intentFilter = new IntentFilter();
-//        intentFilter.addAction(ResumeDownloadService.ACTION_UPDATE);
-//        intentFilter.addAction(ResumeDownloadService.ACTION_FINISHED);
-//        intentFilter.addAction(ResumeDownloadService.ACTION_START);
-//        registerReceiver(mRecive, intentFilter);
     }
 
 

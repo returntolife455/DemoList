@@ -13,6 +13,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
 import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
+import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
@@ -102,6 +103,11 @@ public class DemoListActivity extends AppCompatActivity {
                 case "图片处理_取色":
                     startActivity(new Intent(DemoListActivity.this, PickingPictureActivity.class));
                    break;
+                case "MD_控件":
+                    startActivity(new Intent(DemoListActivity.this, MDWidgetActivity.class));
+                    break;
+                default:
+                    break;
             }
     }
 

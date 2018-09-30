@@ -22,6 +22,8 @@
         <activity android:name=".resumedownload.ResumeDownloadActivity" />
         <activity android:name=".editimage.InvertedImageActivity" />
         <activity android:name=".editimage.PickingPictureActivity" />
+        <activity android:name=".mdwidget.MDWidgetActivity" />
+        <activity android:name=".mdwidget.CoordinatorlayoutActivity" />
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
     </application>
