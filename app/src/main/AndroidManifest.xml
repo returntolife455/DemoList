@@ -24,6 +24,7 @@
         <activity android:name=".editimage.PickingPictureActivity" />
         <activity android:name=".mdwidget.MDWidgetActivity" />
         <activity android:name=".mdwidget.CoordinatorlayoutActivity" />
+        <activity android:name=".mdwidget.BottomSheetActivity" />
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
     </application>

@@ -13,4 +13,12 @@
         android:layout_marginTop="10dp"
         android:text="@string/coordinatorlayout"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_bottomsheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/coordinatorlayout"
+        android:textAllCaps="false" />
 </LinearLayout>
