@@ -14,7 +14,7 @@ ext {
     ]
 
     //Version
-    supportLibrary = "27.0.2"
+    supportLibrary = "27.1.1"
 
     //supportLibraries dependencies
     supportDependencies = [
