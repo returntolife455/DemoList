@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_root"
+    tools:context=".mdwidget.FloatingActionButtonActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/al_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_title"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="150dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    <include android:id="@+id/bottom_sheet" layout="@layout/dialog_md_widget_bottomsheet"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:layout_margin="10dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchorGravity="bottom|end"/>
+    <!--app:layout_anchor="@id/bottom_sheet"-->
+</android.support.design.widget.CoordinatorLayout>
+

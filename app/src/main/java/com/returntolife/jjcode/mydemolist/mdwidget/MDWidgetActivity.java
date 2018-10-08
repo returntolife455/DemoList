@@ -28,6 +28,9 @@ public class MDWidgetActivity extends Activity {
     @BindView(R.id.btn_bottomsheet)
     Button btnBottomsheet;
 
+
+    @BindView(R.id.btn_fab)
+    Button mFab;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class MDWidgetActivity extends Activity {
 
 
 
-    @OnClick({R.id.btn_coordinatorlayout, R.id.btn_bottomsheet})
+    @OnClick({R.id.btn_coordinatorlayout, R.id.btn_bottomsheet,R.id.btn_fab})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_coordinatorlayout:
@@ -45,6 +48,9 @@ public class MDWidgetActivity extends Activity {
                 break;
             case R.id.btn_bottomsheet:
                 startActivity(new Intent(this, BottomSheetActivity.class));
+                break;
+            case R.id.btn_fab:
+                startActivity(new Intent(this, FloatingActionButtonActivity.class));
                 break;
         }
     }

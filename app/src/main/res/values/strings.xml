@@ -11,6 +11,7 @@
 
     <string name="coordinatorlayout">coordinatorlayout</string>
     <string name="bottomsheet">bottomsheet</string>
+    <string name="fab">fab</string>
 
     <string-array name="demo_list">
         <item>下拉刷新</item>

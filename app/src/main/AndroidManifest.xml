@@ -25,6 +25,7 @@
         <activity android:name=".mdwidget.MDWidgetActivity" />
         <activity android:name=".mdwidget.CoordinatorlayoutActivity" />
         <activity android:name=".mdwidget.BottomSheetActivity" />
+        <activity android:name=".mdwidget.FloatingActionButtonActivity" />
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
     </application>
