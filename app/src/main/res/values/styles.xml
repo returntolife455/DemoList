@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="MyBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    
+    <style name="MyBaseTheme.Daytime">
+      <item name="custom_attr_btn_bg_color">@color/custom_attr_btn_bg_color_daytime</item>
+      <item name="custom_attr_btn_text_color">@color/custom_attr_btn_text_color_daytime</item>
+      <item name="custom_attr_bg_color">@color/custom_attr_bg_color_daytime</item>
+      <item name="custom_attr_text_color">@color/custom_attr_text_color_daytime</item>
+    </style>
+
+    <style name="MyBaseTheme.Night">
+        <item name="custom_attr_btn_bg_color">@color/custom_attr_btn_bg_color_night</item>
+        <item name="custom_attr_btn_text_color">@color/custom_attr_btn_text_color_night</item>
+        <item name="custom_attr_bg_color">@color/custom_attr_bg_color_night</item>
+        <item name="custom_attr_text_color">@color/custom_attr_text_color_night</item>
+    </style>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/custom_attr_bg_color"
+    android:orientation="vertical">
+
+
+
+    <Button
+        android:background="?attr/custom_attr_btn_bg_color"
+        android:id="@+id/btn_daytime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/daytime" />
+
+    <Button
+        android:background="?attr/custom_attr_btn_bg_color"
+        android:id="@+id/btn_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/night" />
+
+    <TextView
+        android:textColor="?attr/custom_attr_text_color"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:text="这是白天模式"
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

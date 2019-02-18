@@ -10,6 +10,7 @@ import android.view.View;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.returntolife.jjcode.mydemolist.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
 import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
@@ -102,6 +103,11 @@ public class DemoListActivity extends AppCompatActivity {
                 case "图片处理_取色":
                     startActivity(new Intent(DemoListActivity.this, PickingPictureActivity.class));
                    break;
+                case"切换主题":
+                    startActivity(new Intent(DemoListActivity.this, ChangeThemeActivity.class));
+                    break;
+                default:
+                    break;
             }
     }
 
