@@ -22,6 +22,10 @@
         <activity android:name=".resumedownload.ResumeDownloadActivity" />
         <activity android:name=".editimage.InvertedImageActivity" />
         <activity android:name=".editimage.PickingPictureActivity" />
+        <activity android:name=".mdwidget.MDWidgetActivity" />
+        <activity android:name=".mdwidget.CoordinatorlayoutActivity" />
+        <activity android:name=".mdwidget.BottomSheetActivity" />
+        <activity android:name=".mdwidget.FloatingActionButtonActivity" />
         <activity android:name=".changetheme.ChangeThemeActivity" />
 
         <service android:name=".resumedownload.ResumeDownloadService"/>

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MyDemoList</string>
+
     <string name="resume_text">下载地址：</string>
     <string name="start">开始</string>
     <string name="stop">停止</string>
@@ -10,12 +11,17 @@
     <string name="daytime">白天</string>
     <string name="night">夜晚</string>
 
+    <string name="coordinatorlayout">coordinatorlayout</string>
+    <string name="bottomsheet">bottomsheet</string>
+    <string name="fab">fab</string>
+
     <string-array name="demo_list">
         <item>下拉刷新</item>
         <item>绘制锁屏</item>
         <item>断点续传</item>
         <item>图片处理_倒影</item>
         <item>图片处理_取色</item>
+        <item>MD_控件</item>
         <item>切换主题</item>
     </string-array>
 </resources>
