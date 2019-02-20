@@ -1,5 +1,6 @@
 package com.returntolife.jjcode.mydemolist;
 
+import android.content.ContentProviderClient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
 import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
 import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
+import com.returntolife.jjcode.mydemolist.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
@@ -107,8 +109,11 @@ public class DemoListActivity extends AppCompatActivity {
                 case "MD_控件":
                     startActivity(new Intent(DemoListActivity.this, MDWidgetActivity.class));
                     break;
-                case"切换主题":
+                case"内置主题切换":
                     startActivity(new Intent(DemoListActivity.this, ChangeThemeActivity.class));
+                    break;
+                case"contentProvider":
+                    startActivity(new Intent(DemoListActivity.this, ContentProviderClientActivity.class));
                     break;
                 default:
                     break;

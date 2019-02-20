@@ -27,8 +27,20 @@
         <activity android:name=".mdwidget.BottomSheetActivity" />
         <activity android:name=".mdwidget.FloatingActionButtonActivity" />
         <activity android:name=".changetheme.ChangeThemeActivity" />
+        <activity android:name=".mycontentprovider.ContentProviderClientActivity" />
+        <activity android:name=".mycontentprovider.MiMeTestActivity" >
+            <intent-filter>
+                <action android:name="harvic.test.qijian" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/harvic.first" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
+
+        <provider
+            android:authorities="com.returntolife.myprovider"
+            android:name=".mycontentprovider.MyContentProvider"/>
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@
         <item>图片处理_倒影</item>
         <item>图片处理_取色</item>
         <item>MD_控件</item>
-        <item>切换主题</item>
+        <item>内置主题切换</item>
+        <item>contentProvider</item>
     </string-array>
 </resources>
