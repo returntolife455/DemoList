@@ -19,6 +19,7 @@ import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
 import com.returntolife.jjcode.mydemolist.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
+import com.returntolife.jjcode.mydemolist.rxjava.RxJavaDemoListActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonDelegateAdapter;
 
@@ -89,6 +90,7 @@ public class DemoListActivity extends AppCompatActivity {
         dataList=new ArrayList<>();
         Collections.addAll(dataList, data);
     }
+
     private void startDemoActivity(String s) {
             switch (s){
                 case "下拉刷新":

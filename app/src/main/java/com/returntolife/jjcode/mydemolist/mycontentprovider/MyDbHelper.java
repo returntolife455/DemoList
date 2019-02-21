@@ -15,7 +15,6 @@ import com.returntolife.jjcode.mydemolist.resumedownload.DBHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
 
-    private static DBHelper dbHelper=null;
 
     private static final String DB_NAME="myprovider.db";
 
@@ -24,11 +23,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
 
 
-
     private static final int VERSION=1;
 
     public MyDbHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, VERSION);
     }
 
     @Override

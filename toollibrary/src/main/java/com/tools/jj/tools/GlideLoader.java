@@ -94,7 +94,9 @@ public class GlideLoader implements IImageLoader {
         if (options.targetView instanceof ImageView) {
             requestBuilder.into(((ImageView)options.targetView));
         }else if(null!=options.bitmapCallBack&&null!=options.targetView){
-            //requestBuilder.into(new GlideViewTarget(options.targetView,options.bitmapCallBack));
+            requestBuilder.into(new GlideViewTarget(options.targetView,options.bitmapCallBack));
+        }else {
+
         }
     }
 

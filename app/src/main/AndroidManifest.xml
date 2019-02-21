@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.returntolife.jjcode.mydemolist">
 
+    <permission
+        android:name="com.returntolife.myprovider.permission"
+        android:protectionLevel="normal" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,8 +44,10 @@
         <service android:name=".resumedownload.ResumeDownloadService"/>
 
         <provider
+            android:name=".mycontentprovider.MyContentProvider"
             android:authorities="com.returntolife.myprovider"
-            android:name=".mycontentprovider.MyContentProvider"/>
+            android:exported="true"
+            android:permission="com.returntolife.myprovider.permission" />
     </application>
 
 </manifest>

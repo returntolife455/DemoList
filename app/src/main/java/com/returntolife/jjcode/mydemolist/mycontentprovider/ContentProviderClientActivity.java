@@ -26,7 +26,6 @@ import com.umeng.commonsdk.debug.E;
 
 public class ContentProviderClientActivity extends Activity  implements View.OnClickListener{
 
-    private static final String TAG="ContentProviderClientActivity";
 
     private Button btnGetData,btnSkip;
     private TextView tvTest;

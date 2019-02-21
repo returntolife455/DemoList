@@ -27,8 +27,9 @@ public class MyContentProvider extends ContentProvider {
 
     private MyDbHelper mMyDbHelper;
 
-    public static final String AUTOHORITY = "com.returntolife.myprovider";
     // 设置ContentProvider的唯一标识
+    public static final String AUTOHORITY = "com.returntolife.myprovider";
+
 
     public static final int TABLE_STUDENT_CODE = 1;
     public static final int TABLE_BOOKE_CODE = 2;
@@ -38,6 +39,7 @@ public class MyContentProvider extends ContentProvider {
 
     SQLiteDatabase db = null;
 
+    //重要的一步，将uri和provider绑定
     static {
         mMatcher=new UriMatcher(UriMatcher.NO_MATCH);
 
