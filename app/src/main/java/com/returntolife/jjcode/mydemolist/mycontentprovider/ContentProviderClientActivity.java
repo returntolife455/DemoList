@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,12 @@ import android.widget.TextView;
 import com.returntolife.jjcode.mydemolist.R;
 import com.tools.jj.tools.utils.LogUtil;
 import com.umeng.commonsdk.debug.E;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static android.os.Environment.DIRECTORY_MUSIC;
 
 /**
  * Created by HeJiaJun on 2019/2/20.
