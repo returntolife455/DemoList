@@ -115,6 +115,7 @@ public class MyLoopScaleView extends View {
     //游标左右两边位置，以及范围
     private int gradientLeftPos;
     private int gradientRightPos;
+    //游标中心与最左/右的距离
     private int currsorGradientSize=6;
 
     //游标的pos指向的值
@@ -550,9 +551,6 @@ public class MyLoopScaleView extends View {
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (!isPlayAnimation) {
                 scrollCurrsor(-distanceX);
-
-//                valueLocation+=distanceX;
-//                invalidate();
             }
             return true;
         }
@@ -588,6 +586,7 @@ public class MyLoopScaleView extends View {
         } else if (currsorPos < 1) {
             currsorPos = 1;
         }
+        //计算点与游标中心的偏移，用于平滑过渡
         pointLocationDiff = Math.abs(currsorLocation - currsorPos * scaleDistance);
         updatecurrsorPos(currsorPos);
 
