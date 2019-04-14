@@ -12,4 +12,6 @@
 
 [android案例---下拉刷新](https://www.jianshu.com/p/6d79af6ac3af)
 
+[android案例---自定义波浪刻度轮盘效果](https://www.jianshu.com/p/5751c34f343d)
+
 [多线程断点续传] (暂无文章)
