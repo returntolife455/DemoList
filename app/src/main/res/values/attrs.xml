@@ -4,4 +4,41 @@
     <attr name="custom_attr_btn_text_color" format="color|reference"/>
     <attr name="custom_attr_bg_color" format="color|reference"/>
     <attr name="custom_attr_text_color" format="color|reference" />
+
+
+    <declare-styleable name="MyLoopScaleView">
+        <!--刻度文字的marginTop-->
+        <attr name="scaleTextTopSpace" format="integer"/>
+        <!--刻度文字大小-->
+        <attr name="scaleTextSize" format="integer"/>
+        <!--刻度文字颜色-->
+        <attr name="scaleTextColor" format="color"/>
+
+        <!--刻度高度-->
+        <attr name="scaleItemHeight" format="integer"/>
+        <!--刻度宽度-->
+        <attr name="scaleItemWidth" format="integer"/>
+        <!--普通刻度的颜色-->
+        <attr name="scaleItemColor" format="color"/>
+        <!--高亮刻度的颜色-->
+        <attr name="scaleItemHighlightColor" format="color"/>
+
+        <!--游标渐变起始颜色-->
+        <attr name="currsorStartColor" format="color"/>
+        <!--游标渐变结束颜色-->
+        <attr name="currsorEndColor" format="color"/>
+
+        <!--默认是AM还是FM模式-->
+        <attr name="isfm" format="boolean"/>
+
+        <!--回弹动画最大时长-->
+        <attr name="anmationResilienceDuration" format="integer"/>
+        <!--边缘滑动动画最大时长-->
+        <attr name="animatEdgeDuration" format="integer"/>
+        <!--滑动指定数值的最大动画时长-->
+        <attr name="animatScrollToValueDuration" format="integer"/>
+
+        <!--当前屏幕显示区域显示高亮刻度的数量-->
+        <attr name="showItemSize" format="integer"/>
+    </declare-styleable>
 </resources>

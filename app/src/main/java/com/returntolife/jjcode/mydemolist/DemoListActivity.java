@@ -19,7 +19,7 @@ import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
 import com.returntolife.jjcode.mydemolist.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
-import com.returntolife.jjcode.mydemolist.rxjava.RxJavaDemoListActivity;
+import com.returntolife.jjcode.mydemolist.widget.WidgetActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonDelegateAdapter;
 
@@ -93,6 +93,9 @@ public class DemoListActivity extends AppCompatActivity {
 
     private void startDemoActivity(String s) {
             switch (s){
+                case"测试用":
+                    startActivity(new Intent(DemoListActivity.this, TestActivity.class));
+                    break;
                 case "下拉刷新":
                     startActivity(new Intent(DemoListActivity.this, PutoRefreshActivity.class));
                     break;
@@ -116,6 +119,9 @@ public class DemoListActivity extends AppCompatActivity {
                     break;
                 case"contentProvider":
                     startActivity(new Intent(DemoListActivity.this, ContentProviderClientActivity.class));
+                    break;
+                case "widgets":
+                    startActivity(new Intent(DemoListActivity.this, WidgetActivity.class));
                     break;
                 default:
                     break;

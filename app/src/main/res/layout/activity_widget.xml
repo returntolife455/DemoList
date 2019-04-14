@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".widget.WidgetActivity">
+
+    <com.returntolife.jjcode.mydemolist.widget.MyLoopScaleView
+        android:id="@+id/my_loopscaleview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="8dp"
+        app:scaleItemColor="@color/white"
+        android:padding="8dp"/>
+
+    <TextView
+        android:textSize="42sp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_fre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_fre"
+            android:textAllCaps="false"
+            android:text="setFre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_channel"
+            android:textAllCaps="false"
+            android:text="channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_vlue"
+            android:textAllCaps="false"
+            android:text="getValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,8 +9,10 @@
     <Button
         android:textColor="@color/black"
         tools:text="dddd"
+        android:textAllCaps="false"
         android:layout_gravity="center"
         android:id="@+id/btn_demo"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

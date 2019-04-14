@@ -40,6 +40,9 @@
                 <data android:mimeType="vnd.android.cursor.dir/harvic.first" />
             </intent-filter>
         </activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".widget.WidgetActivity"
+            android:screenOrientation="landscape"/>
 
         <service android:name=".resumedownload.ResumeDownloadService"/>
 
