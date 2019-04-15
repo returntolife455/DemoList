@@ -8,10 +8,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <Button
+        android:id="@+id/btn_method1"
+        android:text="mothod1"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_method2"
+        android:text="mothod2"
+        android:layout_toRightOf="@+id/btn_method1"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
     <ImageView
         android:layout_centerInParent="true"
-        android:id="@+id/iv_main"
+        android:id="@+id/iv_pick"
         android:scaleType="centerCrop"
-        android:layout_width="750px"
-        android:layout_height="750px" />
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+
+    <TextView
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv_time"
+        android:layout_above="@+id/iv_pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
