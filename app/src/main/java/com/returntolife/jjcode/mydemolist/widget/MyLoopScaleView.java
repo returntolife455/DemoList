@@ -31,7 +31,8 @@ import java.util.List;
 /**
  * Created by jiajun He on 2019/4/9.
  * des:自定义调频控件
- * version:1.0.4
+ * version:1.0.5
+ *
  */
 
 
@@ -146,7 +147,7 @@ public class MyLoopScaleView extends View {
     private boolean isPlayAnimation = false;
 
     //是否是FM调频
-    private boolean isFM=false;
+    private boolean isFM=true;
 
     public void setOnValueChangeListener(OnValueChangeListener onValueChangeListener) {
         this.onValueChangeListener = onValueChangeListener;
@@ -662,9 +663,13 @@ public class MyLoopScaleView extends View {
      * @param value
      */
     public void scrollToTargetValue(float value){
-        if(isPlayAnimation){
-            return;
-        }
+//        if(isPlayAnimation){
+//
+//           // return;
+//        }
+        stopAnimator();
+        initPosAndLocation();
+
         if(isFM){
             value=value*10f;
         }
@@ -679,9 +684,9 @@ public class MyLoopScaleView extends View {
             value+=oneItemValue-value%oneItemValue;
         }
 
-        if(value==currsorValue){
-            return;
-        }
+//        if(value==currsorValue){
+//            return;
+//        }
 
         float tempDiff=currsorValue-value;
         float tempDiffLocation=tempDiff/oneItemValue*scaleDistance;
@@ -689,7 +694,7 @@ public class MyLoopScaleView extends View {
         currsorPosDiff= (int) ((tempDiff/oneItemValue%spaceScaleCount)+currsorPosDiff)%spaceScaleCount;
 
 
-        Log.d(TAG,"scrollToTargetValue value"+value+"--tempDiffLocation="+tempDiffLocation+"--tempDiff="+tempDiff+"--currsorPosDiff="+currsorPosDiff);
+        Log.d(TAG,"scrollToTargetValue value"+value+"--currsorValue="+currsorValue);
 
 
 
@@ -723,19 +728,21 @@ public class MyLoopScaleView extends View {
 
     /**
      * 滑动到指定数值的位置
-     * @param value
+     * @param value  频点数值
+     * @param isfm   fm还是am的频点
      */
     public void scrollToTargetValue(float value,boolean isfm){
-        if(isPlayAnimation){
-            return;
-        }
+//        if(isPlayAnimation){
+//            return;
+//        }
 
-        if(isFM!=isfm){
-            isFM=isfm;
-
-            initPosAndLocation();
-            invalidate();
-        }
+        isFM=isfm;
+//        if(isFM!=isfm){
+//            isFM=isfm;
+////
+////            initPosAndLocation();
+////            invalidate();
+//        }
         scrollToTargetValue(value);
     }
 

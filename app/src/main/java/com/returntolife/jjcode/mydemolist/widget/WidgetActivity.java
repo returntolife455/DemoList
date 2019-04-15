@@ -47,6 +47,7 @@ public class WidgetActivity extends Activity {
         switch (view.getId()) {
             case R.id.btn_fre:
                 myLoopscaleview.scrollToTargetValue(89.5f);
+                myLoopscaleview.scrollToTargetValue(100f);
                 break;
             case R.id.btn_channel:
                 if(myLoopscaleview.isFM()){
