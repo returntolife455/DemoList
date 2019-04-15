@@ -25,6 +25,7 @@
         <item>MD_控件</item>
         <item>内置主题切换</item>
         <item>contentProvider</item>
+        <item>recyclerview</item>
         <item>widgets</item>
     </string-array>
 </resources>

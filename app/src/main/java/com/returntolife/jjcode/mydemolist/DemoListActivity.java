@@ -18,6 +18,7 @@ import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
 import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
 import com.returntolife.jjcode.mydemolist.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
+import com.returntolife.jjcode.mydemolist.recyclerview.RecyclerViewActivity;
 import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.widget.WidgetActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
@@ -119,6 +120,9 @@ public class DemoListActivity extends AppCompatActivity {
                     break;
                 case"contentProvider":
                     startActivity(new Intent(DemoListActivity.this, ContentProviderClientActivity.class));
+                    break;
+                case"recyclerview":
+                    startActivity(new Intent(DemoListActivity.this, RecyclerViewActivity.class));
                     break;
                 case "widgets":
                     startActivity(new Intent(DemoListActivity.this, WidgetActivity.class));

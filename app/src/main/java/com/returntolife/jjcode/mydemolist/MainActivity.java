@@ -2,7 +2,6 @@ package com.returntolife.jjcode.mydemolist;
 
 import android.Manifest;
 import android.content.Intent;
-import android.support.v4.app.AppLaunchChecker;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;

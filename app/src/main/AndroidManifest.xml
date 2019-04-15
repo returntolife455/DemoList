@@ -44,6 +44,7 @@
         <activity android:name=".widget.WidgetActivity"
             android:screenOrientation="landscape"/>
 
+        <activity android:name=".recyclerview.RecyclerViewActivity" />
         <service android:name=".resumedownload.ResumeDownloadService"/>
 
         <provider
