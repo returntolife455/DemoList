@@ -15,11 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".DemoListActivity" />
         <activity android:name=".putorefresh.PutoRefreshActivity" />
@@ -45,6 +40,14 @@
             android:screenOrientation="landscape"/>
 
         <activity android:name=".recyclerview.RecyclerViewActivity" />
+        <activity android:name=".AppPermissionActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <service android:name=".resumedownload.ResumeDownloadService"/>
 
         <provider
