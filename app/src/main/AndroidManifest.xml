@@ -14,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
         </activity>
-        <activity android:name=".DemoListActivity" />
+        <activity android:name=".ui.activity.DemoListActivity" />
         <activity android:name=".putorefresh.PutoRefreshActivity" />
         <activity android:name=".drawlockscreen.DrawLockScreenActivity" />
         <activity android:name=".resumedownload.ResumeDownloadActivity" />
@@ -35,12 +35,12 @@
                 <data android:mimeType="vnd.android.cursor.dir/harvic.first" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity" />
+        <activity android:name=".ui.activity.TestActivity" />
         <activity android:name=".widget.WidgetActivity"
             android:screenOrientation="landscape"/>
 
         <activity android:name=".recyclerview.RecyclerViewActivity" />
-        <activity android:name=".AppPermissionActivity" >
+        <activity android:name=".ui.activity.AppPermissionActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>

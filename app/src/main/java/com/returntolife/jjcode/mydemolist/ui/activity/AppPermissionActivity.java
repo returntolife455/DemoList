@@ -1,8 +1,9 @@
-package com.returntolife.jjcode.mydemolist;
+package com.returntolife.jjcode.mydemolist.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
 
+import com.returntolife.jjcode.mydemolist.ui.activity.MainActivity;
 import com.tools.jj.tools.activity.permission.BasePermissionActivity;
 
 public class AppPermissionActivity extends BasePermissionActivity {
@@ -14,7 +15,7 @@ public class AppPermissionActivity extends BasePermissionActivity {
 
     @Override
     public void initActivity() {
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, DemoListActivity.class));
         finish();
     }
 }

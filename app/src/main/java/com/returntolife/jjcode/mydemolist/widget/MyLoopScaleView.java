@@ -261,7 +261,7 @@ public class MyLoopScaleView extends View {
         valueLocation=0;
         currsorPosDiff=0;
         pointLocationDiff=0;
-        updateCurrsorValue();
+        updateCurrsorValue(false);
     }
 
 
@@ -514,7 +514,7 @@ public class MyLoopScaleView extends View {
     /**
      * 更新当前游标所指的数值
      */
-    private void updateCurrsorValue() {
+    private void updateCurrsorValue(boolean isNotify) {
         float tempValueLocation=valueLocation;
         if(scaleItemCount/(showItemSize*spaceScaleCount)<2){
             float tempValue=showItemSize/3*2 * spaceScaleCount * scaleDistance;
@@ -532,7 +532,7 @@ public class MyLoopScaleView extends View {
             currsorValue = (currsorPos + currentItem) * oneItemValue + minValue;
         }
 
-        if (onValueChangeListener != null) {
+        if (onValueChangeListener != null && isNotify) {
             onValueChangeListener.OnValueChange(isFM?currsorValue/10f:currsorValue);
         }
 
@@ -712,7 +712,7 @@ public class MyLoopScaleView extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                updateCurrsorValue();
+                updateCurrsorValue(true);
                 isPlayAnimation=false;
             }
 
@@ -793,7 +793,7 @@ public class MyLoopScaleView extends View {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                updateCurrsorValue();
+                updateCurrsorValue(true);
                 animatorPlayingList.remove(animatorSet);
                 isPlayAnimation = false;
             }

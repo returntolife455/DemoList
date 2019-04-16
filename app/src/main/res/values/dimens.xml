@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_demolist_fragment_item_width">165dp</dimen>
+</resources>

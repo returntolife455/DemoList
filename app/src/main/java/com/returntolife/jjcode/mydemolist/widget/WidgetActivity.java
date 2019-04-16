@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.returntolife.jjcode.mydemolist.R;
+import com.tools.jj.tools.utils.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,7 @@ public class WidgetActivity extends Activity {
         myLoopscaleview.setOnValueChangeListener(new MyLoopScaleView.OnValueChangeListener() {
             @Override
             public void OnValueChange(float newValue) {
+                LogUtil.d("newValue="+newValue);
                 tvFre.setText(newValue+"");
             }
         });
@@ -46,7 +48,7 @@ public class WidgetActivity extends Activity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_fre:
-                myLoopscaleview.scrollToTargetValue(89.5f);
+            //    myLoopscaleview.scrollToTargetValue(89.5f);
                 myLoopscaleview.scrollToTargetValue(100f);
                 break;
             case R.id.btn_channel:

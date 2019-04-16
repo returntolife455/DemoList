@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.returntolife.jjcode.mydemolist.MainActivity;
+import com.returntolife.jjcode.mydemolist.ui.activity.MainActivity;
 import com.returntolife.jjcode.mydemolist.R;
 
 import java.util.HashMap;

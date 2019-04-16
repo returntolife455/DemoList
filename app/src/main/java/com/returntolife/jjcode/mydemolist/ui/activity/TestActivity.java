@@ -1,8 +1,10 @@
-package com.returntolife.jjcode.mydemolist;
+package com.returntolife.jjcode.mydemolist.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import com.returntolife.jjcode.mydemolist.R;
 
 /**
  * Created by HeJiaJun on 2019/2/25.

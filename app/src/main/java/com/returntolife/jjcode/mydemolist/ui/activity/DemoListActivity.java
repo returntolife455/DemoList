@@ -1,6 +1,5 @@
-package com.returntolife.jjcode.mydemolist;
+package com.returntolife.jjcode.mydemolist.ui.activity;
 
-import android.content.ContentProviderClient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.view.View;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
 import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;

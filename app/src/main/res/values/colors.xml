@@ -16,4 +16,8 @@
 
     <color name="custom_attr_text_color_daytime">#FF424242</color>
     <color name="custom_attr_text_color_night">#FF666666</color>
+
+
+    <!--颜色命名规则 module_local_function-->
+    <color name="app_main_tabIndicatorColor">#303F9F</color>
 </resources>
