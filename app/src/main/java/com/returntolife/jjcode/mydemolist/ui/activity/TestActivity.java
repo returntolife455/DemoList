@@ -1,10 +1,15 @@
 package com.returntolife.jjcode.mydemolist.ui.activity;
 
 import android.app.Activity;
+import android.graphics.LinearGradient;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.returntolife.jjcode.mydemolist.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by HeJiaJun on 2019/2/25.
@@ -15,9 +20,14 @@ import com.returntolife.jjcode.mydemolist.R;
 
 public class TestActivity extends Activity {
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        ButterKnife.bind(this);
+
+
     }
 }
