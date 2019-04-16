@@ -24,11 +24,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation librarys.supportAppcompat
+    implementation librarys.cardview
     testCompile librarys.junit
     androidTestImplementation librarys.runner
     androidTestImplementation librarys.espresso

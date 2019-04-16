@@ -1,75 +1,46 @@
 package com.returntolife.jjcode.mydemolist;
 
-import android.Manifest;
-import android.content.Intent;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity {
 
 
-import com.tools.jj.tools.activity.permission.BasePermissionActivity;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer)
+    DrawerLayout drawer;
 
-public class MainActivity extends BasePermissionActivity {
-
+    ActionBarDrawerToggle mDrawerToggle;
 
     @Override
-    public String[] setRequestString() {
-        return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE};
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 给左上角图标的左边加上一个返回的图标
+        getSupportActionBar().setHomeButtonEnabled(false); //设置返回键可用
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
+        mDrawerToggle.syncState();
+        drawer.addDrawerListener(mDrawerToggle);
+
     }
 
-
-
     @Override
-    public void initActivity() {
-        startActivity(new Intent(this,DemoListActivity.class));
-        finish();
-        View view=new View(this);
-
-        //透明视图动画
-        AlphaAnimation alphaAnimation=new AlphaAnimation(0,1);
-        alphaAnimation.setDuration(3000);
-        alphaAnimation.setStartOffset(300);
-        alphaAnimation.setFillEnabled(true);
-        alphaAnimation.setFillEnabled(true);
-        view.startAnimation(alphaAnimation);
-
-        /**
-         * 动画集合 ： true使用同一个插值器，false使用每个动画独自的插值器
-         */
-        AnimationSet animationSet=new AnimationSet(true);
-        AlphaAnimation aAnim=new AlphaAnimation(0,1);
-        alphaAnimation.setDuration(3000);
-        alphaAnimation.setStartOffset(300);
-
-        TranslateAnimation tAnim=new TranslateAnimation(0,200,0,300);
-        tAnim.setDuration(3000);
-
-        animationSet.addAnimation(aAnim);
-        animationSet.addAnimation(tAnim);
-
-        view.startAnimation(animationSet);
-
-        //给动画设置监听
-        RotateAnimation rAnim=new RotateAnimation(0,360);
-        rAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+    protected void onStop() {
+        super.onStop();
+        drawer.removeDrawerListener(mDrawerToggle);
     }
 }

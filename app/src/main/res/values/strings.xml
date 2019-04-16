@@ -11,6 +11,9 @@
     <string name="daytime">白天</string>
     <string name="night">夜晚</string>
 
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+
     <string name="coordinatorlayout">coordinatorlayout</string>
     <string name="bottomsheet">bottomsheet</string>
     <string name="fab">fab</string>

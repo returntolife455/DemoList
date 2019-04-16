@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.returntolife.jjcode.mydemolist.R;
-import com.tools.jj.tools.utils.Dp2PxUtil;
 import com.tools.jj.tools.utils.LogUtil;
 
 import butterknife.BindView;
@@ -46,16 +45,14 @@ public class PickingPictureActivity extends Activity {
     Button btnMethod1;
     @BindView(R.id.btn_method2)
     Button btnMethod2;
-    @BindView(R.id.iv_pick)
-    ImageView ivPick;
     @BindView(R.id.tv_time)
     TextView tvTime;
+    @BindView(R.id.iv_main)
+    ImageView ivMain;
 
-    private boolean isMethod1=true;
+
+    private boolean isMethod1 = false;
     private long time;
-
-    private int imageWidth;
-    private int imageHeight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,15 +67,12 @@ public class PickingPictureActivity extends Activity {
 //            }
 //        });
 
-
-
-
     }
 
     private void pickColor() {
         Glide.with(this).asBitmap()
                 .load(R.drawable.bg_invert_image)
-                .into(new SimpleTarget<Bitmap>(500,500) {
+                .into(new SimpleTarget<Bitmap>(300, 300) {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
@@ -95,20 +89,20 @@ public class PickingPictureActivity extends Activity {
                             }
                         });
 
-                        imageWidth=resource.getWidth();
-                        imageHeight=resource.getHeight();
-                        LogUtil.d("resourcewith=" + resource.getWidth() + "--resourceheight=" + resource.getHeight());
-                        time=System.currentTimeMillis();
-                        ivPick.setImageBitmap(isMethod1?getImageToChange(resource):handleBigmap(resource));
-                        time=System.currentTimeMillis()-time;
+                        LogUtil.d("with=" + resource.getWidth() + "--height=" + resource.getHeight());
+                        time = System.currentTimeMillis();
+                        if (isMethod1) {
+                            ivMain.setImageBitmap(getImageToChange(resource));
+                        } else {
+                            ivMain.setImageBitmap(handleBimap(resource));
+                        }
+                        time = System.currentTimeMillis() - time;
+                        tvTime.setText("耗时: " + (time / 1000f) + "s");
 
-                        tvTime.setText("耗时:"+(time/1000f)+"S");
 
                     }
                 });
     }
-
-
 
 
     //创建线性渐变背景色
@@ -144,57 +138,63 @@ public class PickingPictureActivity extends Activity {
                 int r = Color.red(color);
                 int b = Color.blue(color);
                 int a = Color.alpha(color);
-
+                //从中间部分开始透明渐变
                 float index = i * 1.0f / mHeight;
                 if (index > 0.5f) {
-                    float temp = i - mHeight / 2.0f;
-                    a = 255 - (int) (i / (mHeight / 2.0f) * 255);
+                    a = 255 - (int) (i / (mHeight / 2f) * 255);
                 }
                 color = Color.argb(a, r, g, b);
                 createBitmap.setPixel(j, i, color);
             }
         }
+
         return createBitmap;
     }
 
-
-    private Bitmap handleBigmap(Bitmap localBitmap) {
+    /**
+     * 通过位移运算来做透渐变，相比之前的方法提高90倍左右
+     * @param bitmap
+     * @return
+     */
+    private Bitmap handleBimap(Bitmap bitmap) {
         //透明渐变
-        int[] argb = new int[localBitmap.getWidth() * localBitmap.getHeight()];
-        localBitmap.getPixels(argb, 0, localBitmap.getWidth(), 0, 0, localBitmap.getWidth(), localBitmap.getHeight());
+        int[] argb = new int[bitmap.getWidth() * bitmap.getHeight()];
+        bitmap.getPixels(argb, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         //循环开始的下标，设置从什么时候开始改变
         int start = argb.length / 2;
-        int mid = argb.length * 83 / 100;
-        int lines = ((mid - start) / localBitmap.getHeight()) + 2;
+        int end=argb.length;
 
-        int width = localBitmap.getWidth();
-        for (int i = 0; i < lines; i++) {
+//        int mid = argb.length;
+//        int row = ((mid - start) / bitmap.getHeight()) + 2;
+
+
+        int width = bitmap.getWidth();
+        for (int i = 0; i < bitmap.getHeight()/2+1; i++) {
             for (int j = 0; j < width; j++) {
                 int index = start - width + i * width + j;
                 if (argb[index] != 0) {
-                    argb[index] = ((int) ((1 - ((float) i / lines)) * 255) << 24) | (argb[index] & 0x00FFFFFF);
+                    argb[index] = ((int) ((1-i/(bitmap.getHeight()/2f)) * 255) << 24) | (argb[index] & 0x00FFFFFF);
                 }
             }
         }
-        for (int i = mid; i < argb.length; i++) {
-            argb[i] = (argb[i] & 0x00FFFFFF);
-        }
+//        for (int i = mid; i < argb.length; i++) {
+//            argb[i] = (argb[i] & 0x00FFFFFF);
+//        }
 
-        localBitmap = Bitmap.createBitmap(argb, localBitmap.getWidth(), localBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        return Bitmap.createBitmap(argb, bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
-        return localBitmap;
     }
 
     @OnClick({R.id.btn_method1, R.id.btn_method2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_method1:
-                isMethod1=true;
+                isMethod1 = true;
                 pickColor();
                 break;
             case R.id.btn_method2:
-                isMethod1=false;
+                isMethod1 = false;
                 pickColor();
                 break;
         }
