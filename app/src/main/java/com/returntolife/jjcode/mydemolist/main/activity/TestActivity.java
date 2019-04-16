@@ -1,14 +1,11 @@
-package com.returntolife.jjcode.mydemolist.ui.activity;
+package com.returntolife.jjcode.mydemolist.main.activity;
 
 import android.app.Activity;
-import android.graphics.LinearGradient;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
 
 import com.returntolife.jjcode.mydemolist.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**

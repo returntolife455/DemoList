@@ -6,7 +6,7 @@
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
     android:orientation="vertical"
-    tools:context=".ui.activity.MainActivity" >
+    tools:context=".main.activity.MainActivity" >
 
 
     <com.tools.jj.tools.view.ClearEditText

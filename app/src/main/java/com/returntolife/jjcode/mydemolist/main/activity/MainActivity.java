@@ -1,4 +1,4 @@
-package com.returntolife.jjcode.mydemolist.ui.activity;
+package com.returntolife.jjcode.mydemolist.main.activity;
 
 
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.returntolife.jjcode.mydemolist.R;
-import com.returntolife.jjcode.mydemolist.ui.adapter.MainViewPagerAdapter;
-import com.returntolife.jjcode.mydemolist.ui.fragment.FunctionDemoListFragment;
-import com.returntolife.jjcode.mydemolist.ui.fragment.ImageDemoListFragment;
-import com.returntolife.jjcode.mydemolist.ui.fragment.HomeDemoListFragment;
-import com.returntolife.jjcode.mydemolist.ui.fragment.WidgetDemoListFragment;
+import com.returntolife.jjcode.mydemolist.main.adapter.MainViewPagerAdapter;
+import com.returntolife.jjcode.mydemolist.main.fragment.FunctionDemoListFragment;
+import com.returntolife.jjcode.mydemolist.main.fragment.ImageDemoListFragment;
+import com.returntolife.jjcode.mydemolist.main.fragment.HomeDemoListFragment;
+import com.returntolife.jjcode.mydemolist.main.fragment.WidgetDemoListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(false);
         }
-
     }
 
 

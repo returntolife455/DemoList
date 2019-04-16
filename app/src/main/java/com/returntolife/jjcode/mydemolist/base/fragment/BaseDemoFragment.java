@@ -1,6 +1,5 @@
-package com.returntolife.jjcode.mydemolist.ui.base;
+package com.returntolife.jjcode.mydemolist.base.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,14 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.returntolife.jjcode.mydemolist.R;
-
-/**
- * Created by HeJiaJun on 2019/4/16.
+/*
+ * Create by JiaJun He on 2019/4/16$
+ * Email:1021661582@qq.com
  * des:
  * version:1.0.0
  */
-public abstract class BaseDemoListFragment extends Fragment {
+public abstract class BaseDemoFragment extends Fragment {
 
     protected View rootView;
     protected Context context;
@@ -33,7 +31,7 @@ public abstract class BaseDemoListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if(rootView==null){
-            rootView=inflater.inflate(R.layout.fragment_basedemolist,container,false);
+            rootView=inflater.inflate(getLayoutId(),container,false);
         }
 
         return  rootView;
@@ -42,9 +40,10 @@ public abstract class BaseDemoListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         initView();
     }
 
     public abstract void initView();
+
+    public abstract int getLayoutId();
 }

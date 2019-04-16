@@ -84,6 +84,7 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
     //加载网络图片
     public BaseRecyclerViewHolder setImageUrl(int viewId, String url) {
         ImageView view = getView(viewId);
+        //TODO
         return this;
     }
 

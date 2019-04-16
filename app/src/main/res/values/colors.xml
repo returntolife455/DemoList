@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <!--颜色命名规则 module_local_function-->
+    <color name="app_main_tabIndicatorColor">#303F9F</color>
+
 
     <color name="custom_attr_btn_bg_color_daytime">	#FFFFFFFF</color>
     <color name="custom_attr_btn_bg_color_night">#FF1D1D1D</color>
@@ -18,6 +21,5 @@
     <color name="custom_attr_text_color_night">#FF666666</color>
 
 
-    <!--颜色命名规则 module_local_function-->
-    <color name="app_main_tabIndicatorColor">#303F9F</color>
+
 </resources>

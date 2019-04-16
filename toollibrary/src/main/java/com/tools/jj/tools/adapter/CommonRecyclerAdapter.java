@@ -52,7 +52,9 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
 
-    public abstract void convert(BaseRecyclerViewHolder holder, int position);
+    protected void convert(BaseRecyclerViewHolder holder, int position) { }
 
-    public abstract void convert(BaseRecyclerViewHolder holder, T t, int position);
+
+    protected void convert(BaseRecyclerViewHolder holder, T t, int position) { }
+
 }
