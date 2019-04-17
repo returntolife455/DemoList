@@ -3,7 +3,6 @@ package com.returntolife.jjcode.mydemolist;
 import android.Manifest;
 import android.content.Intent;
 
-import com.returntolife.jjcode.mydemolist.main.activity.DemoListActivity;
 import com.returntolife.jjcode.mydemolist.main.activity.MainActivity;
 import com.tools.jj.tools.activity.permission.BasePermissionActivity;
 
