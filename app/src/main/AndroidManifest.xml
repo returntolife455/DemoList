@@ -13,22 +13,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".AppApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".main.activity.MainActivity">
         </activity>
         <activity android:name=".main.activity.DemoListActivity" />
-        <activity android:name=".putorefresh.PutoRefreshActivity" />
-        <activity android:name=".drawlockscreen.DrawLockScreenActivity" />
-        <activity android:name=".resumedownload.ResumeDownloadActivity" />
-        <activity android:name=".editimage.InvertedImageActivity" />
-        <activity android:name=".editimage.PickingPictureActivity" />
-        <activity android:name=".mdwidget.MDWidgetActivity" />
-        <activity android:name=".mdwidget.CoordinatorlayoutActivity" />
-        <activity android:name=".mdwidget.BottomSheetActivity" />
-        <activity android:name=".mdwidget.FloatingActionButtonActivity" />
-        <activity android:name=".changetheme.ChangeThemeActivity" />
-        <activity android:name=".mycontentprovider.ContentProviderClientActivity" />
-        <activity android:name=".mycontentprovider.MiMeTestActivity" >
+        <activity android:name=".demo.widget.putorefresh.PutoRefreshActivity" />
+        <activity android:name=".demo.widget.drawlockscreen.DrawLockScreenActivity" />
+        <activity android:name=".demo.function.resumedownload.ResumeDownloadActivity" />
+        <activity android:name=".demo.image.InvertedImageActivity" />
+        <activity android:name=".demo.image.PickingPictureActivity" />
+        <activity android:name=".demo.widget.MDWidgetActivity" />
+        <activity android:name=".demo.widget.CoordinatorlayoutActivity" />
+        <activity android:name=".demo.widget.BottomSheetActivity" />
+        <activity android:name=".demo.widget.FloatingActionButtonActivity" />
+        <activity android:name=".demo.function.changetheme.ChangeThemeActivity" />
+        <activity android:name=".demo.function.mycontentprovider.ContentProviderClientActivity" />
+        <activity android:name=".demo.function.mycontentprovider.MiMeTestActivity" >
             <intent-filter>
                 <action android:name="harvic.test.qijian" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -36,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.activity.TestActivity" />
-        <activity android:name=".widget.WidgetActivity"
+        <activity android:name=".demo.widget.scaleview.ScaleViewActivity"
             android:screenOrientation="landscape"/>
 
-        <activity android:name=".recyclerview.RecyclerViewActivity" />
+        <activity android:name=".demo.widget.recyclerview.CardLayoutActivity" />
         <activity android:name=".AppPermissionActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,10 +49,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".resumedownload.ResumeDownloadService"/>
+        <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
 
         <provider
-            android:name=".mycontentprovider.MyContentProvider"
+            android:name=".demo.function.mycontentprovider.MyContentProvider"
             android:authorities="com.returntolife.myprovider"
             android:exported="true"
             android:permission="com.returntolife.myprovider.permission" />

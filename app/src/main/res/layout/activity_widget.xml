@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".widget.WidgetActivity">
+    tools:context=".demo.widget.scaleview.ScaleViewActivity">
 
-    <com.returntolife.jjcode.mydemolist.widget.MyLoopScaleView
+    <com.returntolife.jjcode.mydemolist.demo.widget.scaleview.MyLoopScaleView
         android:id="@+id/my_loopscaleview"
         android:layout_width="match_parent"
         android:layout_height="150dp"

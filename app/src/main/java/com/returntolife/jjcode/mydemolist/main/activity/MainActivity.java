@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeDemoListFragment());
-        fragmentList.add(new FunctionDemoListFragment());
-        fragmentList.add(new ImageDemoListFragment());
-        fragmentList.add(new WidgetDemoListFragment());
+        fragmentList.add(HomeDemoListFragment.getInstance());
+        fragmentList.add(ImageDemoListFragment.getInstance());
+        fragmentList.add(WidgetDemoListFragment.getInstance());
+        fragmentList.add(FunctionDemoListFragment.getInstance());
 
         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_home));
         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_image));

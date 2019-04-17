@@ -11,16 +11,16 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.returntolife.jjcode.mydemolist.R;
-import com.returntolife.jjcode.mydemolist.changetheme.ChangeThemeActivity;
-import com.returntolife.jjcode.mydemolist.drawlockscreen.DrawLockScreenActivity;
-import com.returntolife.jjcode.mydemolist.editimage.InvertedImageActivity;
-import com.returntolife.jjcode.mydemolist.editimage.PickingPictureActivity;
-import com.returntolife.jjcode.mydemolist.mdwidget.MDWidgetActivity;
-import com.returntolife.jjcode.mydemolist.mycontentprovider.ContentProviderClientActivity;
-import com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshActivity;
-import com.returntolife.jjcode.mydemolist.recyclerview.RecyclerViewActivity;
-import com.returntolife.jjcode.mydemolist.resumedownload.ResumeDownloadActivity;
-import com.returntolife.jjcode.mydemolist.widget.WidgetActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.drawlockscreen.DrawLockScreenActivity;
+import com.returntolife.jjcode.mydemolist.demo.image.InvertedImageActivity;
+import com.returntolife.jjcode.mydemolist.demo.image.PickingPictureActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.MDWidgetActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.putorefresh.PutoRefreshActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.recyclerview.CardLayoutActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.scaleview.ScaleViewActivity;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonDelegateAdapter;
 
@@ -122,10 +122,10 @@ public class DemoListActivity extends AppCompatActivity {
                     startActivity(new Intent(DemoListActivity.this, ContentProviderClientActivity.class));
                     break;
                 case"recyclerview":
-                    startActivity(new Intent(DemoListActivity.this, RecyclerViewActivity.class));
+                    startActivity(new Intent(DemoListActivity.this, CardLayoutActivity.class));
                     break;
                 case "widgets":
-                    startActivity(new Intent(DemoListActivity.this, WidgetActivity.class));
+                    startActivity(new Intent(DemoListActivity.this, ScaleViewActivity.class));
                     break;
                 default:
                     break;

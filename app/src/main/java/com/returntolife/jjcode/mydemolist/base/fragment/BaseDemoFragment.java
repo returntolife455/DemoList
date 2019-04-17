@@ -20,6 +20,8 @@ public abstract class BaseDemoFragment extends Fragment {
     protected View rootView;
     protected Context context;
 
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -46,4 +48,5 @@ public abstract class BaseDemoFragment extends Fragment {
     public abstract void initView();
 
     public abstract int getLayoutId();
+
 }

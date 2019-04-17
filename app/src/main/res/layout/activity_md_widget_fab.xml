@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cl_root"
-    tools:context=".mdwidget.FloatingActionButtonActivity">
+    tools:context=".demo.widget.FloatingActionButtonActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/al_title"
         android:layout_width="match_parent"

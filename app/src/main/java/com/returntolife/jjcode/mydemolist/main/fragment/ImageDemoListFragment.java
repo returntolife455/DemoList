@@ -1,6 +1,11 @@
 package com.returntolife.jjcode.mydemolist.main.fragment;
 
+import com.returntolife.jjcode.mydemolist.base.fragment.BaseDemoFragment;
 import com.returntolife.jjcode.mydemolist.base.fragment.BaseDemoListFragment;
+import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
+import com.returntolife.jjcode.mydemolist.manager.DemoListDataManager;
+
+import java.util.List;
 
 /**
  * Created by HeJiaJun on 2019/4/16.
@@ -9,9 +14,12 @@ import com.returntolife.jjcode.mydemolist.base.fragment.BaseDemoListFragment;
  */
 public class ImageDemoListFragment extends BaseDemoListFragment {
 
+    public static BaseDemoFragment getInstance(){
+        return new ImageDemoListFragment();
+    }
 
     @Override
-    public void initView() {
-
+    public List<DemoListBean> initData() {
+        return DemoListDataManager.getInstance().getImageDemoList();
     }
 }

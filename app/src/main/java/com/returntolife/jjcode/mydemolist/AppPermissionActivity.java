@@ -16,7 +16,7 @@ public class AppPermissionActivity extends BasePermissionActivity {
 
     @Override
     public void initActivity() {
-        startActivity(new Intent(this, DemoListActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

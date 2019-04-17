@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.returntolife.jjcode.mydemolist.putorefresh.PutoRefreshListView
+    <com.returntolife.jjcode.mydemolist.demo.widget.putorefresh.PutoRefreshListView
         android:id="@+id/myview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
