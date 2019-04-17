@@ -7,7 +7,7 @@ android日常开发中所用到的一些案例或者学习案例
 
 部分demo中有详细文章介绍
 ---
-[android案例--图片取色并让图片融入背景色](https://www.jianshu.com/p/d0c5402f1d2b)
+[android案例---图片取色并让图片融入背景色](https://www.jianshu.com/p/d0c5402f1d2b)
 
 [android案例---图片处理倒影效果](https://www.jianshu.com/p/cfe20bcfb71c)
 
