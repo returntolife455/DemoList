@@ -17,18 +17,4 @@
     <string name="coordinatorlayout">coordinatorlayout</string>
     <string name="bottomsheet">bottomsheet</string>
     <string name="fab">fab</string>
-
-    <string-array name="demo_list">
-        <item>测试用</item>
-        <item>下拉刷新</item>
-        <item>绘制锁屏</item>
-        <item>断点续传</item>
-        <item>图片处理_倒影</item>
-        <item>图片处理_取色</item>
-        <item>MD_控件</item>
-        <item>内置主题切换</item>
-        <item>contentProvider</item>
-        <item>recyclerview</item>
-        <item>widgets</item>
-    </string-array>
 </resources>
