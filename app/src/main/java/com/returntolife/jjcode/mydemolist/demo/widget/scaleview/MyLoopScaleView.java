@@ -490,7 +490,6 @@ public class MyLoopScaleView extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                animatorPlayingList.remove(valueAnimator);
                 scrollTargetCurrsor();
                 Log.d(TAG,"adjustPointPos currsorPos="+currsorPos+"--tempPos="+ finalTempPos);
             }
@@ -794,7 +793,6 @@ public class MyLoopScaleView extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 updateCurrsorValue(true);
-                animatorPlayingList.remove(animatorSet);
                 isPlayAnimation = false;
             }
 
@@ -815,6 +813,7 @@ public class MyLoopScaleView extends View {
                     animator.end();
                 }
             }
+            animatorPlayingList.clear();
         }
     }
 
@@ -876,7 +875,6 @@ public class MyLoopScaleView extends View {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             //滑动一次结束重新发送
-                            animatorPlayingList.remove(valueAnimator);
                             sendEdgeMessage(slideType);
                         }
 
