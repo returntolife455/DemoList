@@ -17,7 +17,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".main.activity.MainActivity">
         </activity>
-        <activity android:name=".main.activity.DemoListActivity" />
         <activity android:name=".demo.widget.putorefresh.PutoRefreshActivity" />
         <activity android:name=".demo.widget.drawlockscreen.DrawLockScreenActivity" />
         <activity android:name=".demo.function.resumedownload.ResumeDownloadActivity" />
@@ -36,7 +35,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/harvic.first" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.activity.TestActivity" />
         <activity android:name=".demo.widget.scaleview.ScaleViewActivity"
             android:screenOrientation="landscape"/>
 

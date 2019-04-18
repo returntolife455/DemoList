@@ -11,7 +11,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Andorid"
+        app:title="AndoridDemo"
         app:titleTextColor="@color/white"
         android:background="@color/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
