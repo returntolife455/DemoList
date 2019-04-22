@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle mDrawerToggle;
 
     List<Fragment> fragmentList;
-    List<String> titleList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
