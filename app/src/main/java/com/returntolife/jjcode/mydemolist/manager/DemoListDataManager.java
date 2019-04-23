@@ -77,7 +77,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("BottomSheetDialogFragment","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, DemoBottomSheetDialogFragment.class)));
         demoListBeanList.add(new DemoListBean("FloatingActionButton","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, FloatingActionButtonActivity.class)));
         demoListBeanList.add(new DemoListBean("仿探探卡片滑动","自定义recyclerview的layoutmanager","2019-04-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, CardLayoutActivity.class)));
-        demoListBeanList.add(new DemoListBean("MyScaleView","自定义波浪刻度调频控件","2019-04-12", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, ScaleViewActivity.class)));
+        demoListBeanList.add(new DemoListBean("波浪调频控件","自定义波浪刻度调频控件","2019-04-12", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, ScaleViewActivity.class)));
         demoListBeanList.add(new DemoListBean("绘制锁屏","自定义控件","2017-08-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, DrawLockScreenActivity.class)));
     }
 
