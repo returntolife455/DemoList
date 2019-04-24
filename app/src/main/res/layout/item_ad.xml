@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <com.returntolife.jjcode.mydemolist.demo.widget.adrecyclerview.AdImageViewVersion1
+        android:id="@+id/id_iv_ad"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="matrix"
+        android:src="@drawable/ad_item_bg"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/id_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="这是title"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/id_tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_tv_title"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="这是描述" />
+</RelativeLayout>

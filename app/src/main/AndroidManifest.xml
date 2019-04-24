@@ -28,6 +28,7 @@
         <activity android:name=".demo.widget.FloatingActionButtonActivity" />
         <activity android:name=".demo.function.changetheme.ChangeThemeActivity" />
         <activity android:name=".demo.function.mycontentprovider.ContentProviderClientActivity" />
+        <activity android:name=".demo.widget.adrecyclerview.AdListActivity"/>
         <activity android:name=".demo.function.mycontentprovider.MiMeTestActivity" >
             <intent-filter>
                 <action android:name="harvic.test.qijian" />
