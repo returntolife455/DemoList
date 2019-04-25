@@ -17,4 +17,6 @@ android日常开发中所用到的一些案例或者学习案例
 
 [android基础---contentprovider](https://www.jianshu.com/p/d1ca6689cbd8)
 
+[android案例-波浪调频刻度尺](https://www.jianshu.com/p/5751c34f343d)
+
 ### 喜欢或觉得有用的朋友欢迎start，会持续更新
