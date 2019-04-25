@@ -35,7 +35,6 @@ import java.util.List;
  *
  */
 
-
 public class MyLoopScaleView extends View {
     private final static String TAG = MyLoopScaleView.class.getSimpleName();
 
@@ -316,7 +315,7 @@ public class MyLoopScaleView extends View {
 
             float lastTop =currsorGradientScaleInfo[currsorGradientSize-1][0];
             float lastBottom =currsorGradientScaleInfo[currsorGradientSize-1][1];
-
+            //根据当前滑动的位置在两个item间的占比，再计算出一个动态位置
             tempLastTopDiff = (tempTopDiff - lastTop) * (pointLocationDiff / scaleDistance);
             tempLastBottomDiff = (tempBottomDiff - lastBottom) * (pointLocationDiff / scaleDistance);
             paint.setColor((int) currsorGradientScaleInfo[currsorGradientSize][2]);
@@ -529,6 +528,12 @@ public class MyLoopScaleView extends View {
             currsorValue = (currsorPos + currentItem) * oneItemValue + maxValue;
         } else {
             currsorValue = (currsorPos + currentItem) * oneItemValue + minValue;
+        }
+
+        //避免显示的showItem过多，导致adjustValueLocationByAnimator滑动很后才触发位置调整
+        //这是一种规避处理
+        if(currsorValue>=maxValue){
+            currsorValue=minValue+(currsorValue-maxValue);
         }
 
         if (onValueChangeListener != null && isNotify) {
