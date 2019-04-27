@@ -19,6 +19,7 @@ android日常开发中所用到的一些案例或者学习案例
 
 [android案例---波浪调频刻度尺](https://www.jianshu.com/p/5751c34f343d)
 
+[android案例---自定义attr属性实现内置主题换肤](https://www.jianshu.com/p/1688fd4add0b)
 
 另外整理的一些Android学习资料
 ---
