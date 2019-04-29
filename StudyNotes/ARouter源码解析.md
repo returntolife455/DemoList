@@ -96,3 +96,172 @@ class Warehouse {
 4、当调用navigation()方法时在Warehouse仓库查找对应的路由组件
 
 5、使用原生的方法实现跳转
+
+#### 2.1 ARouter.init() 初始化
+
+```java
+// ARouter.class 
+public static void init(Application application) {
+        if (!hasInit) { //如果没初始化则进行初始化
+
+            ......
+            
+            hasInit = _ARouter.init(application); //剑桥模式，正在初始化是在_ARouter类中
+
+
+            if (hasInit) {
+                _ARouter.afterInit();
+            }
+
+            ......
+
+        }
+    }
+```
+
+```java
+// _ARouter.class
+protected static synchronized boolean init(Application application) {
+        mContext = application;
+        LogisticsCenter.init(mContext, executor); 
+
+        logger.info(Consts.TAG, "ARouter init success!");
+        hasInit = true;
+        mHandler = new Handler(Looper.getMainLooper());
+
+        return true;
+    }
+```
+
+调用了LogisticsCenter.init()方法。两个参数:
+
+第一个是上下文 
+
+第二个是一个线程池 executor 是静态成员变量
+
+```java
+private volatile static ThreadPoolExecutor executor = DefaultPoolExecutor.getInstance();
+...... 
+//线程池的配置
+instance = new DefaultPoolExecutor(
+                            INIT_THREAD_COUNT,//CPU数量+1
+
+                            MAX_THREAD_COUNT,//CPU数量+1
+
+                            SURPLUS_THREAD_LIFE,//保存时间30秒
+
+                            TimeUnit.SECONDS,
+                            new ArrayBlockingQueue<Runnable>(64),
+                            new DefaultThreadFactory());
+```
+
+我们再进去LogisticsCenter.init() 看看
+
+```java
+public synchronized static void init(Context context, ThreadPoolExecutor tpe) throws HandlerException {
+    
+    ......  
+    Set<String> routerMap;
+
+    // It will rebuild router map every times when debuggable.
+                if (ARouter.debuggable() || PackageUtils.isNewVersion(context)) {
+
+    // 1、在生产的代码的包下读取apt生产的类文件
+    //    过指定包名，扫描包下面包含的所有的ClassName
+
+                    routerMap = ClassUtils.getFileNameByPackageName(mContext, ROUTE_ROOT_PAKCAGE);
+                    if (!routerMap.isEmpty()) {
+                        context.getSharedPreferences(AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE).edit().putStringSet(AROUTER_SP_KEY_MAP, routerMap).apply();
+                    }
+
+                    PackageUtils.updateVersion(context);    // Save new version name when router map update finishes.
+                } else {
+
+                    routerMap = new HashSet<>(context.getSharedPreferences(AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE).getStringSet(AROUTER_SP_KEY_MAP, new HashSet<String>()));
+                }
+        ......
+        //2、遍历获取的className集合
+        for (String className : routerMap) {
+        
+
+                    if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_ROOT)) {
+                       // 如果是IRouteRoot类，通过反射创建对象，并调用loadInto()方法将IRouteRoot对象存放到Warehouse.groupsIndex集合中
+
+                        ((IRouteRoot) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.groupsIndex);
+                    } else if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_INTERCEPTORS)) {
+                        // 拦截器也是如此类推
+
+                        ((IInterceptorGroup) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.interceptorsIndex);
+                    } else if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_PROVIDERS)) {
+                        // Load providerIndex
+                        ((IProviderGroup) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.providersIndex);
+                    }
+                }
+}
+```
+
+LogisticsCenter.init()方法也是比较清晰的，在固定包名路径下获取通过编译时生成的
+
+IRouteRoot类、拦截器组IInterceptorGroup、服务组IProviderGroup。到这里初始化已经完成了。
+
+在ARouter.init()方法中初始化完成后，接着调用:afterInit()方法
+
+```java
+if (hasInit) {
+ _ARouter.afterInit();
+ }
+```
+
+```java
+static void afterInit() {
+        // 跳转到/arouter/service/interceptor 组件中
+
+        interceptorService = (InterceptorService) ARouter.getInstance().build("/arouter/service/interceptor").navigation();
+    }
+```
+
+该方法初始化interceptorService的实现类InterceptorServiceImpl并调用init()方法
+
+```java
+public void init(final Context context) {
+        //1、该线程就是上面所提到的线程池,执行任务
+        LogisticsCenter.executor.execute(new Runnable() {
+            @Override
+            public void run() {
+            //2、判断Warehouse仓库中是否有拦截器
+
+                if (MapUtils.isNotEmpty(Warehouse.interceptorsIndex)) {
+                    for (Map.Entry<Integer, Class<? extends IInterceptor>> entry : Warehouse.interceptorsIndex.entrySet()) {
+                    //3、遍历拦截器，通过反射创建拦截器对象
+
+                        Class<? extends IInterceptor> interceptorClass = entry.getValue();
+                        try {
+                            IInterceptor iInterceptor = interceptorClass.getConstructor().newInstance();
+                            //4、执行初始化方法
+
+                            iInterceptor.init(context);
+                            Warehouse.interceptors.add(iInterceptor);
+                        } catch (Exception ex) {
+                            throw new HandlerException(TAG + "ARouter init interceptor error! name = [" + interceptorClass.getName() + "], reason = [" + ex.getMessage() + "]");
+                        }
+                    }
+
+                    interceptorHasInit = true;
+                    synchronized (interceptorInitLock) {
+                        interceptorInitLock.notifyAll();
+                    }
+                }
+            }
+        });
+    }
+```
+
+到此ARouter的初始化全部完成，这里总结一下流程:
+
+1、扫描编译时生产的类，包括IRouteRoot类、拦截器组IInterceptorGroup、服务组IProviderGroup
+
+2、通过反射创建对象并将其存放到WareHouse仓库中
+
+3、创建线程池
+
+4、初始化所有拦截器
