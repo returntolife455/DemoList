@@ -84,3 +84,15 @@ class Warehouse {
 ......
 }
 ```
+
+到这里我们先总结一下过程:
+
+1、在需要跳转的Activity中标记 @Route注解
+
+2、当程序编译时使用APT技术生产 IRouteRoot 和IRouteGroup两个类
+
+3、框架初始化时，读取生产的类并将其存放到Warehouse 仓库中
+
+4、当调用navigation()方法时在Warehouse仓库查找对应的路由组件
+
+5、使用原生的方法实现跳转
