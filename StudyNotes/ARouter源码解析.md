@@ -54,7 +54,7 @@ public class ARouter$$Root$$app implements IRouteRoot {
   @Override
   public void loadInto(Map<String, Class<? extends IRouteGroup>> routes) {
     routes.put("test", ARouter$$Group$$test.class);
-    routes.put("yourservicegroupname", ARouter$$Group$$yourservicegroupname.class);
+
   }
 }
 ```
