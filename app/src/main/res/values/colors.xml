@@ -20,6 +20,7 @@
     <color name="custom_attr_text_color_daytime">#FF424242</color>
     <color name="custom_attr_text_color_night">#FF666666</color>
 
-
+    <color name="lineColor_click">#1296db</color>
+    <color name="lineColor_unclick">#9b9b9b</color>
 
 </resources>

@@ -14,6 +14,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 import com.returntolife.jjcode.mydemolist.R;
@@ -40,6 +41,8 @@ public class InvertedImageActivity extends Activity {
         ButterKnife.bind(this);
 
         ivInvert.setImageBitmap(getReverseBitmapById(this,R.drawable.bg_invert_image,0.5f));
+        TranslateAnimation animation = new TranslateAnimation(0,100,0,100);
+        ivInvert.setAnimation(animation);
     }
 
 

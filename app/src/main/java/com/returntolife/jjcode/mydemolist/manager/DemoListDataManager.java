@@ -16,9 +16,11 @@ import com.returntolife.jjcode.mydemolist.demo.widget.DemoBottomSheetDialogFragm
 import com.returntolife.jjcode.mydemolist.demo.widget.FloatingActionButtonActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.adrecyclerview.AdListActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.drawlockscreen.DrawLockScreenActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.motionevent.MotionEventActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.recyclerview.CardLayoutActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.scaleview.ScaleViewActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.superedittext.SuperEditTextActivity;
 
 
 import java.util.ArrayList;
@@ -81,6 +83,8 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("波浪调频控件","自定义控件","2019-04-12", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, ScaleViewActivity.class)));
         demoListBeanList.add(new DemoListBean("绘制锁屏","自定义控件","2017-08-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, DrawLockScreenActivity.class)));
         demoListBeanList.add(new DemoListBean("知乎广告列表","自定义控件","2019-04-24", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, AdListActivity.class)));
+        demoListBeanList.add(new DemoListBean("事件分发机制","自定义控件","2019-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, MotionEventActivity.class)));
+        demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, SuperEditTextActivity.class)));
     }
 
 

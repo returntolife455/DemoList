@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.returntolife.jjcode.mydemolist.demo.widget.motionevent.StickyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sticky_header"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sticky_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</com.returntolife.jjcode.mydemolist.demo.widget.motionevent.StickyLayout>
