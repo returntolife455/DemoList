@@ -26,6 +26,8 @@ android日常开发中所用到的一些案例或者学习案例
 
 [android案例---自定义attr属性实现内置主题换肤](https://www.jianshu.com/p/1688fd4add0b)
 
+[面试中被问到的问题](https://github.com/returntolife455/DemoList/blob/master/StudyNotes/%E9%81%87%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98.md)
+
 另外整理的一些Android学习资料
 ---
 **书籍**
