@@ -33,6 +33,7 @@ android日常开发中所用到的一些案例或者学习案例
 - 《Android开发艺术探索》
 - 《重构，改善既有代码的设计》
 - [《Android 源码设计模式》](http://product.dangdang.com/25102876.html)
+
 **文章**
 - [OKHttp源码解析](https://www.jianshu.com/p/82f74db14a18)
 - [Android官方架构组件](https://www.jianshu.com/p/b1208012b268)
