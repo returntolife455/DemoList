@@ -16,8 +16,8 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/iv_item_bg"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg_md_test"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_demolist_fragment_item_width"/>
 

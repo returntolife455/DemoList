@@ -69,10 +69,10 @@ public abstract  class BaseDemoListFragment extends BaseDemoFragment {
                 holder.setText(R.id.tv_title,demoListBean.getTitle());
                 holder.setText(R.id.tv_des,demoListBean.getDes());
                 holder.setText(R.id.tv_time,demoListBean.getTime());
-                if(demoListBean.getImageResource()>0){
-                    holder.setImageResource(R.id.iv_main,demoListBean.getImageResource());
+                if(demoListBean.getImageResource()!=0){
+                    holder.setImageResource(R.id.iv_item_bg,demoListBean.getImageResource());
                 }else if(!StringUtil.isEmpty(demoListBean.getImageUrl())){
-                    holder.setImageUrl(R.id.iv_main,demoListBean.getImageUrl());
+                    holder.setImageUrl(R.id.iv_item_bg,demoListBean.getImageUrl());
                 }
                 holder.setOnClickListener(R.id.cardview_item, new View.OnClickListener() {
                     @Override

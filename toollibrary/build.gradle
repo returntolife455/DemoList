@@ -52,8 +52,6 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'io.reactivex:rxandroid:1.2.1'
     api 'com.google.code.gson:gson:2.8.5'
-    //图片相关
-    api ('com.github.bumptech.glide:glide:4.7.1')
     //阿里的vlayout
     api('com.alibaba.android:vlayout:1.0.4@aar') {
         transitive = true
@@ -63,9 +61,6 @@ dependencies {
     api('com.airbnb.android:lottie:2.5.0-beta3') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    //友盟
-    api 'com.umeng.analytics:analytics:latest.integration'
-    api 'com.umeng.sdk:common:latest.integration'
     api librarys.recyclerview
     api librarys.suppoutDesign
 

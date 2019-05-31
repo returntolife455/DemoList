@@ -1,22 +1,20 @@
-package com.tools.jj.tools;
+package com.returntolife.jjcode.mydemolist.utils;
 
 import android.annotation.SuppressLint;
-
+import android.app.Application;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
-
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
-
+import com.returntolife.jjcode.mydemolist.AppApplication;
 import com.tools.jj.tools.imageload.IBitmapCallBack;
 import com.tools.jj.tools.imageload.IImageLoader;
 import com.tools.jj.tools.imageload.ImageLoaderOptions;
@@ -38,7 +36,7 @@ public class GlideLoader implements IImageLoader {
         if (sRequestManager == null) {
             synchronized (GlideLoader.class) {
                 if (sRequestManager == null) {
-                    sRequestManager = Glide.with(MyApplication.mContext);
+                    sRequestManager = Glide.with(AppApplication.pAppContext);
                 }
             }
         }
@@ -102,12 +100,12 @@ public class GlideLoader implements IImageLoader {
 
     @Override
     public void clearMemoryCache() {
-        Glide.get(MyApplication.mContext).clearMemory();
+        Glide.get(AppApplication.pAppContext).clearMemory();
     }
 
     @Override
     public void clearDiskCache() {
-        Glide.get(MyApplication.mContext).clearDiskCache();
+        Glide.get(AppApplication.pAppContext).clearDiskCache();
     }
 
 

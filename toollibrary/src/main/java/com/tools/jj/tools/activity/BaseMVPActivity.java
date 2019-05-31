@@ -14,7 +14,6 @@ import com.tools.jj.tools.mvp.m.IBasePresenter;
 import com.tools.jj.tools.mvp.v.IBaseView;
 import com.tools.jj.tools.utils.AppManager;
 import com.tools.jj.tools.view.LoadingByLottieDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -68,8 +67,6 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
     @Override
     protected void onResume() {
         super.onResume();
-        //友盟统计
-        MobclickAgent.onResume(this);
         if (mCreate) {
             initData();
             mCreate = false;
@@ -82,7 +79,6 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
     }
 
 

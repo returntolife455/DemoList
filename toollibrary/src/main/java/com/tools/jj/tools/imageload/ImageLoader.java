@@ -34,9 +34,7 @@ public class ImageLoader {
 
     //提供实时替换图片加载框架的接口
     public void setImageLoader(IImageLoader loader) {
-        if (loader != null) {
-            sLoader = loader;
-        }
+        sLoader = loader;
     }
 
     public ImageLoaderOptions load(String path) {
@@ -57,7 +55,9 @@ public class ImageLoader {
 
 
     public void loadOptions(ImageLoaderOptions options) {
-        sLoader.loadImage(options);
+        if(sLoader!=null){
+            sLoader.loadImage(options);
+        }
     }
 
     public void clearMemoryCache() {

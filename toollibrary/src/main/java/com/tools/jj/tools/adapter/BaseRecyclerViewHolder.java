@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tools.jj.tools.imageload.ImageLoader;
+import com.tools.jj.tools.utils.LogUtil;
+
 
 /**
  * Created by Jiajun on 2017/10/27.
@@ -77,14 +80,15 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
      */
     public BaseRecyclerViewHolder setImageResource(int viewId, int resId) {
         ImageView view = getView(viewId);
-
+        LogUtil.d("setImageResource view="+view);
+        ImageLoader.getInstance().load(resId).into(view);
         return this;
     }
 
     //加载网络图片
     public BaseRecyclerViewHolder setImageUrl(int viewId, String url) {
         ImageView view = getView(viewId);
-        //TODO
+        ImageLoader.getInstance().load(url).into(view);
         return this;
     }
 
