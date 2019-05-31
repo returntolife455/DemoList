@@ -49,8 +49,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".demo.function.aidl.AIDLClientAcitvity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
+        <service android:name=".demo.function.aidl.AIDLService" />
 
         <provider
             android:name=".demo.function.mycontentprovider.MyContentProvider"
