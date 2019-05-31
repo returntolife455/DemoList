@@ -20,6 +20,7 @@ public class DemoListBean {
 
     private Intent intent;
     private Fragment fragment;
+    private Class clazz;
 
     private int type;
 
@@ -68,7 +69,14 @@ public class DemoListBean {
         this.type=type;
     }
 
-
+    public DemoListBean(String title, String des, String time, int imageResource,int type,Class clazz) {
+        this.title = title;
+        this.des = des;
+        this.time = time;
+        this.imageResource = imageResource;
+        this.clazz=clazz;
+        this.type=type;
+    }
 
     public Fragment getFragment() {
         return fragment;
@@ -136,7 +144,8 @@ public class DemoListBean {
     }
 
     public void startActivity(Context context){
-        if(intent!=null && context!=null){
+        if(clazz!=null){
+            Intent intent=new Intent(context,clazz);
             context.startActivity(intent);
         }
     }

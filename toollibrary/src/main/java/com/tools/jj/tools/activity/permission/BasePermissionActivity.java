@@ -35,7 +35,7 @@ public abstract class BasePermissionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // 缺少权限时, 进入权限配置页面
-        if (mPermissionsChecker.lacksPermissions(permissionList)) {
+        if (!mPermissionsChecker.lacksPermissions(permissionList)) {
             //必须先处理完毕权限授权后才可以执行以下方法
             LogUtil.d("全部授权");
             initActivity();

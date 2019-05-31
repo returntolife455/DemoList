@@ -47,7 +47,7 @@ public class PermissionsChecker {
     }
 
     /**
-     * 判断是否拥有给定的权限集(只有有一个缺失就返回false)
+     * 判断是否拥有给定的权限集(只要有一个缺失就返回false)
      * Returns true if the Activity or Fragment has access to all given permissions.
      *
      * @param permissions permission list 权限集合

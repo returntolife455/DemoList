@@ -6,6 +6,7 @@ import com.returntolife.jjcode.mydemolist.AppApplication;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.MyContentProvider;
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.InvertedImageActivity;
@@ -64,27 +65,27 @@ public class DemoListDataManager {
     private void initDemoListData() {
         demoListBeanList=new ArrayList<>();
 
-        //image
-        demoListBeanList.add(new DemoListBean("图片倒影","图片倒影处理","2017-08-12", R.drawable.bg_md_test,DemoListBean.TYPE_IMAGE,new Intent(AppApplication.pAppContext, InvertedImageActivity.class)));
-        demoListBeanList.add(new DemoListBean("图片取色","图片取色并融入背景色效果","2018-08-21", R.drawable.bg_md_test,DemoListBean.TYPE_IMAGE,new Intent(AppApplication.pAppContext, PickingPictureActivity.class)));
+        //图片处理
+        demoListBeanList.add(new DemoListBean("图片倒影","图片倒影处理","2017-08-12", R.drawable.bg_md_test,DemoListBean.TYPE_IMAGE,InvertedImageActivity.class));
+        demoListBeanList.add(new DemoListBean("图片取色","图片取色并融入背景色效果","2018-08-21", R.drawable.bg_md_test,DemoListBean.TYPE_IMAGE,PickingPictureActivity.class));
 
-        //function
-        demoListBeanList.add(new DemoListBean("断点续传","采用多线程和数据库实现断点续传","2017-08-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,new Intent(AppApplication.pAppContext, ResumeDownloadActivity.class)));
-        demoListBeanList.add(new DemoListBean("内置主题换肤","使用内置的自定义attr实现换肤","2019-02-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,new Intent(AppApplication.pAppContext, ChangeThemeActivity.class)));
-        demoListBeanList.add(new DemoListBean("ContentProvider","ContentProvider的基本使用案例","2019-02-21", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,new Intent(AppApplication.pAppContext, MyContentProvider.class)));
+        //功能类型
+        demoListBeanList.add(new DemoListBean("断点续传","采用多线程和数据库实现断点续传","2017-08-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,ResumeDownloadActivity.class));
+        demoListBeanList.add(new DemoListBean("内置主题换肤","使用内置的自定义attr实现换肤","2019-02-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,ChangeThemeActivity.class));
+        demoListBeanList.add(new DemoListBean("ContentProvider","ContentProvider的基本使用案例","2019-02-21", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, ContentProviderClientActivity.class));
 
-        //widget
-        demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,new Intent(AppApplication.pAppContext, PutoRefreshActivity.class)));
-        demoListBeanList.add(new DemoListBean("Bottomsheet","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, BottomSheetActivity.class)));
-        demoListBeanList.add(new DemoListBean("Coordinatorlayout","material desgin控件","2018-09-30", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, CoordinatorlayoutActivity.class)));
-        demoListBeanList.add(new DemoListBean("BottomSheetDialogFragment","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, DemoBottomSheetDialogFragment.class)));
-        demoListBeanList.add(new DemoListBean("FloatingActionButton","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, FloatingActionButtonActivity.class)));
-        demoListBeanList.add(new DemoListBean("仿探探卡片滑动","自定义recyclerview的layoutmanager","2019-04-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, CardLayoutActivity.class)));
-        demoListBeanList.add(new DemoListBean("波浪调频控件","自定义控件","2019-04-12", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, ScaleViewActivity.class)));
-        demoListBeanList.add(new DemoListBean("绘制锁屏","自定义控件","2017-08-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, DrawLockScreenActivity.class)));
-        demoListBeanList.add(new DemoListBean("知乎广告列表","自定义控件","2019-04-24", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, AdListActivity.class)));
-        demoListBeanList.add(new DemoListBean("事件分发机制","自定义控件","2019-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, MotionEventActivity.class)));
-        demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,new Intent(AppApplication.pAppContext, SuperEditTextActivity.class)));
+        //控件类型
+        demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
+        demoListBeanList.add(new DemoListBean("Bottomsheet","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,BottomSheetActivity.class));
+        demoListBeanList.add(new DemoListBean("Coordinatorlayout","material desgin控件","2018-09-30", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,CoordinatorlayoutActivity.class));
+        demoListBeanList.add(new DemoListBean("BottomSheetDialogFragment","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,DemoBottomSheetDialogFragment.class));
+        demoListBeanList.add(new DemoListBean("FloatingActionButton","material desgin控件","2018-10-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,FloatingActionButtonActivity.class));
+        demoListBeanList.add(new DemoListBean("仿探探卡片滑动","自定义recyclerview的layoutmanager","2019-04-08", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,CardLayoutActivity.class));
+        demoListBeanList.add(new DemoListBean("波浪调频控件","自定义控件","2019-04-12", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,ScaleViewActivity.class));
+        demoListBeanList.add(new DemoListBean("绘制锁屏","自定义控件","2017-08-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,DrawLockScreenActivity.class));
+        demoListBeanList.add(new DemoListBean("知乎广告列表","自定义控件","2019-04-24", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,AdListActivity.class));
+        demoListBeanList.add(new DemoListBean("事件分发机制","自定义控件","2019-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,MotionEventActivity.class));
+        demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,SuperEditTextActivity.class));
     }
 
 
