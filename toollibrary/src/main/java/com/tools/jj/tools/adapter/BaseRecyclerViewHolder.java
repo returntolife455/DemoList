@@ -80,7 +80,6 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
      */
     public BaseRecyclerViewHolder setImageResource(int viewId, int resId) {
         ImageView view = getView(viewId);
-        LogUtil.d("setImageResource view="+view);
         ImageLoader.getInstance().load(resId).into(view);
         return this;
     }

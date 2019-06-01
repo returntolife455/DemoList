@@ -9,19 +9,29 @@ def librarys = rootProject.ext.supportDependencies
 
 
 android {
+    signingConfigs {
+        release {
+            keyAlias keyAlias_
+            keyPassword storePassword_
+            storeFile file(storeFile_)
+            storePassword storePassword_
+        }
+    }
+
     compileSdkVersion config.compileSdkVersion
     defaultConfig {
         applicationId "com.returntolife.jjcode.mydemolist"
         minSdkVersion config.minSdkVersion
         targetSdkVersion config.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode config.versionCode
+        versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         applicationVariants.all { variant ->
