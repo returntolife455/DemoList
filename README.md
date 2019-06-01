@@ -2,7 +2,7 @@ AndroidDemo
 ===
 [demo下载地址](https://github.com/returntolife455/DemoList/raw/master/Demo.apk)
 
-<img src="https://github.com/returntolife455/DemoList/blob/master/images/demo2DCode.png" width=200 alt="home">
+<img src="https://github.com/returntolife455/DemoList/blob/master/app/demo2DCode.png" width=200 alt="home">
 
 
 android日常开发中所用到的一些案例或者学习案例
