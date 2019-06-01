@@ -50,6 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".demo.function.aidl.AIDLClientAcitvity" />
+        <activity android:name=".demo.function.AnnotateMvp.AnnotateActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService" />
