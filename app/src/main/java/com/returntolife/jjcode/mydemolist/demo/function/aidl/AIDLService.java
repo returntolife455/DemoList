@@ -8,6 +8,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import com.returntolife.jjcode.mydemolist.IPerson;
+import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
 import com.tools.jj.tools.utils.LogUtil;
 
 /*
@@ -19,6 +20,7 @@ import com.tools.jj.tools.utils.LogUtil;
 public class AIDLService extends Service {
 
     private String name;
+    private AIDLBook mybook;
 
     private Binder binder=new IPerson.Stub() {
         @Override
@@ -29,6 +31,19 @@ public class AIDLService extends Service {
         @Override
         public String getName() throws RemoteException {
             return name;
+        }
+
+        @Override
+        public void setBook(AIDLBook book) throws RemoteException {
+            LogUtil.d("setBook="+book);
+            mybook=book;
+        }
+
+
+
+        @Override
+        public AIDLBook getBook() throws RemoteException {
+            return mybook;
         }
     };
 

@@ -52,7 +52,8 @@
         <activity android:name=".demo.function.aidl.AIDLClientAcitvity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
-        <service android:name=".demo.function.aidl.AIDLService" />
+        <service android:name=".demo.function.aidl.AIDLService"
+            android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>
 
         <provider
             android:name=".demo.function.mycontentprovider.MyContentProvider"
