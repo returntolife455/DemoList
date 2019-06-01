@@ -12,6 +12,9 @@ android日常开发中所用到的一些案例或者学习案例
 
 部分demo中有详细文章介绍
 ---
+
+- 案例
+
 [android案例---图片取色并让图片融入背景色](https://www.jianshu.com/p/d0c5402f1d2b)
 
 [android案例---图片处理倒影效果](https://www.jianshu.com/p/cfe20bcfb71c)
@@ -20,11 +23,19 @@ android日常开发中所用到的一些案例或者学习案例
 
 [android案例---下拉刷新](https://www.jianshu.com/p/6d79af6ac3af)
 
-[android基础---contentprovider](https://www.jianshu.com/p/d1ca6689cbd8)
-
 [android案例---波浪调频刻度尺](https://www.jianshu.com/p/5751c34f343d)
 
 [android案例---自定义attr属性实现内置主题换肤](https://www.jianshu.com/p/1688fd4add0b)
+
+- 基础
+
+[android基础---contentprovider](https://www.jianshu.com/p/d1ca6689cbd8)
+
+- 进阶
+
+[android进阶-AIDL的基本使用](https://www.jianshu.com/p/5043a1a69269)
+
+
 
 
 另外整理的一些Android学习资料
