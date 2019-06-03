@@ -46,6 +46,19 @@ public class AIDLClientAcitvity extends Activity {
 
 
     private IPerson iPerson;
+    private ServiceConnection conn;
+    private IBinder.DeathRecipient deathRecipient=new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            //解绑
+            if(iPerson!=null){
+                iPerson.asBinder().unlinkToDeath(deathRecipient,0);
+                iPerson=null;
+            }
+//            //断开重新绑定
+//            bindServiceByAidl();
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +66,37 @@ public class AIDLClientAcitvity extends Activity {
         setContentView(R.layout.activity_aidl_client);
         ButterKnife.bind(this);
 
+        conn= new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                LogUtil.d("onServiceConnected");
+                try {
+                    //设置死亡代理
+                    service.linkToDeath(deathRecipient,0);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                iPerson = IPerson.Stub.asInterface(service);
 
+                Toast.makeText(AIDLClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                LogUtil.d("onServiceDisconnected");
+//                //断开重新绑定
+//                bindServiceByAidl();
+            }
+        };
     }
 
-    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName,R.id.btn_setBook,R.id.btn_getBook})
+    private void binderIsAlive(){
+        if(iPerson!=null){
+            iPerson.asBinder().isBinderAlive();
+        }
+    }
+
+    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_bindservice:
@@ -79,28 +119,21 @@ public class AIDLClientAcitvity extends Activity {
         }
     }
 
+    private void unbindService(){
+        Intent intent = new Intent(this, AIDLService.class);
+        stopService(intent);
+    }
 
     private void bindServiceByAidl() {
         Intent intent = new Intent(this, AIDLService.class);
-        bindService(intent, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                LogUtil.d("onServiceConnected");
-                iPerson = IPerson.Stub.asInterface(service);
-                Toast.makeText(AIDLClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                LogUtil.d("onServiceDisconnected");
-            }
-        }, BIND_AUTO_CREATE);
+        bindService(intent,conn,BIND_AUTO_CREATE);
     }
 
 
     private void setName() {
         if (iPerson != null) {
             try {
+                //该方法可能很耗时，正式开发中一般放于线程中调用
                 iPerson.setName(etName.getText().toString().trim());
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -124,9 +157,10 @@ public class AIDLClientAcitvity extends Activity {
     private void setBook() {
         if (iPerson != null) {
             try {
-                AIDLBook book=new AIDLBook();
-                book.name=etName.getText().toString().trim();
-                book.id=999;
+                AIDLBook book = new AIDLBook();
+                book.name = etName.getText().toString().trim();
+                book.id = 999;
+                //该方法可能很耗时，正式开发中一般放于线程中调用
                 iPerson.setBook(book);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -138,8 +172,8 @@ public class AIDLClientAcitvity extends Activity {
     private void getBook() {
         if (iPerson != null) {
             try {
-                AIDLBook book=iPerson.getBook();
-                LogUtil.d("getBook="+book);
+                AIDLBook book = iPerson.getBook();
+                LogUtil.d("getBook=" + book);
                 Toast.makeText(this, book.name, Toast.LENGTH_SHORT).show();
             } catch (RemoteException e) {
                 e.printStackTrace();
