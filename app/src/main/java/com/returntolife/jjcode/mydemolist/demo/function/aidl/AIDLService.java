@@ -4,12 +4,16 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
 import com.tools.jj.tools.utils.LogUtil;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /*
  * Create by JiaJun He on 2019/5/31$
@@ -21,6 +25,8 @@ public class AIDLService extends Service {
 
     private String name;
     private AIDLBook mybook;
+
+    private RemoteCallbackList<IOnNewBookArrivedListener> mListener=new RemoteCallbackList<>();
 
     private Binder binder=new IPerson.Stub() {
         @Override
@@ -37,6 +43,15 @@ public class AIDLService extends Service {
         public void setBook(AIDLBook book) throws RemoteException {
             LogUtil.d("setBook="+book);
             mybook=book;
+            //调用接口通知客户端
+            if(mListener!=null){
+                int size=mListener.beginBroadcast();
+                for (int i = 0; i < size; i++) {
+                    IOnNewBookArrivedListener listener=mListener.getBroadcastItem(i);
+                    listener.onNewsBookArrived(book);
+                }
+                mListener.finishBroadcast();
+            }
         }
 
 
@@ -44,6 +59,18 @@ public class AIDLService extends Service {
         @Override
         public AIDLBook getBook() throws RemoteException {
             return mybook;
+        }
+
+        @Override
+        public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
+            LogUtil.d("registerListener listener="+listener);
+            mListener.register(listener);
+        }
+
+        @Override
+        public void unregisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
+            LogUtil.d("unregisterListener listener="+listener);
+            mListener.unregister(listener);
         }
     };
 

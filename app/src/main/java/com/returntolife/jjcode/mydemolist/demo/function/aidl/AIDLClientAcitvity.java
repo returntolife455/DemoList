@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
@@ -43,22 +44,28 @@ public class AIDLClientAcitvity extends Activity {
     Button btnSetBook;
     @BindView(R.id.btn_getBook)
     Button btnGetBook;
+    @BindView(R.id.btn_registerlistener)
+    Button btnRegisterlistener;
+    @BindView(R.id.btn_unregisterlistener)
+    Button btnUnregisterlistener;
 
 
     private IPerson iPerson;
     private ServiceConnection conn;
-    private IBinder.DeathRecipient deathRecipient=new IBinder.DeathRecipient() {
+    private IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
             //解绑
-            if(iPerson!=null){
-                iPerson.asBinder().unlinkToDeath(deathRecipient,0);
-                iPerson=null;
+            if (iPerson != null) {
+                iPerson.asBinder().unlinkToDeath(deathRecipient, 0);
+                iPerson = null;
             }
 //            //断开重新绑定
 //            bindServiceByAidl();
         }
     };
+
+    private IOnNewBookArrivedListener iOnNewBookArrivedListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,13 +73,13 @@ public class AIDLClientAcitvity extends Activity {
         setContentView(R.layout.activity_aidl_client);
         ButterKnife.bind(this);
 
-        conn= new ServiceConnection() {
+        conn = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 LogUtil.d("onServiceConnected");
                 try {
                     //设置死亡代理
-                    service.linkToDeath(deathRecipient,0);
+                    service.linkToDeath(deathRecipient, 0);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -88,15 +95,22 @@ public class AIDLClientAcitvity extends Activity {
 //                bindServiceByAidl();
             }
         };
+
+        iOnNewBookArrivedListener=new IOnNewBookArrivedListener.Stub() {
+            @Override
+            public void onNewsBookArrived(AIDLBook book) throws RemoteException {
+                Toast.makeText(AIDLClientAcitvity.this, "book="+book+"--name="+book.name, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
-    private void binderIsAlive(){
-        if(iPerson!=null){
+    private void binderIsAlive() {
+        if (iPerson != null) {
             iPerson.asBinder().isBinderAlive();
         }
     }
 
-    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook})
+    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook,R.id.btn_registerlistener,R.id.btn_unregisterlistener})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_bindservice:
@@ -114,19 +128,45 @@ public class AIDLClientAcitvity extends Activity {
             case R.id.btn_getBook:
                 getBook();
                 break;
+            case R.id.btn_registerlistener:
+                registerListener();
+                break;
+            case R.id.btn_unregisterlistener:
+                unregisterListener();
+                break;
             default:
                 break;
         }
     }
 
-    private void unbindService(){
+    private void registerListener(){
+        if(iPerson!=null){
+            try {
+                iPerson.registerListener(iOnNewBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void unregisterListener(){
+        if(iPerson!=null){
+            try {
+                iPerson.unregisterListener(iOnNewBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void unbindService() {
         Intent intent = new Intent(this, AIDLService.class);
         stopService(intent);
     }
 
     private void bindServiceByAidl() {
         Intent intent = new Intent(this, AIDLService.class);
-        bindService(intent,conn,BIND_AUTO_CREATE);
+        bindService(intent, conn, BIND_AUTO_CREATE);
     }
 
 

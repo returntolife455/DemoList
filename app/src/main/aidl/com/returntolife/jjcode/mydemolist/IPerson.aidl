@@ -3,6 +3,7 @@ package com.returntolife.jjcode.mydemolist;
 
 // Declare any non-default types here with import statements
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
+import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 
 interface IPerson {
     /**
@@ -14,4 +15,7 @@ interface IPerson {
 
     void setBook(in AIDLBook book);
     AIDLBook getBook();
+
+    void registerListener(IOnNewBookArrivedListener listener);
+    void unregisterListener(IOnNewBookArrivedListener listener);
 }
