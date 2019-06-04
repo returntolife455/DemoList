@@ -17,6 +17,7 @@ public class AppApplication extends Application {
 
     private static final String TAG = "AppApplication";
     public static Context pAppContext=null;
+    private String test;
 
     @Override
     public void onCreate() {
