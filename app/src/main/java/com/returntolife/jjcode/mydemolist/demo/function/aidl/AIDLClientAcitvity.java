@@ -17,6 +17,7 @@ import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
+import com.returntolife.jjcode.mydemolist.demo.function.aidl.binderpool.AIDLBinderPoolClientAcitvity;
 import com.tools.jj.tools.utils.LogUtil;
 
 import butterknife.BindView;
@@ -48,6 +49,8 @@ public class AIDLClientAcitvity extends Activity {
     Button btnRegisterlistener;
     @BindView(R.id.btn_unregisterlistener)
     Button btnUnregisterlistener;
+    @BindView(R.id.btn_pool)
+    Button btnPool;
 
 
     private IPerson iPerson;
@@ -96,10 +99,10 @@ public class AIDLClientAcitvity extends Activity {
             }
         };
 
-        iOnNewBookArrivedListener=new IOnNewBookArrivedListener.Stub() {
+        iOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
             @Override
             public void onNewsBookArrived(AIDLBook book) throws RemoteException {
-                Toast.makeText(AIDLClientAcitvity.this, "book="+book+"--name="+book.name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AIDLClientAcitvity.this, "book=" + book + "--name=" + book.name, Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -110,7 +113,7 @@ public class AIDLClientAcitvity extends Activity {
         }
     }
 
-    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook,R.id.btn_registerlistener,R.id.btn_unregisterlistener})
+    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook, R.id.btn_registerlistener, R.id.btn_unregisterlistener,R.id.btn_pool})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_bindservice:
@@ -134,13 +137,20 @@ public class AIDLClientAcitvity extends Activity {
             case R.id.btn_unregisterlistener:
                 unregisterListener();
                 break;
+            case R.id.btn_pool:
+                gotoPoolService();
+                break;
             default:
                 break;
         }
     }
 
-    private void registerListener(){
-        if(iPerson!=null){
+    private void gotoPoolService() {
+        startActivity(new Intent(this, AIDLBinderPoolClientAcitvity.class));
+    }
+
+    private void registerListener() {
+        if (iPerson != null) {
             try {
                 iPerson.registerListener(iOnNewBookArrivedListener);
             } catch (RemoteException e) {
@@ -149,8 +159,8 @@ public class AIDLClientAcitvity extends Activity {
         }
     }
 
-    private void unregisterListener(){
-        if(iPerson!=null){
+    private void unregisterListener() {
+        if (iPerson != null) {
             try {
                 iPerson.unregisterListener(iOnNewBookArrivedListener);
             } catch (RemoteException e) {
