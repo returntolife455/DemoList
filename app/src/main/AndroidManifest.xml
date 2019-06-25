@@ -53,6 +53,7 @@
         <activity android:name=".demo.function.AnnotateMvp.AnnotateActivity" />
         <activity android:name=".demo.function.multiItem.MultiItemActivity" />
         <activity android:name=".demo.function.aidl.binderpool.AIDLBinderPoolClientAcitvity" />
+        <activity android:name=".demo.function.AspectButton.AspectButtonActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.jakewharton.butterknife'
-
+apply plugin: 'android-aspectjx'
 //android配置
 def config = rootProject.ext.android
 
@@ -61,4 +61,5 @@ dependencies {
         exclude group: 'com.github.bumptech.glide', module: 'glide'
     }
     implementation librarys.glide
+    implementation librarys.aspect
 }
