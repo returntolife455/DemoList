@@ -15,7 +15,7 @@ import com.tools.jj.tools.utils.LogUtil;
  * des:
  * version: 1.0.0
  */
-
+@Deprecated
 public abstract class BasePermissionActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0; // 请求码

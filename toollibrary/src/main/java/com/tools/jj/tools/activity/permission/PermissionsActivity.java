@@ -29,6 +29,7 @@ import com.tools.jj.tools.utils.LogUtil;
  *          1.1 update by zmingchun on 2016/2/17
  *          1.2 update by jiajun he on 2018/1/23
  */
+@Deprecated
 public class PermissionsActivity extends AppCompatActivity {
 
     /**权限授权状态-0授权*/

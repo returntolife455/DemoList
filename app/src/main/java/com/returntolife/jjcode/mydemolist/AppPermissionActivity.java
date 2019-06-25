@@ -1,21 +1,47 @@
 package com.returntolife.jjcode.mydemolist;
 
+
 import android.Manifest;
 import android.content.Intent;
-
+import android.support.v7.app.AppCompatActivity;
 import com.returntolife.jjcode.mydemolist.main.activity.MainActivity;
-import com.tools.jj.tools.activity.permission.BasePermissionActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
-public class AppPermissionActivity extends BasePermissionActivity {
-    @Override
-    public String[] setRequestString() {
-        return new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE};
-    }
+
+public class AppPermissionActivity extends AppCompatActivity {
 
     @Override
-    public void initActivity() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+    protected void onStart() {
+        super.onStart();
+
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            startActivity(new Intent(AppPermissionActivity.this, MainActivity.class));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        finish();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        finish();
+                    }
+                });
     }
 }

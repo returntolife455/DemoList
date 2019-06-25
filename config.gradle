@@ -8,7 +8,7 @@
 ext {
     android = [
             compileSdkVersion: 27,
-            buildToolsVersion: "27.0.2",
+            buildToolsVersion: "27.0.3",
             minSdkVersion    : 17,
             targetSdkVersion : 19,
             versionCode:2,
@@ -28,6 +28,6 @@ ext {
             junit           : "junit:junit:4.12",
             runner          : "com.android.support.test:runner:1.0.2",
             espresso        : "com.android.support.test.espresso:espresso-core:3.0.2",
-            glide           : "com.github.bumptech.glide:glide:4.7.1"
+            glide           : "com.github.bumptech.glide:glide:4.7.1",
     ]
 }

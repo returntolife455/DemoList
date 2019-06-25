@@ -14,6 +14,7 @@ import static android.support.v4.content.PermissionChecker.checkSelfPermission;
  * @version 1.0
  *          1.1 update by zmingchun on 2016/2/17
  */
+@Deprecated
 public class PermissionsChecker {
     private final Context mContext;
 
