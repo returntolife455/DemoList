@@ -18,12 +18,11 @@ import com.returntolife.jjcode.mydemolist.R;
  * Email:hejj@mama.cn
  * des:
  */
-public class MvvmDemoActivity extends AppCompatActivity {
+public class MvvmDemoActivity extends BaseActivity<MvvmDemoViewModel> {
 
     private Button mBtnGetData;
     private ImageView ivAvatar;
 
-    private MvvmDemoViewModel mvvmDemoViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,9 +32,7 @@ public class MvvmDemoActivity extends AppCompatActivity {
         mBtnGetData=findViewById(R.id.btn_getdata);
         ivAvatar=findViewById(R.id.iv_avatar);
 
-        mvvmDemoViewModel= ViewModelProviders.of(this).get(MvvmDemoViewModel.class);
-
-        mvvmDemoViewModel.getBitmapMutableLiveData().observe(this, new Observer<Bitmap>() {
+        mViewModel.getBitmapMutableLiveData().observe(this, new Observer<Bitmap>() {
             @Override
             public void onChanged(@Nullable Bitmap bitmap) {
                 ivAvatar.setImageBitmap(bitmap);
@@ -45,8 +42,13 @@ public class MvvmDemoActivity extends AppCompatActivity {
         mBtnGetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mvvmDemoViewModel.getImage();
+                mViewModel.getImage();
             }
         });
+    }
+
+    @Override
+    protected Class<MvvmDemoViewModel> getViewModelClass() {
+        return MvvmDemoViewModel.class;
     }
 }

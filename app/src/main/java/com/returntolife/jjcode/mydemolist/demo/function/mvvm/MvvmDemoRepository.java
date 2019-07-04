@@ -28,7 +28,7 @@ import okhttp3.ResponseBody;
  * Email:hejj@mama.cn
  * des:
  */
-public class MvvmDemoRepository {
+public class MvvmDemoRepository extends BaseRepository {
 
 
     @SuppressLint("CheckResult")

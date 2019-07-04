@@ -1,5 +1,6 @@
 package com.returntolife.jjcode.mydemolist.demo.function.mvvm;
 
+import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.graphics.Bitmap;
@@ -25,17 +26,16 @@ import okhttp3.ResponseBody;
  * Email:hejj@mama.cn
  * des:
  */
-public class MvvmDemoViewModel extends ViewModel {
-
-
-    private MvvmDemoRepository repository;
+public class MvvmDemoViewModel extends BaseViewModel<MvvmDemoRepository> {
 
     private MutableLiveData<Bitmap> bitmapMutableLiveData;
 
-    public MvvmDemoViewModel(){
-        repository=new MvvmDemoRepository();
+    public MvvmDemoViewModel(@NonNull Application application) {
+        super(application);
+        mRepository=new MvvmDemoRepository();
         bitmapMutableLiveData=new MutableLiveData<>();
     }
+
 
     public MutableLiveData<Bitmap> getBitmapMutableLiveData() {
         return bitmapMutableLiveData;
@@ -44,7 +44,7 @@ public class MvvmDemoViewModel extends ViewModel {
 
     public void getImage(){
         //只是做模拟请求
-       repository.getImage(new SimpleTarget<Bitmap>() {
+        mRepository.getImage(new SimpleTarget<Bitmap>() {
            @Override
            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                bitmapMutableLiveData.setValue(resource);
