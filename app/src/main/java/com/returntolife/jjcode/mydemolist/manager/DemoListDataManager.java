@@ -10,6 +10,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.AspectButton.AspectButto
 import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientAcitvity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.MyContentProvider;
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
@@ -81,6 +82,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("注解注入","mvp模式中用注解注入p层","2019-06-01",R.drawable.bg_annotate,DemoListBean.TYPE_FUNCTION, AnnotateActivity.class));
         demoListBeanList.add(new DemoListBean("多布局列表","自定义adapter","2019-06-01",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MultiItemActivity.class));
         demoListBeanList.add(new DemoListBean("Aspect","按钮重复点击限制","2019-06-25",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, AspectButtonActivity.class));
+        demoListBeanList.add(new DemoListBean("MVVM","简单的demo","2019-07-04",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MvvmDemoActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
