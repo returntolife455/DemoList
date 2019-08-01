@@ -63,4 +63,8 @@ dependencies {
     implementation librarys.glide
     implementation librarys.aspect
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation files('lib/aip-java-sdk-4.11.3.jar')
+    implementation files('lib/json-20160810.jar')
+    implementation files('lib/slf4j-api-1.7.25.jar')
+    implementation files('lib/slf4j-simple-1.7.25.jar')
 }
