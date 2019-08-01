@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.baidu.aip.imageclassify.AipImageClassify;
+import com.baidu.aip.util.Base64Util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -11,12 +12,19 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.returntolife.jjcode.mydemolist.Api;
 import com.returntolife.jjcode.mydemolist.AppApplication;
+import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.AnimalBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.CarResultBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.ImageSearchBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.IngredientBean;
+import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.TokenResultBean;
+import com.tools.jj.tools.http.Http;
+import com.tools.jj.tools.http.IRequestCallBack;
+import com.tools.jj.tools.http.JsonResult;
 import com.tools.jj.tools.http.JsonUtil;
+import com.tools.jj.tools.http.RequestCallBack;
 import com.tools.jj.tools.utils.LogUtil;
 
 import org.json.JSONObject;
@@ -24,6 +32,14 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -37,6 +53,7 @@ public class ImageSearchHelper {
     private static final String APP_ID = "16931161";
     private static final String API_KEY = "YqsdmBRyvxDfA05HDyN9zUnC";
     private static final String SECRET_KEY = "C2MurrL9NUdKyNcYLkyckOdUeWGZTtY8";
+    private static final String GRANT_TYPE="client_credentials";
 
 //    private static class SingleHolder {
 //        private static final ImageSearchHelper INSTANCE = new ImageSearchHelper();
@@ -134,5 +151,41 @@ public class ImageSearchHelper {
         }else {
             return "";
         }
+    }
+
+    public void searchByRetrofit(){
+        Http.createApi(Api.class).getToken(GRANT_TYPE,API_KEY,SECRET_KEY)
+            .flatMap(new Function<TokenResultBean, ObservableSource<AnimalBean>>() {
+                @Override
+                public ObservableSource<AnimalBean> apply(TokenResultBean tokenResultBean) throws Exception {
+                    Bitmap bitmap=BitmapFactory.decodeResource(AppApplication.pAppContext.getResources(), R.drawable.ic_imagesearch_anima);
+                    byte[] bytes=Bitmap2Bytes(bitmap);
+                    String base64Content = Base64Util.encode(bytes);
+                    return Http.createApi(Api.class).searchAnimal(tokenResultBean.getAccess_token(),base64Content);
+                }
+            })
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(new Observer<AnimalBean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(AnimalBean animalBean) {
+                LogUtil.d("animalBean ="+animalBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtil.d("animalBean e="+e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

@@ -57,5 +57,21 @@ public class AnimalBean {
         public void setName(String name) {
             this.name = name;
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                "score='" + score + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "AnimalBean{" +
+            "log_id=" + log_id +
+            ", result=" + result +
+            '}';
     }
 }

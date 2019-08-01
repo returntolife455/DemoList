@@ -15,11 +15,13 @@ import com.tools.jj.tools.mvp.v.IBaseView;
 import com.tools.jj.tools.utils.AppManager;
 import com.tools.jj.tools.view.LoadingByLottieDialog;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import rx.Subscriber;
 
 
 /**
@@ -169,9 +171,9 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
         if (mSubscribers == null || subscriber == null) {
             return;
         }
-        if (!subscriber.isUnsubscribed()) {
-            subscriber.unsubscribe();
-        }
+//        if (!subscriber.isUnsubscribed()) {
+//            subscriber.unsubscribe();
+//        }
         mSubscribers.remove(subscriber);
     }
 
@@ -182,13 +184,13 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
         if(null==mSubscribers){
             return;
         }
-        for (Iterator<Subscriber<?>> iterator = mSubscribers.iterator(); iterator.hasNext(); ) {
-            Subscriber<?> sub = iterator.next();
-            if (sub != null && !sub.isUnsubscribed()) {
-                sub.unsubscribe();
-            }
-            iterator.remove();
-        }
+//        for (Iterator<Subscriber<?>> iterator = mSubscribers.iterator(); iterator.hasNext(); ) {
+//            Subscriber<?> sub = iterator.next();
+//            if (sub != null && !sub.isUnsubscribed()) {
+//                sub.unsubscribe();
+//            }
+//            iterator.remove();
+//        }
     }
 
 
@@ -197,24 +199,23 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
      * 为了确定activity销毁的时候移除该订阅避免内存泄漏
      * @param <T>
      */
-    public class BaseSubscriber<T> extends Subscriber<T> {
-
-        @CallSuper
-        @Override
-        public void onStart() {
-            super.onStart();
-            addSubscriber(this);
-        }
+    public class BaseSubscriber<T> implements Subscriber<T> {
 
 
-        @Override
-        public void onCompleted() {
-
-        }
 
         @Override
         public void onError(Throwable e) {
 
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+
+        @Override
+        public void onSubscribe(Subscription s) {
+            addSubscriber(this);
         }
 
         @Override

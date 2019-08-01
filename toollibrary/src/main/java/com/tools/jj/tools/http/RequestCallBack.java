@@ -2,7 +2,9 @@ package com.tools.jj.tools.http;
 
 import android.content.Context;
 
-import rx.Subscriber;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 
 /**
  * Created by HeJiaJun on 2018/7/1.
@@ -10,7 +12,7 @@ import rx.Subscriber;
  * version:1.0.0
  */
 
-public  class RequestCallBack<T> extends Subscriber<JsonResult<T>>{
+public  class RequestCallBack<T> implements Subscriber<JsonResult<T>> {
 
     public static final int ERROR_NETWORK_LOCAL=-1;
     public static final int ERROR_NETWORK_SERVICE=-2;
@@ -27,17 +29,17 @@ public  class RequestCallBack<T> extends Subscriber<JsonResult<T>>{
         this.listener=listener;
     }
 
-    @Override
-    public void onCompleted() {
-        if(null!=listener){
-            listener.requestComplete();
-        }
-    }
+
 
     @Override
     public void onError(Throwable e) {
         byNetworkTodo();
         e.printStackTrace();
+    }
+
+    @Override
+    public void onComplete() {
+
     }
 
     private void byNetworkTodo() {
@@ -53,29 +55,34 @@ public  class RequestCallBack<T> extends Subscriber<JsonResult<T>>{
     }
 
     @Override
+    public void onSubscribe(Subscription s) {
+
+    }
+
+    @Override
     public void onNext(JsonResult<T> tJsonResult) {
         //已经移除订阅，return
-        if (isUnsubscribed()) {
-            return;
-        }
-
-        try {
-            if (tJsonResult == null) {
-                byNetworkTodo();
-            } else {
-                if (tJsonResult.isOk()) {
-                    if(null!=listener){
-                        listener.requestSuccess(tJsonResult.data);
-                    }
-                } else {
-                    if(null!=listener){
-                        listener.requestError(tJsonResult.status,tJsonResult.getMessage());
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        if (isUnsubscribed()) {
+//            return;
+//        }
+//
+//        try {
+//            if (tJsonResult == null) {
+//                byNetworkTodo();
+//            } else {
+//                if (tJsonResult.isOk()) {
+//                    if(null!=listener){
+//                        listener.requestSuccess(tJsonResult.data);
+//                    }
+//                } else {
+//                    if(null!=listener){
+//                        listener.requestError(tJsonResult.status,tJsonResult.getMessage());
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 

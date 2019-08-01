@@ -26,7 +26,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.functions.Action1;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by HeJiaJun on 2018/8/28.
@@ -64,9 +65,14 @@ public class ResumeDownloadActivity extends Activity {
     }
 
     private void initEvent() {
-        RxBus2.getInstance().tObservable(EventFileInfo.class).subscribe(new Action1<EventFileInfo>() {
+        RxBus2.getInstance().tObservable(EventFileInfo.class).subscribe(new Observer<EventFileInfo>() {
             @Override
-            public void call(final EventFileInfo eventFileInfo) {
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(final EventFileInfo eventFileInfo) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -83,6 +89,15 @@ public class ResumeDownloadActivity extends Activity {
                         }
                     }
                 });
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
 
             }
         });

@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -25,8 +25,7 @@ public class Http {
     public static String user_session ;
     public static String user_token = "";
 
-    public static String baseUrl = "http://119.29.157.217:8111/api/";
-    public static String baseImageUrl="http://119.29.157.217:8111";
+    public static String baseUrl = "https://aip.baidubce.com/";
 
     public static Http http;
 
@@ -37,7 +36,7 @@ public class Http {
         http = new Http(context);
     }
 
-    public Http(Context context) {
+    private Http(Context context) {
         OkHttpClient.Builder builder=new OkHttpClient.Builder();
 
         if(BuildConfig.DEBUG){
@@ -53,7 +52,7 @@ public class Http {
                 .client(builder.build())
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

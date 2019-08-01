@@ -48,9 +48,8 @@ dependencies {
 
     //网络相关
     api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
-    api 'io.reactivex:rxandroid:1.2.1'
     api 'com.google.code.gson:gson:2.8.5'
     //阿里的vlayout
     api('com.alibaba.android:vlayout:1.0.4@aar') {

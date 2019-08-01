@@ -26,8 +26,8 @@ public class BaseViewModel<T extends BaseRepository> extends AndroidViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        if (mRepository != null) {
-            mRepository.unSubscribe();
-        }
+//        if (mRepository != null) {
+//            mRepository.unSubscribe();
+//        }
     }
 }

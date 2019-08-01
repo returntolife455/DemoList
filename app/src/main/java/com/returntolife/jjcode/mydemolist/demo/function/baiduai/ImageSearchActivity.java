@@ -45,6 +45,7 @@ public class ImageSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mAdapter!=null){
                     mAdapter.handleImage();
+//                    new ImageSearchHelper().searchByRetrofit();
                 }
             }
         });
