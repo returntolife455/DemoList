@@ -21,10 +21,6 @@ import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.ImageSearch
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.IngredientBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.TokenResultBean;
 import com.tools.jj.tools.http.Http;
-import com.tools.jj.tools.http.IRequestCallBack;
-import com.tools.jj.tools.http.JsonResult;
-import com.tools.jj.tools.http.JsonUtil;
-import com.tools.jj.tools.http.RequestCallBack;
 import com.tools.jj.tools.utils.LogUtil;
 
 import org.json.JSONObject;

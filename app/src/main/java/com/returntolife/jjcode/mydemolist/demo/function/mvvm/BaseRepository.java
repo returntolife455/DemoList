@@ -7,8 +7,9 @@ import org.reactivestreams.Subscription;
 /**
  * Created by HeJiaJun on 2019/7/4.
  * Email:hejj@mama.cn
- * des:
+ * des: 升级rxjava2之后不方便使用
  */
+@Deprecated
 public class BaseRepository {
 
 //    // 可以缓解Rx内存占用不能释放的问题

@@ -39,7 +39,9 @@ public  class RequestCallBack<T> implements Subscriber<JsonResult<T>> {
 
     @Override
     public void onComplete() {
-
+        if(listener!=null){
+            listener.requestComplete();
+        }
     }
 
     private void byNetworkTodo() {
@@ -62,27 +64,23 @@ public  class RequestCallBack<T> implements Subscriber<JsonResult<T>> {
     @Override
     public void onNext(JsonResult<T> tJsonResult) {
         //已经移除订阅，return
-//        if (isUnsubscribed()) {
-//            return;
-//        }
-//
-//        try {
-//            if (tJsonResult == null) {
-//                byNetworkTodo();
-//            } else {
-//                if (tJsonResult.isOk()) {
-//                    if(null!=listener){
-//                        listener.requestSuccess(tJsonResult.data);
-//                    }
-//                } else {
-//                    if(null!=listener){
-//                        listener.requestError(tJsonResult.status,tJsonResult.getMessage());
-//                    }
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            if (tJsonResult == null) {
+                byNetworkTodo();
+            } else {
+                if (tJsonResult.isOk()) {
+                    if(null!=listener){
+                        listener.requestSuccess(tJsonResult.data);
+                    }
+                } else {
+                    if(null!=listener){
+                        listener.requestError(tJsonResult.status,tJsonResult.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
