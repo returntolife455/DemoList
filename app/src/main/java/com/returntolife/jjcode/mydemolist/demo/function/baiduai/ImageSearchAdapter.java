@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by HeJiaJun on 2019/8/1.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class ImageSearchAdapter extends CommonRecyclerAdapter<ImageSearchBean> {

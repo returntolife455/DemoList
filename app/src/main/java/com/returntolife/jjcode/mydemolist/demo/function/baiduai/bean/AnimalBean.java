@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by HeJiaJun on 2019/8/1.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class AnimalBean {

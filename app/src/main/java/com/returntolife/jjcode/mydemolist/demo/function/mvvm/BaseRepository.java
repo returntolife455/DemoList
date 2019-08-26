@@ -6,7 +6,7 @@ import org.reactivestreams.Subscription;
 
 /**
  * Created by HeJiaJun on 2019/7/4.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des: 升级rxjava2之后不方便使用
  */
 @Deprecated

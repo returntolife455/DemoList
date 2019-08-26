@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * Created by HeJiaJun on 2019/6/25.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 @Retention(RetentionPolicy.RUNTIME)

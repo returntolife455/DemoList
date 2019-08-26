@@ -2,7 +2,7 @@ package com.returntolife.jjcode.mydemolist.demo.function.multiItem;
 
 /**
  * Created by HeJiaJun on 2019/6/5.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class HolderTypeConstants {

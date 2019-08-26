@@ -2,7 +2,7 @@ package com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean;
 
 /**
  * Created by HeJiaJun on 2019/8/1.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class TokenResultBean {

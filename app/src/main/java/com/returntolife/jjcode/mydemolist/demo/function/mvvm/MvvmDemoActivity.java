@@ -15,7 +15,7 @@ import com.returntolife.jjcode.mydemolist.R;
 
 /**
  * Created by HeJiaJun on 2019/7/4.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class MvvmDemoActivity extends BaseActivity<MvvmDemoViewModel> {

@@ -11,7 +11,7 @@ import com.tools.jj.tools.utils.LogUtil;
 
 /**
  * Created by HeJiaJun on 2019/6/25.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class AspectButtonActivity extends Activity {

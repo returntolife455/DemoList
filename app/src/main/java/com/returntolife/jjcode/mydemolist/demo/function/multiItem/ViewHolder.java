@@ -88,6 +88,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public ViewHolder setTextSize(int viewId, float size) {
+        TextView tv = getView(viewId);
+        if (tv == null) {
+            return this;
+        }
+        tv.setTextSize(size);
+        return this;
+    }
+
     public ViewHolder setText(int viewId, CharSequence text) {
         TextView tv = getView(viewId);
         tv.setText(text);
@@ -127,6 +136,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder setTextColor(int viewId, int textColor) {
         TextView view = getView(viewId);
         view.setTextColor(textColor);
+        return this;
+    }
+
+    public ViewHolder setTextTypeface(int viewId,Typeface tf) {
+        TextView tv = getView(viewId);
+        if (tv == null) {
+            return this;
+        }
+        tv.setTypeface(tf);
         return this;
     }
 

@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by HeJiaJun on 2019/7/4.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class BaseViewModel<T extends BaseRepository> extends AndroidViewModel {

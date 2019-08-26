@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:name=".AppApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.activity.MainActivity">
+        <activity android:name=".main.activity.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".demo.widget.putorefresh.PutoRefreshActivity" />
         <activity android:name=".demo.widget.drawlockscreen.DrawLockScreenActivity" />
@@ -43,7 +44,8 @@
             android:screenOrientation="landscape"/>
 
         <activity android:name=".demo.widget.recyclerview.CardLayoutActivity" />
-        <activity android:name=".AppPermissionActivity" >
+        <activity android:name=".AppPermissionActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -57,6 +59,8 @@
         <activity android:name=".demo.function.AspectButton.AspectButtonActivity" />
         <activity android:name=".demo.function.mvvm.MvvmDemoActivity" />
         <activity android:name=".demo.function.baiduai.ImageSearchActivity" />
+        <activity android:name=".demo.function.section.SectionActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

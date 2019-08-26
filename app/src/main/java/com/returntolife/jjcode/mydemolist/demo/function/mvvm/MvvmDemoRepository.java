@@ -25,7 +25,7 @@ import okhttp3.ResponseBody;
 
 /**
  * Created by HeJiaJun on 2019/7/4.
- * Email:hejj@mama.cn
+ * Email:455hejiajun@gmail
  * des:
  */
 public class MvvmDemoRepository extends BaseRepository {
