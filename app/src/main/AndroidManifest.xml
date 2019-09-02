@@ -61,6 +61,7 @@
         <activity android:name=".demo.function.baiduai.ImageSearchActivity" />
         <activity android:name=".demo.function.section.SectionActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".demo.function.test.TestActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

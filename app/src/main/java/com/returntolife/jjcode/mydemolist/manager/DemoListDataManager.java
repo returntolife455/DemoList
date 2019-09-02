@@ -16,6 +16,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.Conten
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.MyContentProvider;
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.section.SectionActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.test.TestActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.PickingPictureActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.BottomSheetActivity;
@@ -87,6 +88,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("MVVM","简单的demo","2019-07-04",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MvvmDemoActivity.class));
         demoListBeanList.add(new DemoListBean("图像识别","基于百度AI","2019-08-01",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, ImageSearchActivity.class));
         demoListBeanList.add(new DemoListBean("仿饿了么点餐滑动效果","recyclerview联动","2019-08-26",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, SectionActivity.class));
+        demoListBeanList.add(new DemoListBean("MVP单元测试","初级单元测试demo","2019-08-26",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, TestActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
