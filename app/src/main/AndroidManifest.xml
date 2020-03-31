@@ -62,6 +62,13 @@
         <activity android:name=".demo.function.section.SectionActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".demo.function.test.TestActivity" />
+        <activity android:name=".demo.function.transition.TransitionActivity" />
+        <activity android:name=".demo.function.transition.SlideTransitionActivity" />
+        <activity android:name=".demo.function.transition.ExplodeTransitionActivity" />
+        <activity android:name=".demo.function.transition.FadeTransitionActivity" />
+        <activity android:name=".demo.function.transition.ShareElementActivity" />
+        <activity android:name=".demo.function.transition.TransitionByFragmentActivity" />
+        <activity android:name=".demo.function.transition.ShareElementByFragmentActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

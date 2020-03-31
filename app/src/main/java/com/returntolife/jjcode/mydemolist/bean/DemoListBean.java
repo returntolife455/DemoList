@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 /**
  * Created by jiajun He on 2019/4/16.
  * des:demo的item信息类
- * version:
+ * version: 图片icon暂不使用了
  */
 public class DemoListBean {
 
@@ -74,6 +74,14 @@ public class DemoListBean {
         this.des = des;
         this.time = time;
         this.imageResource = imageResource;
+        this.clazz=clazz;
+        this.type=type;
+    }
+
+    public DemoListBean(String title, String des, String time, int type,Class clazz) {
+        this.title = title;
+        this.des = des;
+        this.time = time;
         this.clazz=clazz;
         this.type=type;
     }
