@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -69,12 +71,26 @@
         <activity android:name=".demo.function.transition.ShareElementActivity" />
         <activity android:name=".demo.function.transition.TransitionByFragmentActivity" />
         <activity android:name=".demo.function.transition.ShareElementByFragmentActivity" />
+        <activity android:name=".demo.function.imageslider.ImageSliderActivity" />
+        <activity android:name=".demo.function.accessibility.AccessibilityActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
             android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>
         <service android:name=".demo.function.aidl.binderpool.AIDLBinderPoolService"
             android:process="com.returntolife.jjcode.mydemolist.aidlpoolservice"/>
+        <service android:name=".demo.function.accessibility.MyAccessibilityService"
+            android:label="@string/accessibility_tip"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <!-- 通过xml文件完成辅助功能相关配置，也可以在onServiceConnected中动态配置 -->
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
+        </service>
 
         <provider
             android:name=".demo.function.mycontentprovider.MyContentProvider"

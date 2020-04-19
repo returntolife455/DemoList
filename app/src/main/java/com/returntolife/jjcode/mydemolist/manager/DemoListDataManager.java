@@ -8,9 +8,11 @@ import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.AspectButton.AspectButtonActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.accessibility.AccessibilityActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientAcitvity;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.imageslider.ImageSliderActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
@@ -92,6 +94,8 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("仿饿了么点餐滑动效果","recyclerview联动","2019-08-26",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, SectionActivity.class));
         demoListBeanList.add(new DemoListBean("MVP单元测试","初级单元测试demo","2019-08-26",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, TestActivity.class));
         demoListBeanList.add(new DemoListBean("转场动画","转场动画，共享元素","2020-03-31",DemoListBean.TYPE_FUNCTION, TransitionActivity.class));
+        demoListBeanList.add(new DemoListBean("图片切换特效","","2020-04-12",DemoListBean.TYPE_FUNCTION, ImageSliderActivity.class));
+        demoListBeanList.add(new DemoListBean("无障碍服务","","2020-04-12",DemoListBean.TYPE_FUNCTION, AccessibilityActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
