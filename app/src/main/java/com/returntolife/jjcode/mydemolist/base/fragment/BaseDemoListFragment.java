@@ -41,6 +41,7 @@ public abstract  class BaseDemoListFragment extends BaseDemoFragment {
         data=initData();
 
         mRecyvlerView=rootView.findViewById(R.id.rv_main);
+        mRecyvlerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
         initRecyclerViewLayout();
         mRecyvlerView.setAdapter(new CommonRecyclerAdapter<DemoListBean>(context,R.layout.item_demolist_fragment,data) {
             @Override
@@ -87,7 +88,6 @@ public abstract  class BaseDemoListFragment extends BaseDemoFragment {
 //                }
 //            });
 //        }
-        mRecyvlerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
         if(mRecyvlerView.getItemDecorationCount()==0){
             mRecyvlerView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override

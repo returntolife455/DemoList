@@ -27,6 +27,7 @@ import com.returntolife.jjcode.mydemolist.demo.widget.BottomSheetActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.CoordinatorlayoutActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.DemoBottomSheetDialogFragment;
 import com.returntolife.jjcode.mydemolist.demo.widget.FloatingActionButtonActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.NestedScrollingDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.adrecyclerview.AdListActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.drawlockscreen.DrawLockScreenActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.motionevent.MotionEventActivity;
@@ -109,6 +110,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("知乎广告列表","自定义控件","2019-04-24", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,AdListActivity.class));
         demoListBeanList.add(new DemoListBean("事件分发机制","自定义控件","2019-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,MotionEventActivity.class));
         demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,SuperEditTextActivity.class));
+        demoListBeanList.add(new DemoListBean("NestedScrolling机制","自定义控件","2020-06-04", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, NestedScrollingDemoActivity.class));
     }
 
 

@@ -35,6 +35,7 @@
         <activity android:name=".demo.widget.adrecyclerview.AdListActivity"/>
         <activity android:name=".demo.widget.motionevent.MotionEventActivity"/>
         <activity android:name=".demo.widget.superedittext.SuperEditTextActivity"/>
+        <activity android:name=".demo.widget.NestedScrollingDemoActivity"/>
         <activity android:name=".demo.function.mycontentprovider.MiMeTestActivity" >
             <intent-filter>
                 <action android:name="harvic.test.qijian" />
