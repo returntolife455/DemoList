@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontwarn com.baidu.**
+-dontwarn com.returntolife.jjcode.mydemolist.demo.function.tinker.**
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn retrofit2.**

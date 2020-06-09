@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.returntolife.jjcode.mydemolist.AppApplication;
+import com.returntolife.jjcode.mydemolist.SimpleTinkerInApplication;
+import com.returntolife.jjcode.mydemolist.SimpleTinkerInApplicationLike;
 import com.tools.jj.tools.imageload.IBitmapCallBack;
 import com.tools.jj.tools.imageload.IImageLoader;
 import com.tools.jj.tools.imageload.ImageLoaderOptions;
@@ -36,7 +38,7 @@ public class GlideLoader implements IImageLoader {
         if (sRequestManager == null) {
             synchronized (GlideLoader.class) {
                 if (sRequestManager == null) {
-                    sRequestManager = Glide.with(AppApplication.pAppContext);
+                    sRequestManager = Glide.with(SimpleTinkerInApplicationLike.pAppContext);
                 }
             }
         }
@@ -100,12 +102,12 @@ public class GlideLoader implements IImageLoader {
 
     @Override
     public void clearMemoryCache() {
-        Glide.get(AppApplication.pAppContext).clearMemory();
+        Glide.get(SimpleTinkerInApplicationLike.pAppContext).clearMemory();
     }
 
     @Override
     public void clearDiskCache() {
-        Glide.get(AppApplication.pAppContext).clearDiskCache();
+        Glide.get(SimpleTinkerInApplicationLike.pAppContext).clearDiskCache();
     }
 
 

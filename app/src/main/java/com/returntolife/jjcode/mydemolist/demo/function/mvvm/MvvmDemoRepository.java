@@ -16,6 +16,7 @@ import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.returntolife.jjcode.mydemolist.AppApplication;
+import com.returntolife.jjcode.mydemolist.SimpleTinkerInApplicationLike;
 import com.tools.jj.tools.http.Http;
 
 import io.reactivex.Observable;
@@ -33,7 +34,7 @@ public class MvvmDemoRepository extends BaseRepository {
 
     @SuppressLint("CheckResult")
     public void getImage(SimpleTarget<Bitmap> target){
-        Glide.with(AppApplication.pAppContext)
+        Glide.with(SimpleTinkerInApplicationLike.pAppContext)
                 .asBitmap()
                 .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=140540105,4087994726&fm=26&gp=0.jpg")
                 .into(target);

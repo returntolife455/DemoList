@@ -5,22 +5,23 @@
     <permission
         android:name="com.returntolife.myprovider.permission"
         android:protectionLevel="normal" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
     <application
+        android:name=".SimpleTinkerInApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".AppApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.activity.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+
+        <activity
+            android:name=".main.activity.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".demo.widget.putorefresh.PutoRefreshActivity" />
         <activity android:name=".demo.widget.drawlockscreen.DrawLockScreenActivity" />
         <activity android:name=".demo.function.resumedownload.ResumeDownloadActivity" />
@@ -32,26 +33,29 @@
         <activity android:name=".demo.widget.FloatingActionButtonActivity" />
         <activity android:name=".demo.function.changetheme.ChangeThemeActivity" />
         <activity android:name=".demo.function.mycontentprovider.ContentProviderClientActivity" />
-        <activity android:name=".demo.widget.adrecyclerview.AdListActivity"/>
-        <activity android:name=".demo.widget.motionevent.MotionEventActivity"/>
-        <activity android:name=".demo.widget.superedittext.SuperEditTextActivity"/>
-        <activity android:name=".demo.widget.NestedScrollingDemoActivity"/>
-        <activity android:name=".demo.function.mycontentprovider.MiMeTestActivity" >
+        <activity android:name=".demo.widget.adrecyclerview.AdListActivity" />
+        <activity android:name=".demo.widget.motionevent.MotionEventActivity" />
+        <activity android:name=".demo.widget.superedittext.SuperEditTextActivity" />
+        <activity android:name=".demo.widget.NestedScrollingDemoActivity" />
+        <activity android:name=".demo.function.mycontentprovider.MiMeTestActivity">
             <intent-filter>
                 <action android:name="harvic.test.qijian" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/harvic.first" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo.widget.scaleview.ScaleViewActivity"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".demo.widget.scaleview.ScaleViewActivity"
+            android:screenOrientation="landscape" />
 
         <activity android:name=".demo.widget.recyclerview.CardLayoutActivity" />
-        <activity android:name=".AppPermissionActivity"
+        <activity
+            android:name=".AppPermissionActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -62,8 +66,9 @@
         <activity android:name=".demo.function.AspectButton.AspectButtonActivity" />
         <activity android:name=".demo.function.mvvm.MvvmDemoActivity" />
         <activity android:name=".demo.function.baiduai.ImageSearchActivity" />
-        <activity android:name=".demo.function.section.SectionActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".demo.function.section.SectionActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".demo.function.test.TestActivity" />
         <activity android:name=".demo.function.transition.TransitionActivity" />
         <activity android:name=".demo.function.transition.SlideTransitionActivity" />
@@ -74,13 +79,17 @@
         <activity android:name=".demo.function.transition.ShareElementByFragmentActivity" />
         <activity android:name=".demo.function.imageslider.ImageSliderActivity" />
         <activity android:name=".demo.function.accessibility.AccessibilityActivity" />
+        <activity android:name=".demo.function.tinker.TinkerActivity" />
 
-        <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
-        <service android:name=".demo.function.aidl.AIDLService"
-            android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>
-        <service android:name=".demo.function.aidl.binderpool.AIDLBinderPoolService"
-            android:process="com.returntolife.jjcode.mydemolist.aidlpoolservice"/>
-        <service android:name=".demo.function.accessibility.MyAccessibilityService"
+        <service android:name=".demo.function.resumedownload.ResumeDownloadService" />
+        <service
+            android:name=".demo.function.aidl.AIDLService"
+            android:process="com.returntolife.jjcode.mydemolist.aidlservice" />
+        <service
+            android:name=".demo.function.aidl.binderpool.AIDLBinderPoolService"
+            android:process="com.returntolife.jjcode.mydemolist.aidlpoolservice" />
+        <service
+            android:name=".demo.function.accessibility.MyAccessibilityService"
             android:label="@string/accessibility_tip"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -92,7 +101,10 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_config" />
         </service>
-
+        <service
+            android:name=".demo.function.tinker.SampleResultService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
         <provider
             android:name=".demo.function.mycontentprovider.MyContentProvider"
             android:authorities="com.returntolife.myprovider"

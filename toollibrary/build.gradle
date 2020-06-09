@@ -28,8 +28,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+        packagingOptions {
+            exclude "/META-INF/**"
         }
     }
     packagingOptions {

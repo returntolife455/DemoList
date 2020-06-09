@@ -20,6 +20,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.MyCont
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.section.SectionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.test.TestActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.tinker.TinkerActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.transition.TransitionActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.PickingPictureActivity;
@@ -97,6 +98,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("转场动画","转场动画，共享元素","2020-03-31",DemoListBean.TYPE_FUNCTION, TransitionActivity.class));
         demoListBeanList.add(new DemoListBean("图片切换特效","","2020-04-12",DemoListBean.TYPE_FUNCTION, ImageSliderActivity.class));
         demoListBeanList.add(new DemoListBean("无障碍服务","","2020-04-12",DemoListBean.TYPE_FUNCTION, AccessibilityActivity.class));
+        demoListBeanList.add(new DemoListBean("Tinker热修复功能","","2020-06-9",DemoListBean.TYPE_FUNCTION, TinkerActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));

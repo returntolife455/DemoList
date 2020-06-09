@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.returntolife.jjcode.mydemolist.AppApplication;
+import com.returntolife.jjcode.mydemolist.SimpleTinkerInApplicationLike;
 import com.returntolife.jjcode.mydemolist.demo.function.test.User;
 
 /**
@@ -22,7 +23,7 @@ public class UserDao {
     }
 
     public UserDao() {
-        this.db = new DbHelper(AppApplication.pAppContext, "User").getWritableDatabase();
+        this.db = new DbHelper(SimpleTinkerInApplicationLike.pAppContext, "User").getWritableDatabase();
     }
 
     /**

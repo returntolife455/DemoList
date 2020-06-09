@@ -19,4 +19,5 @@
     <string name="fab">fab</string>
     <string name="accessibility_tip">辅助测试</string>
     <string name="accessibility_desc">开启辅助功能，让你的手机更智能一点</string>
+    <string name="tinker_introduction">1、Gradle构建基础包 -> app-> Tasks -> build -> assembleRelease \n\n 2、生成基础包、配置文件在app/build/bakApk目录下,需要根据app的build.gradle文件下ext{tinkerOldApkPath, \n    tinkerApplyMappingPath, \n    tinkerApplyResourcePath \n     }的三个值修改为对应apk,    mapping.txt,   R.txt的名字 \n\n 3、修复bug后 在Gradle生成补丁包 Gradle-> app-> Tasks -> tinker -> tinkerPatchRelease \n\n 4、生成的补丁包在app\build\outputs\apk\tinkerPatch\release\patch_signed_7zip.apk 目录下 \n\n 5、将补丁包导入到根目录下 \n\n 6、app中进行修复</string>
 </resources>

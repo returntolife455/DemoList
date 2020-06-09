@@ -15,6 +15,7 @@ import com.google.gson.JsonParseException;
 import com.returntolife.jjcode.mydemolist.Api;
 import com.returntolife.jjcode.mydemolist.AppApplication;
 import com.returntolife.jjcode.mydemolist.R;
+import com.returntolife.jjcode.mydemolist.SimpleTinkerInApplicationLike;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.AnimalBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.CarResultBean;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.bean.ImageSearchBean;
@@ -80,7 +81,7 @@ public class ImageSearchHelper {
 
 
     public String imageSearch(int imageRes,int type){
-        Bitmap bitmap=BitmapFactory.decodeResource(AppApplication.pAppContext.getResources(),imageRes);
+        Bitmap bitmap=BitmapFactory.decodeResource(SimpleTinkerInApplicationLike.pAppContext.getResources(),imageRes);
         String result="";
         switch (type){
             case ImageSearchBean.SEARCH_TYPE_ANIMAL:
@@ -154,7 +155,7 @@ public class ImageSearchHelper {
             .flatMap(new Function<TokenResultBean, ObservableSource<AnimalBean>>() {
                 @Override
                 public ObservableSource<AnimalBean> apply(TokenResultBean tokenResultBean) throws Exception {
-                    Bitmap bitmap=BitmapFactory.decodeResource(AppApplication.pAppContext.getResources(), R.drawable.ic_imagesearch_anima);
+                    Bitmap bitmap=BitmapFactory.decodeResource(SimpleTinkerInApplicationLike.pAppContext.getResources(), R.drawable.ic_imagesearch_anima);
                     byte[] bytes=Bitmap2Bytes(bitmap);
                     String base64Content = Base64Util.encode(bytes);
                     return Http.createApi(Api.class).searchAnimal(tokenResultBean.getAccess_token(),base64Content);
