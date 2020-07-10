@@ -37,7 +37,11 @@ import com.returntolife.jjcode.mydemolist.demo.widget.scaleview.ScaleViewActivit
 import com.returntolife.jjcode.mydemolist.demo.widget.superedittext.SuperEditTextActivity;
 
 
+import com.tools.jj.tools.utils.DateUtil;
+import com.tools.jj.tools.utils.LogUtil;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -111,6 +115,21 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("事件分发机制","自定义控件","2019-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,MotionEventActivity.class));
         demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,SuperEditTextActivity.class));
         demoListBeanList.add(new DemoListBean("NestedScrolling机制","自定义控件","2020-06-04", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, NestedScrollingDemoActivity.class));
+
+        Collections.sort(demoListBeanList, new Comparator<DemoListBean>() {
+            @Override
+            public int compare(DemoListBean o1, DemoListBean o2) {
+                long time1= DateUtil.parseToLong(o1.getTime(),"yyyy-MM-dd");
+                long time2= DateUtil.parseToLong(o2.getTime(),"yyyy-MM-dd");
+                LogUtil.d("time1="+time1+"--time2="+time2);
+                if(time1<time2){
+                    return 1;
+                }else if(time1>time2){
+                    return -1;
+                }else {
+                    return 0;
+                }
+            }});
     }
 
 
