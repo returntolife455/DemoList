@@ -74,7 +74,6 @@
         <activity android:name=".demo.function.transition.ShareElementByFragmentActivity" />
         <activity android:name=".demo.function.imageslider.ImageSliderActivity" />
         <activity android:name=".demo.function.accessibility.AccessibilityActivity" />
-
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
             android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>

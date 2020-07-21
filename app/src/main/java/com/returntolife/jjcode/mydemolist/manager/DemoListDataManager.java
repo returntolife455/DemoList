@@ -1,9 +1,5 @@
 package com.returntolife.jjcode.mydemolist.manager;
 
-import android.content.Intent;
-import android.transition.Transition;
-
-import com.returntolife.jjcode.mydemolist.AppApplication;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
@@ -16,7 +12,6 @@ import com.returntolife.jjcode.mydemolist.demo.function.imageslider.ImageSliderA
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
-import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.MyContentProvider;
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.section.SectionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.test.TestActivity;
@@ -38,7 +33,6 @@ import com.returntolife.jjcode.mydemolist.demo.widget.superedittext.SuperEditTex
 
 
 import com.tools.jj.tools.utils.DateUtil;
-import com.tools.jj.tools.utils.LogUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -121,7 +115,7 @@ public class DemoListDataManager {
             public int compare(DemoListBean o1, DemoListBean o2) {
                 long time1= DateUtil.parseToLong(o1.getTime(),"yyyy-MM-dd");
                 long time2= DateUtil.parseToLong(o2.getTime(),"yyyy-MM-dd");
-                LogUtil.d("time1="+time1+"--time2="+time2);
+
                 if(time1<time2){
                     return 1;
                 }else if(time1>time2){

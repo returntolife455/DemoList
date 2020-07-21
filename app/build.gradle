@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'android-aspectjx'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
 //android配置
 def config = rootProject.ext.android
 
 //相关库依赖
 def librarys = rootProject.ext.supportDependencies
-
 
 android {
     signingConfigs {
@@ -32,6 +34,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+        }
+        debug{
+            packagingOptions {
+                exclude 'META-INF/proguard/coroutines.pro'
+            }
         }
 
         applicationVariants.all { variant ->
@@ -75,4 +82,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
+
+    implementation librarys.kotlin_stdlib
+    implementation librarys.kotlin_coroutines_core
+    implementation librarys.kotlin_coroutines_android
 }
