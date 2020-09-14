@@ -74,6 +74,12 @@
         <activity android:name=".demo.function.transition.ShareElementByFragmentActivity" />
         <activity android:name=".demo.function.imageslider.ImageSliderActivity" />
         <activity android:name=".demo.function.accessibility.AccessibilityActivity" />
+        <activity android:name=".demo.function.coroutine.CoroutineTest1" />
+        <activity android:name=".demo.function.databinding.DataBindingActivity" />
+        <activity android:name=".demo.function.databinding.DataBindingFActivity" />
+        <activity android:name=".demo.function.databinding.DataBindingAdapterActivity"
+            android:screenOrientation="portrait"/>
+
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
             android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>

@@ -1,5 +1,7 @@
 package com.returntolife.jjcode.mydemolist.demo.function.lambdaTest
 
+import android.widget.ImageView
+
 /**
  * Created by HeJiaJun on 2020/7/21.
  * Email:hejj@mama.cn
@@ -50,8 +52,8 @@ private class ContactListFilters {
             return checkFixAndAge
         }
 
-        return {
-            checkFixAndAge(it) && it.phoneNumber?.isNotEmpty()==true
+        return {person:Person->Boolean
+             checkFixAndAge(person) && person.phoneNumber?.isNotEmpty()==true
         }
 
     }

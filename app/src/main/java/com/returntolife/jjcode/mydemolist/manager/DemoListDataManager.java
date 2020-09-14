@@ -8,6 +8,10 @@ import com.returntolife.jjcode.mydemolist.demo.function.accessibility.Accessibil
 import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientAcitvity;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest1;
+import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingAdapterActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingFActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.imageslider.ImageSliderActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
@@ -95,6 +99,10 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("转场动画","转场动画，共享元素","2020-03-31",DemoListBean.TYPE_FUNCTION, TransitionActivity.class));
         demoListBeanList.add(new DemoListBean("图片切换特效","","2020-04-12",DemoListBean.TYPE_FUNCTION, ImageSliderActivity.class));
         demoListBeanList.add(new DemoListBean("无障碍服务","","2020-04-12",DemoListBean.TYPE_FUNCTION, AccessibilityActivity.class));
+        demoListBeanList.add(new DemoListBean("kotlin协程","","2020-07-31",DemoListBean.TYPE_FUNCTION, CoroutineTest1.class));
+        demoListBeanList.add(new DemoListBean("dataBinding","","2020-07-31",DemoListBean.TYPE_FUNCTION, DataBindingActivity.class));
+        demoListBeanList.add(new DemoListBean("dataBinding2","framgent中引用","2020-09-14",DemoListBean.TYPE_FUNCTION, DataBindingFActivity.class));
+        demoListBeanList.add(new DemoListBean("dataBinding3","adapter中引用","2020-09-14",DemoListBean.TYPE_FUNCTION, DataBindingAdapterActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));

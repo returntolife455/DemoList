@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 //android配置
 def config = rootProject.ext.android
@@ -48,6 +49,14 @@ android {
             }
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+kapt {
+    generateStubs = true
 }
 
 dependencies {
@@ -86,4 +95,6 @@ dependencies {
     implementation librarys.kotlin_stdlib
     implementation librarys.kotlin_coroutines_core
     implementation librarys.kotlin_coroutines_android
+
+//    kapt  "com.android.databinding:compiler"
 }
