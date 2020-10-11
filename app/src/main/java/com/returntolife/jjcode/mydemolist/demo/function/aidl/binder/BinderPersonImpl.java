@@ -34,6 +34,21 @@ public class BinderPersonImpl extends IPerson.Stub {
     }
 
     @Override
+    public void addBookWithIn(AIDLBook book) throws RemoteException {
+
+    }
+
+    @Override
+    public void addBookWithOut(AIDLBook book) throws RemoteException {
+
+    }
+
+    @Override
+    public void addBookWithInOut(AIDLBook book) throws RemoteException {
+
+    }
+
+    @Override
     public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
 
     }

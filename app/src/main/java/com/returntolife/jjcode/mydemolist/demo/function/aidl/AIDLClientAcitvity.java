@@ -45,14 +45,20 @@ public class AIDLClientAcitvity extends Activity {
     Button btnSetBook;
     @BindView(R.id.btn_getBook)
     Button btnGetBook;
+    @BindView(R.id.btn_add_in)
+    Button btnAddWithIn;
+    @BindView(R.id.btn_add_out)
+    Button btnAddWithOut;
+    @BindView(R.id.btn_add_inout)
+    Button btnAddWithInOut;
     @BindView(R.id.btn_registerlistener)
-    Button btnRegisterlistener;
+    Button btnRegisterListener;
     @BindView(R.id.btn_unregisterlistener)
-    Button btnUnregisterlistener;
+    Button btnUnregisterListener;
     @BindView(R.id.btn_pool)
     Button btnPool;
 
-
+    private boolean isConnected;
     private IPerson iPerson;
     private ServiceConnection conn;
     private IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
@@ -89,6 +95,7 @@ public class AIDLClientAcitvity extends Activity {
                 iPerson = IPerson.Stub.asInterface(service);
 
                 Toast.makeText(AIDLClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
+                isConnected = true;
             }
 
             @Override
@@ -113,35 +120,69 @@ public class AIDLClientAcitvity extends Activity {
         }
     }
 
-    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook, R.id.btn_getBook, R.id.btn_registerlistener, R.id.btn_unregisterlistener,R.id.btn_pool})
+    @OnClick({R.id.btn_bindservice, R.id.btn_setname, R.id.btn_getName, R.id.btn_setBook,
+            R.id.btn_getBook, R.id.btn_registerlistener, R.id.btn_unregisterlistener, R.id.btn_pool,
+    R.id.btn_add_in,R.id.btn_add_out,R.id.btn_add_inout})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_bindservice:
-                bindServiceByAidl();
-                break;
-            case R.id.btn_setname:
-                setName();
-                break;
-            case R.id.btn_getName:
-                getName();
-                break;
-            case R.id.btn_setBook:
-                setBook();
-                break;
-            case R.id.btn_getBook:
-                getBook();
-                break;
-            case R.id.btn_registerlistener:
-                registerListener();
-                break;
-            case R.id.btn_unregisterlistener:
-                unregisterListener();
-                break;
-            case R.id.btn_pool:
-                gotoPoolService();
-                break;
-            default:
-                break;
+
+        if (view.getId() == R.id.btn_bindservice) {
+            bindServiceByAidl();
+        } else if (view.getId() == R.id.btn_pool) {
+            gotoPoolService();
+        } else {
+            if (!isConnected) {
+                Toast.makeText(this, "服务未连接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            switch (view.getId()) {
+                case R.id.btn_setname:
+                    setName();
+                    break;
+                case R.id.btn_getName:
+                    getName();
+                    break;
+                case R.id.btn_setBook:
+                    setBook();
+                    break;
+                case R.id.btn_getBook:
+                    getBook();
+                    break;
+                case R.id.btn_registerlistener:
+                    registerListener();
+                    break;
+                case R.id.btn_unregisterlistener:
+                    unregisterListener();
+                    break;
+                case R.id.btn_add_in:
+                    AIDLBook inBook=new AIDLBook("book",455);
+                    try {
+                        iPerson.addBookWithIn(inBook);
+                        LogUtil.d("client addBookWithIn="+inBook);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.btn_add_out:
+                    AIDLBook outBook=new AIDLBook("book",455);
+                    try {
+                        iPerson.addBookWithOut(outBook);
+                        LogUtil.d("client addBookWithOut="+outBook);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.btn_add_inout:
+                    AIDLBook inOutBook=new AIDLBook("book",455);
+                    try {
+                        iPerson.addBookWithInOut(inOutBook);
+                        LogUtil.d("client addBookWithInOut="+inOutBook);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
