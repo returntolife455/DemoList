@@ -17,7 +17,7 @@ import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
-import com.returntolife.jjcode.mydemolist.demo.function.aidl.binderpool.AIDLBinderPoolClientAcitvity;
+import com.returntolife.jjcode.mydemolist.demo.function.aidl.binderpool.AIDLBinderPoolClientActivity;
 import com.tools.jj.tools.utils.LogUtil;
 
 import butterknife.BindView;
@@ -189,7 +189,7 @@ public class AIDLClientActivity extends Activity {
     }
 
     private void gotoPoolService() {
-        startActivity(new Intent(this, AIDLBinderPoolClientAcitvity.class));
+        startActivity(new Intent(this, AIDLBinderPoolClientActivity.class));
     }
 
     private void registerListener() {

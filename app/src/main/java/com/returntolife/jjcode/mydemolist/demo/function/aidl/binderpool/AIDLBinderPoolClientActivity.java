@@ -10,15 +10,12 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.returntolife.jjcode.mydemolist.IBinderPool;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.ITool;
 import com.returntolife.jjcode.mydemolist.R;
-import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
-import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLService;
 import com.tools.jj.tools.utils.LogUtil;
 
 import butterknife.BindView;
@@ -34,7 +31,7 @@ import static com.returntolife.jjcode.mydemolist.demo.function.aidl.binder.Binde
  * des:
  * version:1.0.0
  */
-public class AIDLBinderPoolClientAcitvity extends Activity {
+public class AIDLBinderPoolClientActivity extends Activity {
 
 
     @BindView(R.id.btn_bindservice)
@@ -71,7 +68,7 @@ public class AIDLBinderPoolClientAcitvity extends Activity {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(AIDLBinderPoolClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AIDLBinderPoolClientActivity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
                 isConnected=true;
             }
 
