@@ -5,7 +5,7 @@ import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.AspectButton.AspectButtonActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.accessibility.AccessibilityActivity;
-import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientAcitvity;
+import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest1;
@@ -88,7 +88,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("断点续传","采用多线程和数据库实现断点续传","2017-08-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,ResumeDownloadActivity.class));
         demoListBeanList.add(new DemoListBean("内置主题换肤","使用内置的自定义attr实现换肤","2019-02-20", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION,ChangeThemeActivity.class));
         demoListBeanList.add(new DemoListBean("ContentProvider","ContentProvider的基本使用案例","2019-02-21", R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, ContentProviderClientActivity.class));
-        demoListBeanList.add(new DemoListBean("AIDL","AIDL的使用","2019-05-31",R.drawable.bg_test1,DemoListBean.TYPE_FUNCTION, AIDLClientAcitvity.class));
+        demoListBeanList.add(new DemoListBean("AIDL","AIDL的使用","2019-05-31",R.drawable.bg_test1,DemoListBean.TYPE_FUNCTION, AIDLClientActivity.class));
         demoListBeanList.add(new DemoListBean("注解注入","mvp模式中用注解注入p层","2019-06-01",R.drawable.bg_annotate,DemoListBean.TYPE_FUNCTION, AnnotateActivity.class));
         demoListBeanList.add(new DemoListBean("多布局列表","自定义adapter","2019-06-01",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MultiItemActivity.class));
         demoListBeanList.add(new DemoListBean("Aspect","按钮重复点击限制","2019-06-25",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, AspectButtonActivity.class));

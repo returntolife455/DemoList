@@ -53,7 +53,7 @@ public class AIDLBinderPoolClientAcitvity extends Activity {
 
     private ServiceConnection conn;
 
-
+    private boolean isConnected;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,11 +72,13 @@ public class AIDLBinderPoolClientAcitvity extends Activity {
                     e.printStackTrace();
                 }
                 Toast.makeText(AIDLBinderPoolClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
+                isConnected=true;
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 LogUtil.d("onServiceDisconnected");
+                isConnected=false;
             }
         };
 
@@ -139,6 +141,15 @@ public class AIDLBinderPoolClientAcitvity extends Activity {
                 e.printStackTrace();
                 Toast.makeText(this, "getName error=" + e, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(isConnected){
+            unbindService(conn);
+            stopService(new Intent(this,AIDLBinderPoolService.class));
         }
     }
 

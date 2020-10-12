@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * des:
  * version:1.0.0
  */
-public class AIDLClientAcitvity extends Activity {
+public class AIDLClientActivity extends Activity {
 
 
     @BindView(R.id.btn_bindservice)
@@ -61,7 +61,7 @@ public class AIDLClientAcitvity extends Activity {
     private boolean isConnected;
     private IPerson iPerson;
     private ServiceConnection conn;
-    private IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
+    private IBinder.DeathRecipient deathRecipient =  new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
             //解绑
@@ -94,22 +94,24 @@ public class AIDLClientAcitvity extends Activity {
                 }
                 iPerson = IPerson.Stub.asInterface(service);
 
-                Toast.makeText(AIDLClientAcitvity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AIDLClientActivity.this, "onServiceConnected", Toast.LENGTH_SHORT).show();
                 isConnected = true;
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 LogUtil.d("onServiceDisconnected");
+                isConnected=false;
 //                //断开重新绑定
 //                bindServiceByAidl();
+
             }
         };
 
         iOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
             @Override
             public void onNewsBookArrived(AIDLBook book) throws RemoteException {
-                Toast.makeText(AIDLClientAcitvity.this, "book=" + book + "--name=" + book.name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AIDLClientActivity.this, "book=" + book + "--name=" + book.name, Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -270,6 +272,16 @@ public class AIDLClientAcitvity extends Activity {
                 e.printStackTrace();
                 Toast.makeText(this, "getName error=" + e, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(isConnected){
+            unbindService(conn);
+            stopService(new Intent(this,AIDLService.class));
         }
     }
 }
