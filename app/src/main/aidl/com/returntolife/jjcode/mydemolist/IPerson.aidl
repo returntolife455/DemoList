@@ -16,6 +16,10 @@ interface IPerson {
     void setBook(in AIDLBook book);
     AIDLBook getBook();
 
+    void addBookWithIn(in AIDLBook book);
+    void addBookWithOut(out AIDLBook book);
+    void addBookWithInOut(inout AIDLBook book);
+
     void registerListener(IOnNewBookArrivedListener listener);
     void unregisterListener(IOnNewBookArrivedListener listener);
 }

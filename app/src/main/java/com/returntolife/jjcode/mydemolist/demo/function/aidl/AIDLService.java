@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Parcel;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
@@ -29,6 +30,14 @@ public class AIDLService extends Service {
     private RemoteCallbackList<IOnNewBookArrivedListener> mListener=new RemoteCallbackList<>();
 
     private Binder binder=new IPerson.Stub() {
+
+        @Override
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            LogUtil.d("onTransact code="+code);
+            return super.onTransact(code, data, reply, flags);
+
+        }
+
         @Override
         public void setName(String s) throws RemoteException {
             name=s;
@@ -71,6 +80,28 @@ public class AIDLService extends Service {
         public void unregisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
             LogUtil.d("unregisterListener listener="+listener);
             mListener.unregister(listener);
+        }
+
+
+        @Override
+        public void addBookWithIn(AIDLBook book) throws RemoteException {
+            LogUtil.d("service before addBookWithIn="+book);
+            book.name="in tag";
+            LogUtil.d("service after addBookWithIn="+book);
+        }
+
+        @Override
+        public void addBookWithOut(AIDLBook book) throws RemoteException {
+            LogUtil.d("service before addBookWithOut="+book);
+            book.name="out tag";
+            LogUtil.d("service after addBookWithOut="+book);
+        }
+
+        @Override
+        public void addBookWithInOut(AIDLBook book) throws RemoteException {
+            LogUtil.d("service before addBookWithInOut="+book);
+            book.name="inout tag";
+            LogUtil.d("service after addBookWithInOut="+book);
         }
     };
 

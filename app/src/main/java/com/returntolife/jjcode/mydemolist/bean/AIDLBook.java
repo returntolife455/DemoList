@@ -18,6 +18,11 @@ public class AIDLBook implements Parcelable {
 
     }
 
+    public AIDLBook(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
     protected AIDLBook(Parcel in) {
         name = in.readString();
         id = in.readInt();
@@ -27,6 +32,11 @@ public class AIDLBook implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeInt(id);
+    }
+
+    public void readFromParcel(Parcel in){
+        name = in.readString();
+        id = in.readInt();
     }
 
     @Override
@@ -46,5 +56,11 @@ public class AIDLBook implements Parcelable {
         }
     };
 
-
+    @Override
+    public String toString() {
+        return "AIDLBook{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
