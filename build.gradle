@@ -7,8 +7,10 @@ buildscript {
     repositories {
 
         // 添加阿里云 maven 地址
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/repository/google' }
+        maven { url 'http://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
         google()
     }
     dependencies {
@@ -23,12 +25,15 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         // 添加阿里云 maven 地址
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/repository/google' }
+        maven { url 'http://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        google()
     }
 }
 
