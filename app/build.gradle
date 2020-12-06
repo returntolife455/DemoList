@@ -489,3 +489,5 @@ dependencies {
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}")
     compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
 }
+
+
