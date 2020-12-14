@@ -79,7 +79,7 @@
         <activity android:name=".demo.function.databinding.DataBindingFActivity" />
         <activity android:name=".demo.function.databinding.DataBindingAdapterActivity"
             android:screenOrientation="portrait"/>
-
+        <activity android:name=".demo.widget.customview.CustomViewActivity"/>
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
             android:process="com.returntolife.jjcode.mydemolist.aidlservice"/>
