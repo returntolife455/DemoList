@@ -10,8 +10,14 @@
 
     <com.returntolife.jjcode.mydemolist.demo.widget.customview.PieView
         android:id="@+id/pieView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <com.returntolife.jjcode.mydemolist.demo.widget.customview.RadarView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </android.support.constraint.ConstraintLayout>
