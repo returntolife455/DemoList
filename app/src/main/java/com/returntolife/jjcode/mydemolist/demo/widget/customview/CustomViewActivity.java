@@ -14,12 +14,13 @@ import java.util.List;
  */
 public class CustomViewActivity extends AppCompatActivity {
     private PieView pieView;
-
+    private RadarView radarView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view);
         pieView = findViewById(R.id.pieView);
+        radarView = findViewById(R.id.radarView);
         initData();
     }
 
@@ -31,5 +32,13 @@ public class CustomViewActivity extends AppCompatActivity {
         dataList.add(new PieData("4", 5));
         dataList.add(new PieData("5", 15));
         pieView.updateData(dataList);
+
+        List<RadarData> radarDataList = new ArrayList<>();
+        radarDataList.add(new RadarData("1",2));
+        radarDataList.add(new RadarData("2",3));
+        radarDataList.add(new RadarData("3",1));
+        radarDataList.add(new RadarData("4",4));
+        radarDataList.add(new RadarData("5",5));
+        radarView.updateData(radarDataList);
     }
 }

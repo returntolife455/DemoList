@@ -5,9 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RadarView extends View {
     private Paint mPaint = new Paint();
@@ -15,6 +19,7 @@ public class RadarView extends View {
     private int radius;                         //半径
     private Path path = new Path();             //路径
     private int level = 5;                          //等级数
+    private List<RadarData> dataList = new ArrayList<>();
 
     public RadarView(Context context) {
         this(context, null);
@@ -37,6 +42,18 @@ public class RadarView extends View {
         radius = Math.min(mWidth / 2, mHeight / 2) / level;
     }
 
+    /**
+     * 更新数据
+     *
+     * @param dataList
+     */
+    public void updateData(List<RadarData> dataList) {
+        if (dataList != null && dataList.size() > 0) {
+            this.dataList = dataList;
+            invalidate();
+        }
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -46,6 +63,8 @@ public class RadarView extends View {
         canvas.translate(mWidth / 2, mHeight / 2);
         drawPolygon(canvas);
         drawLines(canvas);
+        drawPoints(canvas);
+        drawRegion(canvas);
     }
 
     /**
@@ -82,13 +101,58 @@ public class RadarView extends View {
         float y = (float) Math.sqrt(3) * curR / 2;
         float x = curR / 2;
         canvas.save();
+        path.reset();
         for (int i = 0; i < 6; i++) {
-            path.reset();
             path.moveTo(0, 0);
             path.lineTo(-x, y);
             canvas.drawPath(path, mPaint);
             canvas.rotate(60);
         }
+        canvas.restore();
+    }
+
+    /**
+     * 画顶点
+     *
+     * @param canvas
+     */
+    private void drawPoints(Canvas canvas) {
+        if (dataList.size() == 0) {
+            return;
+        }
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeWidth(10);
+        canvas.save();
+        canvas.rotate(30);
+        for (RadarData data : dataList) {
+            canvas.drawPoint(0, radius * data.getValue(), mPaint);
+            canvas.rotate(60);
+        }
+        canvas.restore();
+    }
+
+    /**
+     * 画区域
+     *
+     * @param canvas
+     */
+    private void drawRegion(Canvas canvas) {
+        if (dataList.size() == 0) {
+            return;
+        }
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaint.setAlpha(127);
+        mPaint.setStrokeWidth(5);
+        mPaint.setColor(Color.BLUE);
+        canvas.save();
+        canvas.rotate(30); //先移动30度
+        path.reset();
+        for (RadarData data : dataList) {
+            path.lineTo(0, radius * data.getValue());
+            canvas.rotate(60);
+        }
+        path.close();
+        canvas.drawPath(path, mPaint);
         canvas.restore();
     }
 }
