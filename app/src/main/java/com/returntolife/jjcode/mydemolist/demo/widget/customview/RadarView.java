@@ -20,6 +20,7 @@ public class RadarView extends View {
     private Path path = new Path();             //路径
     private int level = 5;                          //等级数
     private List<RadarData> dataList = new ArrayList<>();
+    private float angle;
 
     public RadarView(Context context) {
         this(context, null);
@@ -32,6 +33,7 @@ public class RadarView extends View {
     public RadarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint.setAntiAlias(true);
+        angle = (float) (2 * Math.PI / 360);
     }
 
     @Override
@@ -123,7 +125,7 @@ public class RadarView extends View {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(10);
         canvas.save();
-        canvas.rotate(30);
+        canvas.rotate(-90);
         for (RadarData data : dataList) {
             canvas.drawPoint(0, radius * data.getValue(), mPaint);
             canvas.rotate(60);
@@ -144,15 +146,16 @@ public class RadarView extends View {
         mPaint.setAlpha(127);
         mPaint.setStrokeWidth(5);
         mPaint.setColor(Color.BLUE);
-        canvas.save();
-        canvas.rotate(30); //先移动30度
         path.reset();
-        for (RadarData data : dataList) {
-            path.lineTo(0, radius * data.getValue());
-            canvas.rotate(60);
+        for (int i = 0; i < dataList.size(); i++) {
+            float x = (float) (radius * Math.cos(angle * i) * dataList.get(i).getValue());
+            float y = (float) (radius * Math.sin(angle * i) * dataList.get(i).getValue());
+            if(i==0){
+                path.moveTo(x, y);
+            }else{
+                path.lineTo(x,y);
+            }
         }
-        path.close();
-        canvas.drawPath(path, mPaint);
-        canvas.restore();
+        canvas.drawPath(path,mPaint);
     }
 }
