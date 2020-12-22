@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,17 +14,22 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
+import com.returntolife.jjcode.mydemolist.R;
 
 public class ConfirmView extends View {
     private static final String TAG = ConfirmView.class.getSimpleName();
     private int radius;                         //圆半径
     private int width;                          //View 宽度
     private int height;                         //View 高度
+    private int bgColor;                        //背景颜色
     private RectF rect;                         //初始矩形
     private Paint paint;                        //背景画笔
     private Paint textPaint;                    //文字画笔
+    private float textSize;                     //文字大小
     private int circleAngle;                    //圆角
     private ValueAnimator set_rect_to_angle_animator;
     private String text = "确认完成";           //按钮文案
@@ -46,6 +52,17 @@ public class ConfirmView extends View {
 
     public ConfirmView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initView();
+        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.ConfirmView);
+        radius = (int) array.getDimensionPixelSize(R.styleable.ConfirmView_radius, 50);
+        text = array.getString(R.styleable.ConfirmView_text);
+        textSize = array.getDimensionPixelSize(R.styleable.ConfirmView_text_size,(int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics()));
+        bgColor = array.getColor(R.styleable.ConfirmView_bg_color, Color.RED);
+        array.recycle();
+    }
+
+    private void initView() {
         rect = new RectF();
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -74,7 +91,6 @@ public class ConfirmView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         width = w;
         height = h;
-        radius = 50;
         distance = width / 2;
         initOK();
         set_rect_to_angle_animation();
@@ -93,7 +109,7 @@ public class ConfirmView extends View {
         rect.right = distance;
         rect.top = -2 * radius;
         rect.bottom = 0;
-        paint.setColor(Color.RED);
+        paint.setColor(bgColor);
         canvas.drawRoundRect(rect, circleAngle, circleAngle, paint);
     }
 
@@ -103,7 +119,7 @@ public class ConfirmView extends View {
      * @param canvas
      */
     private void drawText(Canvas canvas) {
-        textPaint.setTextSize(40);
+        textPaint.setTextSize(textSize);
         float textWidth = textPaint.measureText(text);
         Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
         float distance = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;

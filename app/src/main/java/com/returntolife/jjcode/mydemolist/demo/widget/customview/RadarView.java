@@ -67,6 +67,7 @@ public class RadarView extends View {
         drawLines(canvas);
         drawPoints(canvas);
         drawRegion(canvas);
+
     }
 
     /**
