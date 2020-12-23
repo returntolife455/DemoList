@@ -28,4 +28,20 @@
         app:radius="30dp"
         app:text="OKOKOKOKOKOKOK"
         app:text_size="15sp" />
+
+    <com.returntolife.jjcode.mydemolist.demo.widget.customview.PasswordView
+        android:id="@+id/passwordView"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_margin="15dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:circle_color="@color/app_main_tabIndicatorColor"
+        app:circle_radius="10dp"
+        app:corners="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:line_color="@color/colorPrimary"
+        app:pwd_count="6"
+        app:stroke_width="3dp" />
 </android.support.constraint.ConstraintLayout>

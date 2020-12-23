@@ -24,26 +24,31 @@ import com.returntolife.jjcode.mydemolist.R;
 
 public class ConfirmView extends View {
     private static final String TAG = ConfirmView.class.getSimpleName();
-    private int radius;                         //圆半径
-    private int width;                          //View 宽度
-    private int height;                         //View 高度
-    private int bgColor;                        //背景颜色
-    private RectF rect;                         //初始矩形
-    private Paint paint;                        //背景画笔
-    private Paint textPaint;                    //文字画笔
-    private float textSize;                     //文字大小
-    private int circleAngle;                    //圆角
-    private ValueAnimator set_rect_to_angle_animator;
-    private String text = "确认完成";           //按钮文案
-    private ValueAnimator set_rect_to_circle_animator;
-    private int distance;                       //View 动态宽度
-    private ObjectAnimator animator_move_to_up;
-    private Path okPath;
-    private Path copyOkPath;
-    private Paint okPaint;
+    private int radius;                                         //圆半径
+    private int width;                                          //View 宽度
+    private int height;                                         //View 高度
+    private int bgColor;                                        //背景颜色
+    private RectF rect;                                         //初始矩形
+    private Paint paint;                                        //背景画笔
+    private Paint textPaint;                                    //文字画笔
+    private float textSize;                                     //文字大小
+    private int circleAngle;                                    //圆角
+    private String text;                                        //按钮文案
+    private int distance;                                       //View 动态宽度
+    private Path okPath;                                        //绘制OK路径
+    private Path copyOkPath;                                    //OK路径片段
+    private Paint okPaint;                                      //绘制OK的画笔
     private PathMeasure pathMeasure;
+    private ValueAnimator set_rect_to_angle_animator;
+    private ValueAnimator set_rect_to_circle_animator;
+    private ObjectAnimator animator_move_to_up;
     private ValueAnimator set_ok_animation;
     private boolean isStart;
+    private onStatusListener listener;
+
+    public void setListener(onStatusListener listener) {
+        this.listener = listener;
+    }
 
     public ConfirmView(Context context) {
         this(context, null);
@@ -150,6 +155,15 @@ public class ConfirmView extends View {
                 animator_move_to_up,
                 set_ok_animation);
         animatorSet.start();
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if (listener != null) {
+                    listener.onFinish();
+                }
+            }
+        });
         isStart = true;
     }
 
@@ -211,6 +225,10 @@ public class ConfirmView extends View {
                 invalidate();
             }
         });
+    }
+
+    public interface onStatusListener {
+        void onFinish();
     }
 
     /**

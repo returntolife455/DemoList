@@ -49,10 +49,22 @@
         <attr name="cursor" format="reference" />
     </declare-styleable>
 
+    <attr name="bg_color" format="color" />
+
     <declare-styleable name="ConfirmView">
+        <attr name="bg_color" />
         <attr name="radius" format="dimension" />
-        <attr name="bg_color" format="color" />
         <attr name="text" format="string" />
         <attr name="text_size" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordView">
+        <attr name="stroke_width" format="dimension" />
+        <attr name="bg_color" />
+        <attr name="circle_radius" format="dimension" />
+        <attr name="line_color" format="color" />
+        <attr name="corners" format="dimension" />
+        <attr name="pwd_count" format="integer" />
+        <attr name="circle_color" format="color"/>
     </declare-styleable>
 </resources>

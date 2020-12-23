@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.returntolife.jjcode.mydemolist.R;
 
@@ -17,6 +18,7 @@ public class CustomViewActivity extends AppCompatActivity implements View.OnClic
     private PieView pieView;
     private RadarView radarView;
     private ConfirmView confirmView;
+    private PasswordView passwordView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +28,14 @@ public class CustomViewActivity extends AppCompatActivity implements View.OnClic
         radarView = findViewById(R.id.radarView);
         confirmView = findViewById(R.id.confirmView);
         confirmView.setOnClickListener(this);
+        passwordView = findViewById(R.id.passwordView);
         initData();
+        passwordView.setListener(new PasswordView.onInputListener() {
+            @Override
+            public void onFinish(String text) {
+                Toast.makeText(CustomViewActivity.this, text, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initData() {
