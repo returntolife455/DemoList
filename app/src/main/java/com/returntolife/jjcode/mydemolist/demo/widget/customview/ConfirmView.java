@@ -1,5 +1,7 @@
 package com.returntolife.jjcode.mydemolist.demo.widget.customview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -41,6 +43,7 @@ public class ConfirmView extends View {
     private Paint okPaint;
     private PathMeasure pathMeasure;
     private ValueAnimator set_ok_animation;
+    private boolean isStart;
 
     public ConfirmView(Context context) {
         this(context, null);
@@ -53,10 +56,10 @@ public class ConfirmView extends View {
     public ConfirmView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
-        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.ConfirmView);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ConfirmView);
         radius = (int) array.getDimensionPixelSize(R.styleable.ConfirmView_radius, 50);
         text = array.getString(R.styleable.ConfirmView_text);
-        textSize = array.getDimensionPixelSize(R.styleable.ConfirmView_text_size,(int) TypedValue.applyDimension(
+        textSize = array.getDimensionPixelSize(R.styleable.ConfirmView_text_size, (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics()));
         bgColor = array.getColor(R.styleable.ConfirmView_bg_color, Color.RED);
         array.recycle();
@@ -128,9 +131,9 @@ public class ConfirmView extends View {
 
     private void initOK() {
         okPaint.setStrokeWidth(10);
-        okPath.moveTo(-radius + 10, -radius - 5);
-        okPath.lineTo(-5, -radius + 20);
-        okPath.lineTo(radius - 15, -(float) (1.5 * radius));
+        okPath.moveTo(-(float) (0.7 * radius), -(float) (0.9 * radius));
+        okPath.lineTo(-5, -(float) (radius * 0.5));
+        okPath.lineTo((float) (0.7 * radius), -(float) (1.4 * radius));
         pathMeasure = new PathMeasure(okPath, false);
     }
 
@@ -138,17 +141,21 @@ public class ConfirmView extends View {
      * 开始动画
      */
     public void confirm() {
+        if (isStart) {
+            return;
+        }
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playSequentially(set_rect_to_angle_animator,
                 set_rect_to_circle_animator,
                 animator_move_to_up,
                 set_ok_animation);
         animatorSet.start();
+        isStart = true;
     }
 
     private void set_rect_to_angle_animation() {
         set_rect_to_angle_animator = ValueAnimator.ofInt(0, radius);
-        set_rect_to_angle_animator.setDuration(500);
+        set_rect_to_angle_animator.setDuration(200);
         set_rect_to_angle_animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -160,7 +167,7 @@ public class ConfirmView extends View {
 
     private void set_rect_to_circle_animation() {
         set_rect_to_circle_animator = ValueAnimator.ofInt(width / 2, radius);
-        set_rect_to_circle_animator.setDuration(800);
+        set_rect_to_circle_animator.setDuration(300);
         set_rect_to_circle_animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -179,12 +186,12 @@ public class ConfirmView extends View {
     private void set_circle_translationY() {
         final float curTranslationY = this.getTranslationY();
         animator_move_to_up = ObjectAnimator.ofFloat(this, "translationY", curTranslationY, -height + 2 * radius);
-        animator_move_to_up.setDuration(500);
+        animator_move_to_up.setDuration(300);
         animator_move_to_up.setInterpolator(new AccelerateDecelerateInterpolator());
         animator_move_to_up.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                Log.d(TAG, "onAnimationUpdate: " + animation.getAnimatedValue());
+
             }
         });
     }
@@ -204,5 +211,18 @@ public class ConfirmView extends View {
                 invalidate();
             }
         });
+    }
+
+    /**
+     * 重置动画
+     */
+    public void reset() {
+        isStart = false;
+        textPaint.setAlpha(255);
+        setTranslationY(0);
+        distance = width / 2;
+        circleAngle = 0;
+        copyOkPath.reset();
+        invalidate();
     }
 }
