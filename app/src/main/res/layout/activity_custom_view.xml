@@ -36,12 +36,12 @@
         android:layout_margin="15dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        app:circle_color="@color/app_main_tabIndicatorColor"
+        app:circle_color="@color/black"
         app:circle_radius="10dp"
         app:corners="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:line_color="@color/colorPrimary"
+        app:line_color="@color/custom_attr_btn_text_color_night"
         app:pwd_count="6"
-        app:stroke_width="3dp" />
+        app:stroke_width="2dp" />
 </android.support.constraint.ConstraintLayout>

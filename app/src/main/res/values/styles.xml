@@ -65,6 +65,7 @@
         <attr name="line_color" format="color" />
         <attr name="corners" format="dimension" />
         <attr name="pwd_count" format="integer" />
-        <attr name="circle_color" format="color"/>
+        <attr name="circle_color" format="color" />
+        <attr name="is_show_cursor" format="boolean" />
     </declare-styleable>
 </resources>

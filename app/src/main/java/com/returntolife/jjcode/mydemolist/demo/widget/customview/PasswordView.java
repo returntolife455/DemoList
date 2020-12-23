@@ -26,6 +26,7 @@ public class PasswordView extends AppCompatEditText {
     private int lineColor;                                  //边框颜色
     private int circleColor;                                //密码圆点颜色
     private onInputListener listener;
+    private boolean isShowCursor;                           //是否显示光标
 
     public void setListener(onInputListener listener) {
         this.listener = listener;
@@ -51,11 +52,12 @@ public class PasswordView extends AppCompatEditText {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PasswordView);
         bgColor = typedArray.getColor(R.styleable.PasswordView_bg_color, Color.WHITE);
         lineColor = typedArray.getColor(R.styleable.PasswordView_line_color, Color.BLACK);
-        circleColor=typedArray.getColor(R.styleable.PasswordView_circle_color,Color.BLACK);
+        circleColor = typedArray.getColor(R.styleable.PasswordView_circle_color, Color.BLACK);
         radius = (int) typedArray.getDimension(R.styleable.PasswordView_circle_radius, 10);
         roundRect = (int) typedArray.getDimension(R.styleable.PasswordView_corners, 10);
         pwdCount = typedArray.getInteger(R.styleable.PasswordView_pwd_count, 6);
         bgStrokeWidth = (int) typedArray.getDimension(R.styleable.PasswordView_stroke_width, 2);
+        isShowCursor = typedArray.getBoolean(R.styleable.PasswordView_is_show_cursor, false);
         typedArray.recycle();
     }
 
@@ -123,6 +125,9 @@ public class PasswordView extends AppCompatEditText {
         float space = width / pwdCount;
         for (int i = 0; i < textLength; i++) {
             canvas.drawCircle(space * i + space / 2, height / 2, radius, circlePaint);
+        }
+        if (isShowCursor) { //是否显示光标
+            canvas.drawLine(space * textLength + space / 2, height / 4, space * textLength + space / 2, height / 4 * 3, paint);
         }
     }
 
