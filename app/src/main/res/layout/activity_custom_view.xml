@@ -18,6 +18,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+    <com.returntolife.jjcode.mydemolist.demo.widget.customview.PasswordView
+        android:id="@+id/passwordView"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_margin="15dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:circle_color="@color/black"
+        app:circle_radius="10dp"
+        app:corners="5dp"
+        app:is_show_cursor="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:line_color="@color/custom_attr_btn_text_color_night"
+        app:pwd_count="6"
+        app:stroke_width="2dp" />
+
     <com.returntolife.jjcode.mydemolist.demo.widget.customview.ConfirmView
         android:id="@+id/confirmView"
         android:layout_width="200dp"
@@ -29,19 +46,12 @@
         app:text="OKOKOKOKOKOKOK"
         app:text_size="15sp" />
 
-    <com.returntolife.jjcode.mydemolist.demo.widget.customview.PasswordView
-        android:id="@+id/passwordView"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_margin="15dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:circle_color="@color/black"
-        app:circle_radius="10dp"
-        app:corners="5dp"
+
+    <com.returntolife.jjcode.mydemolist.demo.widget.customview.ScaleView
+        android:layout_width="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="200dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:line_color="@color/custom_attr_btn_text_color_night"
-        app:pwd_count="6"
-        app:stroke_width="2dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
