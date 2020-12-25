@@ -38,6 +38,7 @@ public class ScaleView extends View {
     private VelocityTracker velocityTracker;
     private int minVelocityX;
     private int offsetStart;
+    private int maxWidth;
 
     public ScaleView(Context context) {
         this(context, null);
@@ -87,6 +88,7 @@ public class ScaleView extends View {
         canvas.save();
         canvas.translate(with / 6, height / 2);
         int scaleCount = endNum - startNum + 1;
+        maxWidth = (endNum - startNum) * (lineSpacing + lineWidth) - with / 3;
         for (int i = 0; i < scaleCount; i++) {
             int lineHeight = minLineHeight;
             scalePaint.setColor(ColorUtil.getColor(startColor, endColor, (float) i / scaleCount));
@@ -132,17 +134,24 @@ public class ScaleView extends View {
             case MotionEvent.ACTION_MOVE:
                 moveX = event.getX() - downX;
                 if (offsetStart + moveX > with / 3) {
-                    moveX = with / 3 - offsetStart;
+                    offsetStart = with / 3;
+                    moveX = 0;
+                } else if (offsetStart + moveX < -maxWidth) {
+                    offsetStart = -maxWidth;
+                    moveX = 0;
                 }
-                Log.d(TAG, "onTouchEvent: moveX" + moveX);
+                Log.d(TAG, "onTouchEvent: offsetStart + moveX :" + (offsetStart + moveX));
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
                 //计算当前手指放开时的滑动速率
                 if (offsetStart + moveX > with / 3) {
                     offsetStart = with / 3;
+                } else if (offsetStart + moveX < -maxWidth) {
+                    offsetStart = -maxWidth;
                 } else {
                     offsetStart += moveX;
+
                 }
                 moveX = 0;
                 postInvalidate();
