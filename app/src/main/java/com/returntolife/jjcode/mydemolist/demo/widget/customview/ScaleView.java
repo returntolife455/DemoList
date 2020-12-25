@@ -131,12 +131,19 @@ public class ScaleView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 moveX = event.getX() - downX;
+                if (offsetStart + moveX > with / 3) {
+                    moveX = with / 3 - offsetStart;
+                }
                 Log.d(TAG, "onTouchEvent: moveX" + moveX);
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
                 //计算当前手指放开时的滑动速率
-                offsetStart += event.getX() - downX;
+                if (offsetStart + moveX > with / 3) {
+                    offsetStart = with / 3;
+                } else {
+                    offsetStart += moveX;
+                }
                 moveX = 0;
                 postInvalidate();
                 break;
