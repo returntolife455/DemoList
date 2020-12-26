@@ -86,9 +86,9 @@ public class ScaleView extends View {
 
     private void drawScale(Canvas canvas) {
         canvas.save();
-        canvas.translate(with / 6, height / 2);
+        canvas.translate(lineSpacing + with / 6, height / 2);
         int scaleCount = endNum - startNum + 1;
-        maxWidth = (endNum - startNum) * (lineSpacing + lineWidth) - with / 3;
+        maxWidth = (endNum - startNum) * (lineSpacing + lineWidth) - with / 3+lineSpacing;
         for (int i = 0; i < scaleCount; i++) {
             int lineHeight = minLineHeight;
             scalePaint.setColor(ColorUtil.getColor(startColor, endColor, (float) i / scaleCount));
@@ -140,20 +140,20 @@ public class ScaleView extends View {
                     offsetStart = -maxWidth;
                     moveX = 0;
                 }
-                Log.d(TAG, "onTouchEvent: offsetStart + moveX :" + (offsetStart + moveX));
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                //计算当前手指放开时的滑动速率
                 if (offsetStart + moveX > with / 3) {
                     offsetStart = with / 3;
                 } else if (offsetStart + moveX < -maxWidth) {
                     offsetStart = -maxWidth;
                 } else {
                     offsetStart += moveX;
-
+                    offsetStart = (offsetStart / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
                 }
                 moveX = 0;
+                //计算当前手指放开时的滑动速率
+
                 postInvalidate();
                 break;
         }
