@@ -8,7 +8,6 @@ import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.returntolife.jjcode.mydemolist.demo.widget.scaleview.ColorUtil;
 public class ScaleView extends View {
     private static final String TAG = ScaleView.class.getSimpleName();
 
-    private int with, height;
+    private int width, height;
     private int maxLineHeight, midLineHeight, minLineHeight;            //长、中、短刻度的高度
     private int lineWidth = 24;                                         //刻度宽度
     private int startNum = 0, endNum = 50;                              //刻度范围
@@ -69,7 +68,7 @@ public class ScaleView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        with = w;
+        width = w;
         height = h;
         lineSpacing = 24;
         maxLineHeight = 150;
@@ -86,9 +85,9 @@ public class ScaleView extends View {
 
     private void drawScale(Canvas canvas) {
         canvas.save();
-        canvas.translate(lineSpacing + with / 6, height / 2);
+        canvas.translate(lineSpacing + width / 6, height / 2);
         int scaleCount = endNum - startNum + 1;
-        maxWidth = (endNum - startNum) * (lineSpacing + lineWidth) - with / 3+lineSpacing;
+        maxWidth = (endNum - startNum) * (lineSpacing + lineWidth) - width / 3 + lineSpacing;
         for (int i = 0; i < scaleCount; i++) {
             int lineHeight = minLineHeight;
             scalePaint.setColor(ColorUtil.getColor(startColor, endColor, (float) i / scaleCount));
@@ -112,7 +111,7 @@ public class ScaleView extends View {
      */
     private void drawIndicator(Canvas canvas) {
         canvas.save();
-        canvas.translate(with / 2, height / 3);
+        canvas.translate(width / 2, height / 3);
         canvas.drawCircle(0, 50, 10, scalePaint);
         float curScaleTextWidth = scalePaint.measureText(curScale + " cm");
         canvas.drawText(curScale + " cm", -curScaleTextWidth / 2, 0, scalePaint);
@@ -133,8 +132,8 @@ public class ScaleView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 moveX = event.getX() - downX;
-                if (offsetStart + moveX > with / 3) {
-                    offsetStart = with / 3;
+                if (offsetStart + moveX > width / 3) {
+                    offsetStart = width / 3;
                     moveX = 0;
                 } else if (offsetStart + moveX < -maxWidth) {
                     offsetStart = -maxWidth;
@@ -143,8 +142,8 @@ public class ScaleView extends View {
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                if (offsetStart + moveX > with / 3) {
-                    offsetStart = with / 3;
+                if (offsetStart + moveX > width / 3) {
+                    offsetStart = width / 3;
                 } else if (offsetStart + moveX < -maxWidth) {
                     offsetStart = -maxWidth;
                 } else {
@@ -153,10 +152,51 @@ public class ScaleView extends View {
                 }
                 moveX = 0;
                 //计算当前手指放开时的滑动速率
-
+                velocityTracker.computeCurrentVelocity(500);
+                float velocityX = velocityTracker.getXVelocity();
+                if (Math.abs(velocityX) > minVelocityX) {
+                    mScroller.fling(0, 0, (int) velocityX, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, 0, 0);
+                }
                 postInvalidate();
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        if (mScroller.computeScrollOffset()) {
+            if (mScroller.getCurrX() == mScroller.getFinalX()) {
+                if (offsetStart + moveX > width / 3) {
+                    offsetStart = width / 3;
+                } else if (offsetStart + moveX < -maxWidth) {
+                    offsetStart = -maxWidth;
+                } else {
+                    offsetStart += moveX;
+                    offsetStart = (offsetStart / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
+                }
+                moveX = 0;
+            } else {
+                //继续惯性滑动
+                moveX = mScroller.getCurrX() - mScroller.getStartX();
+                //滑动结束:边界控制
+                if (offsetStart + moveX > width /3) {
+                    moveX = 0;
+                    offsetStart = width / 3;
+                    mScroller.forceFinished(true);
+                } else if (offsetStart + moveX < -maxWidth) {
+                    offsetStart = -maxWidth;
+                    moveX = 0;
+                    mScroller.forceFinished(true);
+                }
+            }
+        } else {
+            if (offsetStart + moveX >= width/3) {
+                offsetStart = width/3;
+                moveX = 0;
+            }
+        }
+        postInvalidate();
     }
 }
