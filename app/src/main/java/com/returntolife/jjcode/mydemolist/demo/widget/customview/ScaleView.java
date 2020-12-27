@@ -33,6 +33,7 @@ public class ScaleView extends View {
     private int indicatorColor = startColor;                            //指示器颜色
 
     private Paint scalePaint;                                           //刻度画笔
+    private Paint indicatorPaint;                                       //指示器画笔
     private int curScale = 20;                                          //当前刻度
     private Scroller mScroller;
     private VelocityTracker velocityTracker;
@@ -60,11 +61,18 @@ public class ScaleView extends View {
     private void initView() {
         scalePaint = new Paint();
         scalePaint.setAntiAlias(true);
-        scalePaint.setColor(Color.RED);
         scalePaint.setStrokeCap(Paint.Cap.ROUND);
         scalePaint.setStrokeWidth(lineWidth);
         scalePaint.setTextSize(70);
         scalePaint.setTypeface(Typeface.DEFAULT_BOLD);
+
+        indicatorPaint = new Paint();
+        indicatorPaint.setAntiAlias(true);
+        indicatorPaint.setStrokeCap(Paint.Cap.ROUND);
+        indicatorPaint.setStrokeWidth(lineWidth);
+        indicatorPaint.setTextSize(70);
+        indicatorPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        indicatorPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -103,6 +111,8 @@ public class ScaleView extends View {
             }
             canvas.drawLine(offsetStart + moveX + i * (lineSpacing + lineWidth), 0, offsetStart + moveX + i * (lineSpacing + lineWidth), lineHeight, scalePaint);
         }
+        indicatorColor=ColorUtil.getColor(startColor, endColor, (float) curScale / scaleCount);
+        indicatorPaint.setColor(indicatorColor);
         canvas.restore();
     }
 
@@ -114,9 +124,9 @@ public class ScaleView extends View {
     private void drawIndicator(Canvas canvas) {
         canvas.save();
         canvas.translate(width / 2, height / 3);
-        canvas.drawCircle(0, 50, 10, scalePaint);
+        canvas.drawCircle(0, 50, 10, indicatorPaint);
         float curScaleTextWidth = scalePaint.measureText(curScale + " cm");
-        canvas.drawText(curScale + " cm", -curScaleTextWidth / 2, 0, scalePaint);
+        canvas.drawText(curScale + " cm", -curScaleTextWidth / 2, 0, indicatorPaint);
         canvas.restore();
     }
 
