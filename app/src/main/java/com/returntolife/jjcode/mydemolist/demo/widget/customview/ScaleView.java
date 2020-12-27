@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -38,6 +39,7 @@ public class ScaleView extends View {
     private int minVelocityX;
     private int offsetStart;
     private int maxWidth;
+    private OnSelectNumListener listener;
 
     public ScaleView(Context context) {
         this(context, null);
@@ -118,6 +120,10 @@ public class ScaleView extends View {
         canvas.restore();
     }
 
+    int getSelectedNum() {
+        return (int) (Math.abs((lineSpacing - width / 3 + offsetStart + moveX)) / (lineWidth + lineSpacing));
+    }
+
     private float downX;
     private float moveX;
 
@@ -140,6 +146,8 @@ public class ScaleView extends View {
                     offsetStart = -maxWidth;
                     moveX = 0;
                 }
+                curScale = getSelectedNum();
+                if (listener != null) listener.onSelectNum(curScale);
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
@@ -152,6 +160,8 @@ public class ScaleView extends View {
                     offsetStart = (offsetStart / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
                 }
                 moveX = 0;
+                curScale = getSelectedNum();
+                if (listener != null) listener.onSelectNum(curScale);
                 //计算当前手指放开时的滑动速率
                 velocityTracker.computeCurrentVelocity(300); //越小滑动距离越远
                 float velocityX = velocityTracker.getXVelocity();
@@ -168,7 +178,7 @@ public class ScaleView extends View {
     public void computeScroll() {
         super.computeScroll();
         if (mScroller.computeScrollOffset()) {
-            if (mScroller.getCurrX() == mScroller.getFinalX()) {//磁吸效果和边界控制
+            if (mScroller.getCurrX() == mScroller.getFinalX()) {//滑动停止，磁吸效果和边界控制
                 if (offsetStart + moveX > width / 3) {
                     offsetStart = width / 3;
                 } else if (offsetStart + moveX < -maxWidth) {
@@ -178,8 +188,7 @@ public class ScaleView extends View {
                     offsetStart = (offsetStart / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
                 }
                 moveX = 0;
-            } else {
-                //继续惯性滑动
+            } else { //继续惯性滑动
                 moveX = mScroller.getCurrX() - mScroller.getStartX();
                 //滑动结束:边界控制
                 if (offsetStart + moveX > width / 3) {
@@ -200,6 +209,16 @@ public class ScaleView extends View {
                 moveX = 0;
             }
         }
+        curScale = getSelectedNum();
+        if (listener != null) listener.onSelectNum(curScale);
         postInvalidate();
+    }
+
+    private interface OnSelectNumListener {
+        void onSelectNum(int num);
+    }
+
+    public OnSelectNumListener getListener() {
+        return listener;
     }
 }
