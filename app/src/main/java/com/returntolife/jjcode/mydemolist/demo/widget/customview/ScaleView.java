@@ -22,7 +22,7 @@ public class ScaleView extends View {
     private int width, height;
     private int maxLineHeight, midLineHeight, minLineHeight;            //长、中、短刻度的高度
     private int lineWidth = 24;                                         //刻度宽度
-    private int startNum = 0, endNum = 50;                              //刻度范围
+    private int startNum = 0, endNum = 100;                              //刻度范围
     private int lineSpacing;                                            //刻度间隔
     @ColorInt
     private int startColor = Color.parseColor("#ff3415b0");
@@ -132,6 +132,7 @@ public class ScaleView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 moveX = event.getX() - downX;
+                moveX = (moveX / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
                 if (offsetStart + moveX > width / 3) {
                     offsetStart = width / 3;
                     moveX = 0;
@@ -152,7 +153,7 @@ public class ScaleView extends View {
                 }
                 moveX = 0;
                 //计算当前手指放开时的滑动速率
-                velocityTracker.computeCurrentVelocity(500);
+                velocityTracker.computeCurrentVelocity(300); //越小滑动距离越远
                 float velocityX = velocityTracker.getXVelocity();
                 if (Math.abs(velocityX) > minVelocityX) {
                     mScroller.fling(0, 0, (int) velocityX, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, 0, 0);
@@ -167,7 +168,7 @@ public class ScaleView extends View {
     public void computeScroll() {
         super.computeScroll();
         if (mScroller.computeScrollOffset()) {
-            if (mScroller.getCurrX() == mScroller.getFinalX()) {
+            if (mScroller.getCurrX() == mScroller.getFinalX()) {//磁吸效果和边界控制
                 if (offsetStart + moveX > width / 3) {
                     offsetStart = width / 3;
                 } else if (offsetStart + moveX < -maxWidth) {
@@ -181,7 +182,7 @@ public class ScaleView extends View {
                 //继续惯性滑动
                 moveX = mScroller.getCurrX() - mScroller.getStartX();
                 //滑动结束:边界控制
-                if (offsetStart + moveX > width /3) {
+                if (offsetStart + moveX > width / 3) {
                     moveX = 0;
                     offsetStart = width / 3;
                     mScroller.forceFinished(true);
@@ -190,10 +191,12 @@ public class ScaleView extends View {
                     moveX = 0;
                     mScroller.forceFinished(true);
                 }
+                offsetStart += moveX;
+                offsetStart = (offsetStart / (lineSpacing + lineWidth)) * (lineWidth + lineSpacing);
             }
         } else {
-            if (offsetStart + moveX >= width/3) {
-                offsetStart = width/3;
+            if (offsetStart + moveX >= width / 3) {
+                offsetStart = width / 3;
                 moveX = 0;
             }
         }
