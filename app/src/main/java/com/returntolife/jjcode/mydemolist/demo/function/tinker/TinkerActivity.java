@@ -53,6 +53,7 @@ public class TinkerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+                Toast.makeText(TinkerActivity.this, "onReceiveUpgradePatch", Toast.LENGTH_SHORT).show();
             }
         });
 

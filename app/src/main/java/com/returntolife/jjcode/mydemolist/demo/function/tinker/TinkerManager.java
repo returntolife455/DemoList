@@ -16,6 +16,7 @@
 
 package com.returntolife.jjcode.mydemolist.demo.function.tinker;
 
+import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.lib.listener.PatchListener;
 import com.tencent.tinker.lib.patch.AbstractPatch;
 import com.tencent.tinker.lib.patch.UpgradePatch;
@@ -24,7 +25,6 @@ import com.tencent.tinker.lib.reporter.PatchReporter;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.lib.util.UpgradePatchRetry;
-import com.tencent.tinker.loader.app.ApplicationLike;
 
 /**
  * Created by zhangshaowen on 16/7/3.

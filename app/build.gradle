@@ -481,13 +481,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
-    implementation("com.tencent.tinker:tinker-android-loader:${TINKER_VERSION}") { changing = true }
-
-    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") {
-        changing = true
-    }
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}")
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}")
-    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}")
 }
 
 
