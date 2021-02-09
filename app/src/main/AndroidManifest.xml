@@ -80,6 +80,7 @@
         <activity android:name=".demo.function.imageslider.ImageSliderActivity" />
         <activity android:name=".demo.function.accessibility.AccessibilityActivity" />
         <activity android:name=".demo.function.tinker.TinkerActivity" />
+        <activity android:name=".demo.function.exceltest.ExcelActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService" />
         <service

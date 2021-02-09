@@ -484,6 +484,8 @@ dependencies {
     annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}")
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}")
     compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}")
+
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
 }
 
 
