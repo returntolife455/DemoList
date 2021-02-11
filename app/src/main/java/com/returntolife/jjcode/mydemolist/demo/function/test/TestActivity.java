@@ -26,6 +26,8 @@ public class TestActivity extends Activity implements UserView, View.OnClickList
     Button btnClear,btnText;
     TextView tvContent;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
