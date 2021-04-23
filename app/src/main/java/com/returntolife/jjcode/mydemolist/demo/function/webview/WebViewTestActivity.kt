@@ -25,7 +25,14 @@ class WebViewTestActivity : Activity() {
         setContentView(R.layout.activity_web_test)
 
         btnJs.setOnClickListener {
+            web.loadUrl("javascript:callJS()")
+        }
 
+        btnJs2.setOnClickListener {
+            web.evaluateJavascript("javascript:callJS2()"
+            ) {
+                toast("webView CallBack=${it}")
+            }
         }
 
         initWebView()
@@ -86,21 +93,16 @@ class WebViewTestActivity : Activity() {
                 if (uri.scheme == "js") {
                     // 如果 authority = 预先约定协议里的webview，即代表符合约定的协议
                     // 所以拦截url,下面JS开始调用Android需要的方法
-                    if (uri.authority == "webview") {
+                    if (uri.authority == "demo") {
 
                         // 步骤3：执行JS所需要调用的逻辑
-                        Toast.makeText(
-                            this@WebViewTestActivity,
-                            "js调用了Android的方法",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        toast("js调用了Android的方法3")
                         // 可以在协议上带有参数并传递到Android上
 //                        HashMap<String, String> params = new HashMap<>();
 //                        Set<String> collection = uri.getQueryParameterNames();
 
                         //参数result:代表消息框的返回值(输入值)
-                        result?.confirm("Android回调给JS的数据为useid=123456");
+                        result?.confirm("Android回调给JS的数据为onJsPrompt")
                     }
                     return true;
                 }
@@ -114,6 +116,14 @@ class WebViewTestActivity : Activity() {
         web.loadUrl("file:///android_asset/javascript.html")
     }
 
+    private fun toast(str:String) {
+        Toast.makeText(
+            this@WebViewTestActivity,
+            str,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun handleUri(uri: Uri?):Boolean {
         uri?.let {
             if (it.scheme == "js") {
@@ -122,8 +132,7 @@ class WebViewTestActivity : Activity() {
                 if (uri.authority == "webview") {
 
                     // 步骤3：执行JS所需要调用的逻辑
-                    Toast.makeText(this@WebViewTestActivity, "js调用了Android的方法", Toast.LENGTH_SHORT)
-                        .show()
+                    toast("js调用了Android的方法")
                     // 可以在协议上带有参数并传递到Android上
                     val params = HashMap<String, String>()
                     val collection = uri.queryParameterNames

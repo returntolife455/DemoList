@@ -20,15 +20,23 @@
             var result=prompt("js://demo?arg1=111&arg2=222");
             alert("demo " + result);
         }
+
+          function callJS(){
+             alert("Android通过Load()调用JS的callJS方法");
+         }
+
+         function callJS2() {
+          return "js 回调结果";
+         }
       </script>
 
 </head>
 <body>
 <!--点击按钮则调用callAndroid函数-->
-<button type="button" id="button1" onclick="callAndroid()">gotoNative</button>
+<button type="button" id="button1" onclick="callAndroid()">通过api注入对象交互</button>
 
-<button type="button" id="button2" onclick="callAndroid2()">gotoNative-scheme</button>
+<button type="button" id="button2" onclick="callAndroid2()">通过scheme交互</button>
 
-<button type="button" id="button3" onclick="clickprompt3()">点击调用Android方法3</button>
+<button type="button" id="button3" onclick="clickprompt()">通过prompt交互</button>
 </body>
 </html>

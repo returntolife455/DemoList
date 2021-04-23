@@ -5,9 +5,16 @@
     android:orientation="vertical">
 
     <Button
-        android:text="gotoJs"
+        android:text="loadJs"
         android:textAllCaps="false"
         android:id="@+id/btnJs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="evaJs"
+        android:textAllCaps="false"
+        android:id="@+id/btnJs2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <WebView
