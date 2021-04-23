@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carson</title>
+    <script>
+         function callAndroid(){
+            jskit.hello("js去调用了android中的hello方法");
+         }
+
+          function callAndroid2(){
+            document.location = "js://webview?arg1=111&arg2=222";
+         }
+
+         function returnResult(result){
+            alert("result is" + result);
+         }
+
+         function clickprompt(){
+            var result=prompt("js://demo?arg1=111&arg2=222");
+            alert("demo " + result);
+        }
+      </script>
+
+</head>
+<body>
+<!--点击按钮则调用callAndroid函数-->
+<button type="button" id="button1" onclick="callAndroid()">gotoNative</button>
+
+<button type="button" id="button2" onclick="callAndroid2()">gotoNative-scheme</button>
+
+<button type="button" id="button3" onclick="clickprompt3()">点击调用Android方法3</button>
+</body>
+</html>
