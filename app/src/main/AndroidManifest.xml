@@ -83,6 +83,7 @@
         <activity android:name=".demo.function.service.MyForegroundService" />
         <activity android:name=".demo.function.whiteService.WhiteServiceActivity" />
         <activity android:name=".demo.function.whiteService.MarkActivity" />
+        <activity android:name=".demo.widget.imageswitcher.ImageSwitcherActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

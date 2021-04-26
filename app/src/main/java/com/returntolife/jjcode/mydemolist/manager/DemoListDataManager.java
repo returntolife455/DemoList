@@ -33,6 +33,7 @@ import com.returntolife.jjcode.mydemolist.demo.widget.NestedScrollingDemoActivit
 import com.returntolife.jjcode.mydemolist.demo.widget.adrecyclerview.AdListActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.customview.CustomViewActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.drawlockscreen.DrawLockScreenActivity;
+import com.returntolife.jjcode.mydemolist.demo.widget.imageswitcher.ImageSwitcherActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.motionevent.MotionEventActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.putorefresh.PutoRefreshActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.recyclerview.CardLayoutActivity;
@@ -125,6 +126,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("SuperEditText","自定义控件","2019-05-13", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,SuperEditTextActivity.class));
         demoListBeanList.add(new DemoListBean("NestedScrolling机制","自定义控件","2020-06-04", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, NestedScrollingDemoActivity.class));
         demoListBeanList.add(new DemoListBean("自定义View系列","自定义控件","2020-12-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, CustomViewActivity.class));
+        demoListBeanList.add(new DemoListBean("ImageSwitcher","系统控件","2021-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, ImageSwitcherActivity.class));
 
         Collections.sort(demoListBeanList, new Comparator<DemoListBean>() {
             @Override

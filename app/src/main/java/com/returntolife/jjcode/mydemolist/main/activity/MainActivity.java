@@ -27,13 +27,13 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
 
-//    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-//    @BindView(R.id.drawer)
+    @BindView(R.id.drawer)
     DrawerLayout drawer;
-//    @BindView(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tablayout;
-//    @BindView(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager viewpager;
 
     ActionBarDrawerToggle mDrawerToggle;
@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(WidgetDemoListFragment.getInstance());
         fragmentList.add(FunctionDemoListFragment.getInstance());
 
-//        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_home));
-//        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_image));
-//        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_widget));
-//        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_function));
+        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_home));
+        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_image));
+        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_widget));
+        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_function));
 
         viewpager.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(),this,fragmentList));
 
