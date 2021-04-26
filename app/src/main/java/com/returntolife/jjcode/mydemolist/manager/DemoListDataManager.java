@@ -22,6 +22,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.service.MyForegroundServ
 import com.returntolife.jjcode.mydemolist.demo.function.test.TestActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.transition.TransitionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.webview.WebViewTestActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.whiteService.WhiteServiceActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.InvertedImageActivity;
 import com.returntolife.jjcode.mydemolist.demo.image.PickingPictureActivity;
 import com.returntolife.jjcode.mydemolist.demo.widget.BottomSheetActivity;
@@ -108,6 +109,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("dataBinding3","adapter中引用","2020-09-14",DemoListBean.TYPE_FUNCTION, DataBindingAdapterActivity.class));
         demoListBeanList.add(new DemoListBean("webview","hybird","22021-04-23",DemoListBean.TYPE_FUNCTION, WebViewTestActivity.class));
         demoListBeanList.add(new DemoListBean("foregroundService","前台服务测试","22021-04-23",DemoListBean.TYPE_FUNCTION, MyForegroundService.class));
+        demoListBeanList.add(new DemoListBean("WhiteService","后台运行白名单","22021-04-25",DemoListBean.TYPE_FUNCTION, WhiteServiceActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
