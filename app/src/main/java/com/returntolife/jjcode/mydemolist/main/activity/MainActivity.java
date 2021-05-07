@@ -27,13 +27,13 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
 
-    @BindView(R.id.toolbar)
+//    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.drawer)
+//    @BindView(R.id.drawer)
     DrawerLayout drawer;
-    @BindView(R.id.tablayout)
+//    @BindView(R.id.tablayout)
     TabLayout tablayout;
-    @BindView(R.id.viewpager)
+//    @BindView(R.id.viewpager)
     ViewPager viewpager;
 
     ActionBarDrawerToggle mDrawerToggle;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
         drawer=findViewById(R.id.drawer);
         tablayout=findViewById(R.id.tablayout);
         viewpager=findViewById(R.id.viewpager);

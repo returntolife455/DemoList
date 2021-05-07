@@ -6,6 +6,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActi
 import com.returntolife.jjcode.mydemolist.demo.function.AspectButton.AspectButtonActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.accessibility.AccessibilityActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.audiofocus.AudioFocusActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest1;
@@ -111,6 +112,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("webview","hybird","22021-04-23",DemoListBean.TYPE_FUNCTION, WebViewTestActivity.class));
         demoListBeanList.add(new DemoListBean("foregroundService","前台服务测试","22021-04-23",DemoListBean.TYPE_FUNCTION, MyForegroundService.class));
         demoListBeanList.add(new DemoListBean("WhiteService","后台运行白名单","22021-04-25",DemoListBean.TYPE_FUNCTION, WhiteServiceActivity.class));
+        demoListBeanList.add(new DemoListBean("AudioFocus","音频焦点","22021-05-07",DemoListBean.TYPE_FUNCTION, AudioFocusActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
