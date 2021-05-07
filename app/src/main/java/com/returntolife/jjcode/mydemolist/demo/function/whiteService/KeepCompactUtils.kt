@@ -164,7 +164,6 @@ object KeepCompactUtils {
     fun noSleepSet(activity: Activity): Boolean {
         for (intent in BATTERY_INTENTS) {
             if (activity.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 try {
                     activity.startActivity(intent)
                     return true

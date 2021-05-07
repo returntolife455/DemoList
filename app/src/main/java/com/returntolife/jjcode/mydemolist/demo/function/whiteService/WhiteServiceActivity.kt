@@ -29,12 +29,8 @@ class WhiteServiceActivity:Activity() {
 
     //后台运行限制
     fun sleep(view: View) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-            && !isIgnoringBatteryOptimizations()){
-            KeepCompactUtils.noSleepSet(this)
-        }else{
-            Toast.makeText(this@WhiteServiceActivity,"已关闭限制",Toast.LENGTH_SHORT).show()
-        }
+        KeepCompactUtils.noSleepSet(this)
+        MarkActivity.startActivity(this@WhiteServiceActivity)
     }
 
     //自启

@@ -17,7 +17,7 @@ class MarkActivity:Activity() {
     companion object{
         fun startActivity(context: Context){
             val intent=with(Intent(context,MarkActivity::class.java)){
-                this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                this
             }
             context.startActivity(intent)
         }
