@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -86,6 +88,7 @@
         <activity android:name=".demo.function.whiteService.MarkActivity" />
         <activity android:name=".demo.widget.imageswitcher.ImageSwitcherActivity" />
         <activity android:name=".demo.function.audiofocus.AudioFocusActivity" />
+        <activity android:name=".demo.function.location.LocationTestActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

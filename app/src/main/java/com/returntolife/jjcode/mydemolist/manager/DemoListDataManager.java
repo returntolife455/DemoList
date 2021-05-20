@@ -1,5 +1,7 @@
 package com.returntolife.jjcode.mydemolist.manager;
 
+import android.location.LocationManager;
+
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
@@ -14,6 +16,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingA
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingAdapterActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingFActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.imageslider.ImageSliderActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.location.LocationTestActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
@@ -112,7 +115,8 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("webview","hybird","22021-04-23",DemoListBean.TYPE_FUNCTION, WebViewTestActivity.class));
         demoListBeanList.add(new DemoListBean("foregroundService","前台服务测试","22021-04-23",DemoListBean.TYPE_FUNCTION, MyForegroundService.class));
         demoListBeanList.add(new DemoListBean("WhiteService","后台运行白名单","22021-04-25",DemoListBean.TYPE_FUNCTION, WhiteServiceActivity.class));
-        demoListBeanList.add(new DemoListBean("AudioFocus","音频焦点","22021-05-07",DemoListBean.TYPE_FUNCTION, AudioFocusActivity.class));
+        demoListBeanList.add(new DemoListBean("AudioFocus","音频焦点","2021-05-07",DemoListBean.TYPE_FUNCTION, AudioFocusActivity.class));
+        demoListBeanList.add(new DemoListBean("Location","地理位置","2021-05-20",DemoListBean.TYPE_FUNCTION, LocationTestActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));
