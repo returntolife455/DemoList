@@ -24,7 +24,6 @@ public class AppApplication extends Application {
         pAppContext=this;
         init();
 
-
     }
 
     private void init() {
@@ -35,4 +34,5 @@ public class AppApplication extends Application {
         //接口请求初始化
         Http.initHttp(this);
     }
+
 }

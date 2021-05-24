@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.main.adapter.MainViewPagerAdapter;
 import com.returntolife.jjcode.mydemolist.main.fragment.FunctionDemoListFragment;
@@ -115,4 +114,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         drawer.removeDrawerListener(mDrawerToggle);
     }
+
+
 }

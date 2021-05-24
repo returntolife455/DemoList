@@ -95,6 +95,6 @@ dependencies {
     implementation librarys.kotlin_stdlib
     implementation librarys.kotlin_coroutines_core
     implementation librarys.kotlin_coroutines_android
-
+    implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
 //    kapt  "com.android.databinding:compiler"
 }
