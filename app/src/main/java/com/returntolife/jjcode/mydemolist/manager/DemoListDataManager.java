@@ -18,6 +18,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingA
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingFActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.imageslider.ImageSliderActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.location.LocationTestActivity;
+import com.returntolife.jjcode.mydemolist.demo.function.mergeActivity.MergeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
@@ -119,6 +120,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("AudioFocus","音频焦点","2021-05-07",DemoListBean.TYPE_FUNCTION, AudioFocusActivity.class));
         demoListBeanList.add(new DemoListBean("Location","地理位置","2021-05-20",DemoListBean.TYPE_FUNCTION, LocationTestActivity.class));
         demoListBeanList.add(new DemoListBean("alibabaAlpha","任务执行框架","2021-05-20",DemoListBean.TYPE_FUNCTION, AlphaActivity.class));
+        demoListBeanList.add(new DemoListBean("merge","merge的使用","2021-05-24",DemoListBean.TYPE_FUNCTION, MergeActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));

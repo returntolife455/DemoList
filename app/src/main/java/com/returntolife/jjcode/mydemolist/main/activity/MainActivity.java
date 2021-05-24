@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(WidgetDemoListFragment.getInstance());
         fragmentList.add(FunctionDemoListFragment.getInstance());
 
-        tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_home));
+         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_home));
         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_image));
         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_widget));
         tablayout.addTab(tablayout.newTab().setIcon(R.drawable.ic_function));

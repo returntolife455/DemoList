@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.RelativeLayout">
+
+
+    <TextView
+        android:textSize="28sp"
+        android:text="merge"
+        android:id="@+id/tvMerge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:layout_below="@+id/tvMerge"
+        android:textSize="28sp"
+        android:textAllCaps="false"
+        android:text="mergeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</merge>
