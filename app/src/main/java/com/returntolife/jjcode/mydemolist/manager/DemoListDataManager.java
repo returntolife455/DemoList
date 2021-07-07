@@ -1,7 +1,5 @@
 package com.returntolife.jjcode.mydemolist.manager;
 
-import android.location.LocationManager;
-
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
@@ -13,6 +11,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.audiofocus.AudioFocusAct
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest1;
+import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest3;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingAdapterActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingFActivity;
