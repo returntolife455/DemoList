@@ -66,40 +66,41 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation librarys.kotlin_stdlib
+    implementation librarys.kotlin_coroutines_core
+    implementation librarys.kotlin_coroutines_android
+
     implementation librarys.supportAppcompat
     implementation librarys.cardview
-    testCompile librarys.junit
-//    androidTestImplementation librarys.runner
-//    androidTestImplementation librarys.espresso
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation project(':toollibrary')
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
-    implementation('com.github.florent37:glidepalette:2.1.2') {
+    implementation librarys.constraintlayout
+
+    implementation librarys.alibaba_alpha
+    implementation librarys.butterknife
+    kapt librarys.butterknife_compiler
+    implementation librarys.glide
+    implementation(librarys.glidepalette) {
         exclude group: 'com.android.support', module: 'support-compat'
         exclude group: 'com.android.support', module: 'support-core-utils'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.github.bumptech.glide', module: 'glide'
     }
-    implementation librarys.glide
-//    implementation librarys.aspect
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation librarys.lifecycle_extensions
+
+    testImplementation librarys.junit
+    testImplementation librarys.mockito_core
+    testImplementation librarys.robolectric
+
+    androidTestImplementation librarys.espresso_core
+    androidTestImplementation librarys.espresso_idling_resource
+    androidTestImplementation librarys.test_rule
+    androidTestImplementation librarys.test_junit
+
     implementation files('lib/aip-java-sdk-4.11.3.jar')
     implementation files('lib/json-20160810.jar')
     implementation files('lib/slf4j-api-1.7.25.jar')
     implementation files('lib/slf4j-simple-1.7.25.jar')
+    implementation project(':toollibrary')
 
-    testCompile "org.mockito:mockito-core:2.28.2"
-    testCompile "org.robolectric:robolectric:3.8"
-
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
-
-    implementation librarys.kotlin_stdlib
-    implementation librarys.kotlin_coroutines_core
-    implementation librarys.kotlin_coroutines_android
-    implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
-//    kapt  "com.android.databinding:compiler"
+    //    implementation librarys.aspect
 }

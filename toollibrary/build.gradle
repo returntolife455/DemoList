@@ -42,28 +42,30 @@ dependencies {
 
     implementation librarys.supportAppcompat
     implementation librarys.cardview
-    testCompile librarys.junit
+    api librarys.recyclerview
+    api librarys.suppoutDesign
+
+    testImplementation librarys.junit
     androidTestImplementation librarys.runner
     androidTestImplementation librarys.espresso
 
     //网络相关
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
-    api 'com.google.code.gson:gson:2.8.5'
+    api librarys.retrofit
+    api librarys.retrofit_adapter_rxjava
+    api librarys.retrofit_gson
+    api librarys.gson
+
     //阿里的vlayout
-    api('com.alibaba.android:vlayout:1.0.4@aar') {
+    api(librarys.alibaba_vlayout) {
         transitive = true
         exclude group: 'com.android.support'
     }
     //lottie动画
-    api('com.airbnb.android:lottie:2.5.0-beta3') {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
-    api librarys.recyclerview
-    api librarys.suppoutDesign
+    api librarys.lottie
+
     //rx
-    api "io.reactivex.rxjava2:rxjava:2.1.16"
-    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    api librarys.rxjava
+
+    api librarys.rxandroid
+    api librarys.rxpermissions
 }
