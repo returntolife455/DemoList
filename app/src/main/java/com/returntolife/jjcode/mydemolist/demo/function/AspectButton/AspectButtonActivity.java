@@ -13,7 +13,10 @@ import com.tools.jj.tools.utils.LogUtil;
  * Created by HeJiaJun on 2019/6/25.
  * Email:455hejiajun@gmail
  * des:
+ *
+ * @deprecated 由于agp不兼容，移除了aspect
  */
+@Deprecated()
 public class AspectButtonActivity extends Activity {
 
 

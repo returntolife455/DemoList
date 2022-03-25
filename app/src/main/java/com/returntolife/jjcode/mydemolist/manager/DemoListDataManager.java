@@ -60,7 +60,7 @@ import java.util.List;
  */
 public class DemoListDataManager {
 
-    private volatile  static DemoListDataManager instance;
+    private static final DemoListDataManager instance=new DemoListDataManager();
 
 
     private List<DemoListBean> demoListBeanList;
@@ -70,14 +70,6 @@ public class DemoListDataManager {
     }
 
     public static DemoListDataManager getInstance(){
-        if(instance==null){
-            synchronized (DemoListDataManager.class){
-                if(instance==null){
-                    instance=new DemoListDataManager();
-                }
-            }
-
-        }
         return instance;
     }
 
@@ -101,7 +93,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("AIDL","AIDL的使用","2019-05-31",R.drawable.bg_test1,DemoListBean.TYPE_FUNCTION, AIDLClientActivity.class));
         demoListBeanList.add(new DemoListBean("注解注入","mvp模式中用注解注入p层","2019-06-01",R.drawable.bg_annotate,DemoListBean.TYPE_FUNCTION, AnnotateActivity.class));
         demoListBeanList.add(new DemoListBean("多布局列表","自定义adapter","2019-06-01",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MultiItemActivity.class));
-        demoListBeanList.add(new DemoListBean("Aspect","按钮重复点击限制","2019-06-25",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, AspectButtonActivity.class));
+//        demoListBeanList.add(new DemoListBean("Aspect","按钮重复点击限制","2019-06-25",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, AspectButtonActivity.class));
         demoListBeanList.add(new DemoListBean("MVVM","简单的demo","2019-07-04",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, MvvmDemoActivity.class));
         demoListBeanList.add(new DemoListBean("图像识别","基于百度AI","2019-08-01",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, ImageSearchActivity.class));
         demoListBeanList.add(new DemoListBean("仿饿了么点餐滑动效果","recyclerview联动","2019-08-26",R.drawable.bg_md_test,DemoListBean.TYPE_FUNCTION, SectionActivity.class));
