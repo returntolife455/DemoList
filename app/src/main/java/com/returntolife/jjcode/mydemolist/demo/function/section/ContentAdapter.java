@@ -1,7 +1,7 @@
 package com.returntolife.jjcode.mydemolist.demo.function.section;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.returntolife.jjcode.mydemolist.R;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
 import com.tools.jj.tools.adapter.CommonRecyclerAdapter;

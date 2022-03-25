@@ -3,9 +3,9 @@ package com.tools.jj.tools.activity.permission;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.util.SimpleArrayMap;
+import androidx.collection.SimpleArrayMap;
 
-import static android.support.v4.content.PermissionChecker.checkSelfPermission;
+import static androidx.core.content.PermissionChecker.checkSelfPermission;
 
 /**
  * <p>PermissionsActivity类 检查权限的工具类</p>

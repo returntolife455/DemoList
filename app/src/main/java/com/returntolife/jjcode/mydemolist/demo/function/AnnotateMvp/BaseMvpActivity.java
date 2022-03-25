@@ -3,7 +3,7 @@ package com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.tools.jj.tools.utils.LogUtil;
 

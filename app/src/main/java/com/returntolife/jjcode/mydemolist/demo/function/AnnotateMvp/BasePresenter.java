@@ -1,9 +1,8 @@
 package com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 
 /**

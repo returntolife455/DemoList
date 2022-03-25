@@ -1,6 +1,6 @@
 package com.returntolife.jjcode.mydemolist.demo.function.multiItem;
 
-import android.support.v4.util.SparseArrayCompat;
+import androidx.collection.SparseArrayCompat;
 
 /**
  * Created by luojg on 2016/11/8.

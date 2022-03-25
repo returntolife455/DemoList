@@ -2,7 +2,7 @@ package com.returntolife.jjcode.mydemolist.bean;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by jiajun He on 2019/4/16.

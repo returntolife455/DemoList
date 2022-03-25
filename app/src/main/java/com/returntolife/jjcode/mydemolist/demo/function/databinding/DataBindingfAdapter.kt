@@ -2,9 +2,9 @@ package com.returntolife.jjcode.mydemolist.demo.function.databinding
 
 
 import android.content.ClipData.Item
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.returntolife.jjcode.mydemolist.databinding.ItemDatabindingBinding
  * Email:hejj@mama.cn
  * des:
  */
-class DataBindingfAdapter:RecyclerView.Adapter<DataBindingfAdapter.ViewHolder>(){
+class DataBindingfAdapter: androidx.recyclerview.widget.RecyclerView.Adapter<DataBindingfAdapter.ViewHolder>(){
 
 
     override fun getItemCount(): Int {
@@ -36,7 +36,8 @@ class DataBindingfAdapter:RecyclerView.Adapter<DataBindingfAdapter.ViewHolder>()
         return ViewHolder(v)
     }
 
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View):
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
          val databinding=DataBindingUtil.bind<ItemDatabindingBinding>(itemView)
     }
 

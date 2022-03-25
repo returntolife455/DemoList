@@ -1,7 +1,7 @@
 package com.returntolife.jjcode.mydemolist.demo.widget.scaleview;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 public class ColorUtil {
     /**

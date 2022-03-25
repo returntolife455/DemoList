@@ -1,17 +1,9 @@
 package com.returntolife.jjcode.mydemolist.demo.function.transition;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.view.Gravity;
-import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.returntolife.jjcode.mydemolist.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class ShareElementByFragmentActivity extends AppCompatActivity {

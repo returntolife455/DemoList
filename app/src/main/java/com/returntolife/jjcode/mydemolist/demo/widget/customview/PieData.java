@@ -1,6 +1,6 @@
 package com.returntolife.jjcode.mydemolist.demo.widget.customview;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class PieData {
     private String name;

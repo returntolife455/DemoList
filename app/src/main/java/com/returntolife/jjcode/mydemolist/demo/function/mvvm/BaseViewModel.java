@@ -1,13 +1,9 @@
 package com.returntolife.jjcode.mydemolist.demo.function.mvvm;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 
 /**
  * Created by HeJiaJun on 2019/7/4.

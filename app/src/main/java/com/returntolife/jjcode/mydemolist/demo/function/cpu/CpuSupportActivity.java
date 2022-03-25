@@ -2,12 +2,10 @@ package com.returntolife.jjcode.mydemolist.demo.function.cpu;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.TextView;
 
 import com.returntolife.jjcode.mydemolist.R;
-
-import org.w3c.dom.Text;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

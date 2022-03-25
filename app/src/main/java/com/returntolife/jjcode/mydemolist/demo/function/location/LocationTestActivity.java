@@ -3,20 +3,16 @@ package com.returntolife.jjcode.mydemolist.demo.function.location;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
-import com.returntolife.jjcode.mydemolist.AppPermissionActivity;
 import com.returntolife.jjcode.mydemolist.R;
-import com.returntolife.jjcode.mydemolist.main.activity.MainActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tools.jj.tools.utils.LogUtil;
 

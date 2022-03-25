@@ -5,8 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.CallSuper;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 
@@ -19,7 +19,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 

@@ -2,8 +2,8 @@ package com.returntolife.jjcode.mydemolist.demo.function.transition;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.transition.Explode;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.transition.Fade;
 
 import com.returntolife.jjcode.mydemolist.R;

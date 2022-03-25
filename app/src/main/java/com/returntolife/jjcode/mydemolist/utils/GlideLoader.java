@@ -1,10 +1,9 @@
 package com.returntolife.jjcode.mydemolist.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 

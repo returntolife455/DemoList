@@ -1,14 +1,13 @@
 package com.returntolife.jjcode.mydemolist.demo.widget.motionevent;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
-import android.widget.Scroller;
 
 import java.util.NoSuchElementException;
 

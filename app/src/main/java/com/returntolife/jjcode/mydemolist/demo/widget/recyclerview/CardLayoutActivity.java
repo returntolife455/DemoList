@@ -2,9 +2,9 @@ package com.returntolife.jjcode.mydemolist.demo.widget.recyclerview;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.demo.widget.recyclerview.cardlayout.CardItemTouchHelper;

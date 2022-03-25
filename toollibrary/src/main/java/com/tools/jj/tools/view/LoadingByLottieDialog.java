@@ -3,7 +3,7 @@ package com.tools.jj.tools.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.tools.jj.tools.R;

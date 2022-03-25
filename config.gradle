@@ -20,11 +20,11 @@ ext {
 
     //supportLibraries dependencies
     supportDependencies = [
-            supportAppcompat: "com.android.support:appcompat-v7:${supportLibrary}",
+            supportAppcompat: 'androidx.appcompat:appcompat:1.0.0',
             supportV4       : "com.android.support:support-v4:${supportLibrary}",
             suppoutDesign   : "com.android.support:design:${supportLibrary}",
             recyclerview    : "com.android.support:recyclerview-v7:${supportLibrary}",
-            cardview        : "com.android.support:cardview-v7:${supportLibrary}",
+            cardview        : 'androidx.cardview:cardview:1.0.0',
             junit           : "junit:junit:4.12",
             runner          : "com.android.support.test:runner:1.0.2",
             espresso        : "com.android.support.test.espresso:espresso-core:3.0.2",

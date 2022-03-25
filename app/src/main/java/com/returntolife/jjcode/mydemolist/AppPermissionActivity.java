@@ -3,7 +3,7 @@ package com.returntolife.jjcode.mydemolist;
 
 import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import com.returntolife.jjcode.mydemolist.main.activity.MainActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.Observer;

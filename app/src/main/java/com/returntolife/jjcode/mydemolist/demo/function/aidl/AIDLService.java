@@ -7,14 +7,12 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.returntolife.jjcode.mydemolist.IOnNewBookArrivedListener;
 import com.returntolife.jjcode.mydemolist.IPerson;
 import com.returntolife.jjcode.mydemolist.bean.AIDLBook;
 import com.tools.jj.tools.utils.LogUtil;
-
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /*
  * Create by JiaJun He on 2019/5/31$

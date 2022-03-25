@@ -2,7 +2,7 @@ package com.returntolife.jjcode.mydemolist.demo.function.mergeActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.returntolife.jjcode.mydemolist.R;
 
