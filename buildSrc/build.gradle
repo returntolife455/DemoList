@@ -1,0 +1,37 @@
+
+plugins {
+    id 'groovy'
+//    id 'com.android.application'
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+
+    //ASM相关依赖
+    implementation 'org.ow2.asm:asm:9.3'
+    implementation 'org.ow2.asm:asm-commons:9.3'
+    implementation 'com.android.tools.build:gradle:4.0.1'
+}
+
+// 设置源文件路径
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
