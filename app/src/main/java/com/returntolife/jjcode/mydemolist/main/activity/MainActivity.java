@@ -49,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
 //        viewpager=findViewById(R.id.viewpager);
 //        toolbar=findViewById(R.id.toolbar);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
         initToolBar();
          initDrawerListener();
 

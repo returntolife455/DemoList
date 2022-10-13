@@ -1,8 +1,22 @@
 
-plugins {
-    id 'groovy'
-//    id 'com.android.application'
+
+apply plugin: 'groovy'
+apply plugin: 'kotlin'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30'
+    }
 }
+
+ext{
+    kotlin_version = '1.3.61'
+    gradle_version = '4.0.1'
+}
+
 
 allprojects {
     repositories {
@@ -21,6 +35,8 @@ dependencies {
     implementation 'org.ow2.asm:asm:9.3'
     implementation 'org.ow2.asm:asm-commons:9.3'
     implementation 'com.android.tools.build:gradle:4.0.1'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 }
 
 // 设置源文件路径
@@ -28,6 +44,10 @@ sourceSets {
     main {
         groovy {
             srcDir 'src/main/groovy'
+        }
+
+        kotlin{
+            srcDir 'src/main/kotlin'
         }
 
         resources {

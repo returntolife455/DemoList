@@ -91,6 +91,7 @@
         <activity android:name=".demo.function.location.LocationTestActivity" />
         <activity android:name=".demo.function.alibabaAlpha.AlphaActivity" />
         <activity android:name=".demo.function.mergeActivity.MergeActivity" />
+        <activity android:name=".demo.function.asmhook.AsmHookActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
