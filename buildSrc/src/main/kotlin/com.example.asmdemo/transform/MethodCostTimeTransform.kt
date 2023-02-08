@@ -1,6 +1,6 @@
 package com.example.asmdemo.transform
 
-import com.example.asmdemo.visitor.ReplaceThreadVisitor
+import com.example.asmdemo.visitor.MethodCostTimeVisitor
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
@@ -14,17 +14,16 @@ import java.io.IOException
  *@date: 2022/10/12
  *des:
  */
-class ThreadReplaceTransform: ASMBaseTransform() {
+class MethodCostTimeTransform: ASMBaseTransform() {
 
     override fun toTransform(files: HashSet<File>) {
         files.forEach {
             try {
-
                 val classReader = ClassReader(it.readBytes())
                 val classWriter = ClassWriter(ClassWriter.COMPUTE_FRAMES)
-                val threadVisitor: ClassVisitor = ReplaceThreadVisitor(Opcodes.ASM9, classWriter)
+                val customVisitor: ClassVisitor = MethodCostTimeVisitor(Opcodes.ASM9, classWriter)
                 val options = ClassReader.SKIP_FRAMES or ClassReader.SKIP_DEBUG
-                classReader.accept(threadVisitor, options)
+                classReader.accept(customVisitor, options)
 
                 val bytes = classWriter.toByteArray()
 
@@ -39,10 +38,11 @@ class ThreadReplaceTransform: ASMBaseTransform() {
     }
 
     override fun getName(): String {
-        return "ThreadReplaceTransform"
+        return "MethodCostTimeTransform"
     }
 
     override fun filter(file: File): Boolean {
         return file.name.endsWith(".class") && file.path.contains("com/returntolife/jjcode/mydemolist/demo/function/asmhook/AsmHookActivity")
+
     }
 }

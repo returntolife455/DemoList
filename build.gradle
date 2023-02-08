@@ -37,9 +37,9 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
 
 subprojects {
     task allDeps(type: DependencyReportTask) {}

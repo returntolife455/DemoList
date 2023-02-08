@@ -75,7 +75,6 @@ class ReplaceThreadVisitor(api: Int, classVisitor: ClassVisitor?) :
             if ("java/lang/Thread" == owner && className != targetClassName && opcodeAndSource == INVOKESPECIAL && find) {
                 find = false
                 mv.visitMethodInsn(opcodeAndSource, targetClassName, name, descriptor, isInterface)
-                println("className =$className")
                 return
             }
             super.visitMethodInsn(opcodeAndSource, owner, name, descriptor, isInterface)
