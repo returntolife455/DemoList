@@ -5,9 +5,10 @@ import android.Manifest;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import com.returntolife.jjcode.mydemolist.main.activity.MainActivity;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import com.tbruyelle.rxpermissions3.RxPermissions;
+
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 
 public class AppPermissionActivity extends AppCompatActivity {

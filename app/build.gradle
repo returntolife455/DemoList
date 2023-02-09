@@ -76,16 +76,11 @@ dependencies {
     implementation librarys.cardview
     implementation librarys.constraintlayout
 
-    implementation librarys.alibaba_alpha
+
     implementation librarys.butterknife
     kapt librarys.butterknife_compiler
     implementation librarys.glide
-    implementation(librarys.glidepalette) {
-        exclude group: 'com.android.support', module: 'support-compat'
-        exclude group: 'com.android.support', module: 'support-core-utils'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.github.bumptech.glide', module: 'glide'
-    }
+    implementation project(':glidepalette')
     implementation librarys.lifecycle_extensions
 
     testImplementation librarys.junit
@@ -102,6 +97,7 @@ dependencies {
     implementation files('lib/slf4j-api-1.7.25.jar')
     implementation files('lib/slf4j-simple-1.7.25.jar')
     implementation project(':toollibrary')
+    implementation project(':alpha')
 
     //    implementation librarys.aspect
 }

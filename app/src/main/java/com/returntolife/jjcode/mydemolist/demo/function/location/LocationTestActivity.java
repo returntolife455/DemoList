@@ -3,23 +3,27 @@ package com.returntolife.jjcode.mydemolist.demo.function.location;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.returntolife.jjcode.mydemolist.R;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 import com.tools.jj.tools.utils.LogUtil;
 
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * @Author : hejiajun
@@ -27,7 +31,7 @@ import io.reactivex.disposables.Disposable;
  * @Email : hejiajun@lizhi.fm
  * @Desc :
  */
-public class LocationTestActivity extends Activity implements LocationListener {
+public class LocationTestActivity extends FragmentActivity implements LocationListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,27 +40,28 @@ public class LocationTestActivity extends Activity implements LocationListener {
 
 
         new RxPermissions(this).request(
-                Manifest.permission.ACCESS_FINE_LOCATION)
+                        Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe(new Observer<Boolean>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Boolean aBoolean) {
+                    public void onNext(@NonNull Boolean aBoolean) {
                         if (aBoolean) {
                             location();
                         }
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        finish();
+                    public void onError(@NonNull Throwable e) {
+
                     }
 
                     @Override
                     public void onComplete() {
+
                     }
                 });
 
@@ -108,6 +113,9 @@ public class LocationTestActivity extends Activity implements LocationListener {
         }
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5, 10, this);
         }
     }

@@ -26,9 +26,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Created by HeJiaJun on 2018/8/28.
@@ -69,36 +70,36 @@ public class ResumeDownloadActivity extends Activity {
         RxBus2.getInstance().tObservable(EventFileInfo.class)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Observer<EventFileInfo>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
 
-            }
-
-            @Override
-            public void onNext(final EventFileInfo eventFileInfo) {
-                if(eventFileInfo.state==EventFileInfo.STATE_START){
-                    mFileList.add(eventFileInfo.fileInfo);
-                    commonDelegateAdapter.notifyDataSetChanged();
-                }else if(eventFileInfo.state==EventFileInfo.STATE_UPDATE_PROGRESS){
-                    mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
-                    commonDelegateAdapter.notifyDataSetChanged();
-                }else if(eventFileInfo.state==EventFileInfo.STATE_FINISHED){
-                    eventFileInfo.fileInfo.setFinished(eventFileInfo.fileInfo.getLength());
-                    mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
-                    commonDelegateAdapter.notifyDataSetChanged();
                 }
-            }
 
-            @Override
-            public void onError(Throwable e) {
+                @Override
+                public void onNext(@NonNull EventFileInfo eventFileInfo) {
+                    if(eventFileInfo.state==EventFileInfo.STATE_START){
+                        mFileList.add(eventFileInfo.fileInfo);
+                        commonDelegateAdapter.notifyDataSetChanged();
+                    }else if(eventFileInfo.state==EventFileInfo.STATE_UPDATE_PROGRESS){
+                        mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
+                        commonDelegateAdapter.notifyDataSetChanged();
+                    }else if(eventFileInfo.state==EventFileInfo.STATE_FINISHED){
+                        eventFileInfo.fileInfo.setFinished(eventFileInfo.fileInfo.getLength());
+                        mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
+                        commonDelegateAdapter.notifyDataSetChanged();
+                    }
+                }
 
-            }
+                @Override
+                public void onError(@NonNull Throwable e) {
 
-            @Override
-            public void onComplete() {
+                }
 
-            }
-        });
+                @Override
+                public void onComplete() {
+
+                }
+            });
     }
 
     private void initAdapter() {
