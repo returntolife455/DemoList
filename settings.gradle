@@ -1,5 +1,4 @@
 include ':app', ':toollibrary'
-include ':otherlib'
 
 include ':alpha'
 project(':alpha').projectDir = new File(rootDir,'otherlib/alpha')

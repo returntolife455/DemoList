@@ -1,19 +1,19 @@
-package com.tools.jj.tools.activity;
+package com.returntolife.jjcode.mydemolist.demo.function.mvp.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import androidx.annotation.CallSuper;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 
-import com.tools.jj.tools.mvp.m.IBasePresenter;
-import com.tools.jj.tools.mvp.v.IBaseView;
+import com.tools.jj.tools.views.LoadingByLottieDialog;
+import com.returntolife.jjcode.mydemolist.demo.function.mvp.m.IBasePresenter;
+import com.returntolife.jjcode.mydemolist.demo.function.mvp.v.IBaseView;
 import com.tools.jj.tools.utils.AppManager;
-import com.tools.jj.tools.view.LoadingByLottieDialog;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -115,7 +115,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends AppCompa
             }
         });
     }
-
+    
 
     public void showLoading() {
         runOnUiThread(new Runnable() {

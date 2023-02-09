@@ -43,6 +43,6 @@ java {
 
 dependencies {
     implementation librarys.glide
-    implementation librarys.supportAppcompat
+    implementation librarys.appcompat
     api librarys.palette
 }

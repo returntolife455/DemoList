@@ -1,6 +1,6 @@
-package com.tools.jj.tools.mvp.m;
+package com.returntolife.jjcode.mydemolist.demo.function.mvp.m;
 
-import com.tools.jj.tools.mvp.v.IBaseView;
+import com.returntolife.jjcode.mydemolist.demo.function.mvp.v.IBaseView;
 
 /**
  * Created by HeJiaJun on 2018/6/27.

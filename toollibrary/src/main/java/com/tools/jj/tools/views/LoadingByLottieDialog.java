@@ -1,4 +1,4 @@
-package com.tools.jj.tools.view;
+package com.tools.jj.tools.views;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -27,5 +27,6 @@ public class LoadingByLottieDialog extends Dialog {
         setCanceledOnTouchOutside(false);
         setContentView(R.layout.dialog_loading_layout);
         lottieAnimationView=findViewById(R.id.animation_view);
+        lottieAnimationView.playAnimation();
     }
 }

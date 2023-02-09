@@ -4,21 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.tools.jj.tools.views.ClearEditText;
 import com.returntolife.jjcode.mydemolist.R;
 import com.tools.jj.tools.adapter.BaseRecyclerViewHolder;
-import com.tools.jj.tools.adapter.CommonDelegateAdapter;
+import com.tools.jj.tools.adapter.CommonRecyclerAdapter;
 import com.tools.jj.tools.http.RxBus2;
 import com.tools.jj.tools.utils.StringUtil;
-import com.tools.jj.tools.view.ClearEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +47,7 @@ public class ResumeDownloadActivity extends Activity {
 
 
     private List<FileInfo> mFileList;
-    private DelegateAdapter mAdapter;
-    private CommonDelegateAdapter<FileInfo> commonDelegateAdapter;
+    private CommonRecyclerAdapter<FileInfo> mAdapter;
 
 //    private ThreadDAO threadDAO;
     @Override
@@ -79,14 +76,14 @@ public class ResumeDownloadActivity extends Activity {
                 public void onNext(@NonNull EventFileInfo eventFileInfo) {
                     if(eventFileInfo.state==EventFileInfo.STATE_START){
                         mFileList.add(eventFileInfo.fileInfo);
-                        commonDelegateAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
                     }else if(eventFileInfo.state==EventFileInfo.STATE_UPDATE_PROGRESS){
                         mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
-                        commonDelegateAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
                     }else if(eventFileInfo.state==EventFileInfo.STATE_FINISHED){
                         eventFileInfo.fileInfo.setFinished(eventFileInfo.fileInfo.getLength());
                         mFileList.set(eventFileInfo.fileInfo.getId(),eventFileInfo.fileInfo);
-                        commonDelegateAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
                     }
                 }
 
@@ -103,13 +100,11 @@ public class ResumeDownloadActivity extends Activity {
     }
 
     private void initAdapter() {
-        VirtualLayoutManager manager = new VirtualLayoutManager(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(manager);
-        mAdapter = new DelegateAdapter(manager);
-        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
-        commonDelegateAdapter = new CommonDelegateAdapter<FileInfo>(this, R.layout.item_resumedownload, mFileList, linearLayoutHelper, 0) {
+        mAdapter = new CommonRecyclerAdapter<FileInfo>(this,R.layout.item_resumedownload,mFileList) {
             @Override
-            public void convert(final BaseRecyclerViewHolder holder, final FileInfo fileInfo, final int position) {
+            protected void convert(BaseRecyclerViewHolder holder,  FileInfo fileInfo, int position) {
                 holder.setText(R.id.tv_filename, fileInfo.getFileName());
 
                 Button btn=holder.getView(R.id.btn_start);
@@ -124,7 +119,7 @@ public class ResumeDownloadActivity extends Activity {
                             intent.putExtra(ResumeDownloadService.INTENT_DATA_FILEINFO, fileInfo);
                             ResumeDownloadActivity.this.startService(intent);
                             holder.setText(R.id.btn_start,"继续");
-                            commonDelegateAdapter.notifyDataSetChanged();
+                            mAdapter.notifyDataSetChanged();
                         }
                     });
                 }else {
@@ -136,7 +131,7 @@ public class ResumeDownloadActivity extends Activity {
                             intent.putExtra(ResumeDownloadService.INTENT_DATA_FILEINFO, fileInfo);
                             ResumeDownloadActivity.this.startService(intent);
                             holder.setText(R.id.btn_start,"暂停");
-                            commonDelegateAdapter.notifyDataSetChanged();
+                            mAdapter.notifyDataSetChanged();
                         }
                     });
                 }
@@ -151,7 +146,7 @@ public class ResumeDownloadActivity extends Activity {
                         ResumeDownloadActivity.this.startService(intent);
                         holder.setText(R.id.btn_start,"暂停");
                         mFileList.remove(position);
-                        commonDelegateAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
                     }
                 });
 
@@ -164,13 +159,8 @@ public class ResumeDownloadActivity extends Activity {
                 progressBar.setProgress(fileInfo.getFinished());
             }
 
-            @Override
-            public void convert(BaseRecyclerViewHolder holder, int position) {
-
-            }
         };
 
-        mAdapter.addAdapter(commonDelegateAdapter);
         recyclerview.setAdapter(mAdapter);
     }
 

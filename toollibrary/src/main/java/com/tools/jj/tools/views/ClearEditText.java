@@ -1,4 +1,4 @@
-package com.tools.jj.tools.view;
+package com.tools.jj.tools.views;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

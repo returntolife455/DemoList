@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 
-
 //android配置
 def config = rootProject.ext.android
 
@@ -37,26 +36,11 @@ android {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
-
-    //View相关
-    api librarys.appcompat
-    api librarys.recyclerview
-
-
-    //网络相关
-    api librarys.retrofit
-    api librarys.retrofit_adapter_rxjava
-    api librarys.retrofit_gson
-    api librarys.gson
-
-    //lottie动画
-    api librarys.lottie
-
-    //rx
-    api librarys.rxjava
-
-    api librarys.rxandroid
-    api librarys.rxpermissions
+    implementation project(':toollibrary')
 }
