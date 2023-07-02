@@ -25,6 +25,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.Conten
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.section.SectionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.service.MyForegroundService;
+import com.returntolife.jjcode.mydemolist.demo.function.share.ShareFileActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.test.TestActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.transition.TransitionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.webview.WebViewTestActivity;
@@ -114,6 +115,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("alibabaAlpha","任务执行框架","2021-05-20",DemoListBean.TYPE_FUNCTION, AlphaActivity.class));
         demoListBeanList.add(new DemoListBean("merge","merge的使用","2021-05-24",DemoListBean.TYPE_FUNCTION, MergeActivity.class));
         demoListBeanList.add(new DemoListBean("ASM","asm相关demo","2022-10-12",DemoListBean.TYPE_FUNCTION, AsmHookActivity.class));
+        demoListBeanList.add(new DemoListBean("Share","原生文件分享","2022-10-12",DemoListBean.TYPE_FUNCTION, ShareFileActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));

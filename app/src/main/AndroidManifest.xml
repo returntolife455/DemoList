@@ -92,6 +92,7 @@
         <activity android:name=".demo.function.alibabaAlpha.AlphaActivity" />
         <activity android:name=".demo.function.mergeActivity.MergeActivity" />
         <activity android:name=".demo.function.asmhook.AsmHookActivity" />
+        <activity android:name=".demo.function.share.ShareFileActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
@@ -128,6 +129,16 @@
 <!--&lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
 <!--            </intent-filter>-->
 <!--        </receiver>-->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.returntolife.jjcode.mydemolist.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/share_test" />
+        </provider>
     </application>
 
 </manifest>
