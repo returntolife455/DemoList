@@ -9,7 +9,7 @@
     tools:context=".main.activity.MainActivity" >
 
 
-    <com.tools.jj.tools.view.ClearEditText
+    <com.example.widgetlib.ClearEditText
         android:id="@+id/clear_et"
         android:hint="@string/download_address"
         android:layout_width="match_parent"

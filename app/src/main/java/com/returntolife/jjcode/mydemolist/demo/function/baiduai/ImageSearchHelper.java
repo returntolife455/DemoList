@@ -26,18 +26,7 @@ import com.tools.jj.tools.utils.LogUtil;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Type;
 import java.util.HashMap;
-
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-
-
 /**
  * Created by HeJiaJun on 2019/8/1.
  * Email:455hejiajun@gmail
@@ -149,39 +138,4 @@ public class ImageSearchHelper {
         }
     }
 
-    public void searchByRetrofit(){
-        Http.createApi(Api.class).getToken(GRANT_TYPE,API_KEY,SECRET_KEY)
-            .flatMap(new Function<TokenResultBean, ObservableSource<AnimalBean>>() {
-                @Override
-                public ObservableSource<AnimalBean> apply(TokenResultBean tokenResultBean) throws Exception {
-                    Bitmap bitmap=BitmapFactory.decodeResource(AppApplication.pAppContext.getResources(), R.drawable.ic_imagesearch_anima);
-                    byte[] bytes=Bitmap2Bytes(bitmap);
-                    String base64Content = Base64Util.encode(bytes);
-                    return Http.createApi(Api.class).searchAnimal(tokenResultBean.getAccess_token(),base64Content);
-                }
-            })
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(new Observer<AnimalBean>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(AnimalBean animalBean) {
-                LogUtil.d("animalBean ="+animalBean);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtil.d("animalBean e="+e);
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-    }
 }

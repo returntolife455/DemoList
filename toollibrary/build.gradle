@@ -38,16 +38,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation librarys.supportAppcompat
-    implementation librarys.cardview
+    //View相关
+    api librarys.appcompat
     api librarys.recyclerview
-    api librarys.suppoutDesign
 
-    testImplementation librarys.junit
-    androidTestImplementation librarys.runner
-    androidTestImplementation librarys.espresso
 
     //网络相关
     api librarys.retrofit
@@ -55,11 +51,6 @@ dependencies {
     api librarys.retrofit_gson
     api librarys.gson
 
-    //阿里的vlayout
-    api(librarys.alibaba_vlayout) {
-        transitive = true
-        exclude group: 'com.android.support'
-    }
     //lottie动画
     api librarys.lottie
 

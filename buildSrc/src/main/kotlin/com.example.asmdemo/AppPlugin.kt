@@ -1,6 +1,9 @@
 package com.example.asmdemo
 
 import com.android.build.gradle.AppExtension
+import com.example.asmdemo.transform.AddToastTransform
+import com.example.asmdemo.transform.MethodCostTimeTransform
+import com.example.asmdemo.transform.MethodReplaceTransform
 import com.example.asmdemo.transform.ThreadReplaceTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -22,6 +25,9 @@ class AppPlugin : Plugin<Project> {
 
                 (project.extensions.getByName("android") as? AppExtension).let { androidExt ->
                     androidExt?.registerTransform(ThreadReplaceTransform())
+                    androidExt?.registerTransform(AddToastTransform())
+                    androidExt?.registerTransform(MethodReplaceTransform())
+                    androidExt?.registerTransform(MethodCostTimeTransform())
                 }
 
             }

@@ -1,6 +1,5 @@
 package com.example.asmdemo.transform
 
-import com.example.asmdemo.visitor.AddToastVisitor
 import com.example.asmdemo.visitor.ReplaceThreadVisitor
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
@@ -20,7 +19,7 @@ class ThreadReplaceTransform: ASMBaseTransform() {
     override fun toTransform(files: HashSet<File>) {
         files.forEach {
             try {
-                println("toTransform path="+it.absolutePath)
+
                 val classReader = ClassReader(it.readBytes())
                 val classWriter = ClassWriter(ClassWriter.COMPUTE_FRAMES)
                 val threadVisitor: ClassVisitor = ReplaceThreadVisitor(Opcodes.ASM9, classWriter)
@@ -44,11 +43,6 @@ class ThreadReplaceTransform: ASMBaseTransform() {
     }
 
     override fun filter(file: File): Boolean {
-        val path = file.name
-
-        val filter=path.endsWith(".class") && path.contains("AsmHookActivity")
-
-        println("filter=${filter}  path=${file.absolutePath}")
-        return filter
+        return file.name.endsWith(".class") && file.path.contains("com/returntolife/jjcode/mydemolist/demo/function/asmhook/AsmHookActivity")
     }
 }

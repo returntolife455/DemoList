@@ -93,6 +93,7 @@
         <activity android:name=".demo.function.mergeActivity.MergeActivity" />
         <activity android:name=".demo.function.asmhook.AsmHookActivity" />
         <activity android:name=".demo.function.share.ShareFileActivity" />
+        <activity android:name=".demo.widget.transparent.TransparentActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"

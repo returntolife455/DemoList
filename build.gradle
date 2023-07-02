@@ -5,16 +5,18 @@ apply from: "config.gradle"
 
 buildscript {
     repositories {
-
-        // 添加阿里云 maven 地址
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        maven {
+            url "https://dl.bintray.com/zhangsl/maven"
+        }
+        maven { url 'https://jitpack.io' }
         google()
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/zhangsl/maven"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.0.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
 //        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30'
@@ -25,21 +27,20 @@ buildscript {
 
 allprojects {
     repositories {
-        // 添加阿里云 maven 地址
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
-
-        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/zhangsl/maven"
+        }
         maven { url 'https://jitpack.io' }
         google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
 
 subprojects {
     task allDeps(type: DependencyReportTask) {}

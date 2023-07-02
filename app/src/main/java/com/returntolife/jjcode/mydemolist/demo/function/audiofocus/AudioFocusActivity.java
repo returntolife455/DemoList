@@ -9,12 +9,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+
 import com.returntolife.jjcode.mydemolist.R;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions3.RxPermissions;
+
 import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * @Author : hejiajun
@@ -22,7 +27,7 @@ import io.reactivex.disposables.Disposable;
  * @Email : hejiajun@lizhi.fm
  * @Desc :
  */
-public class AudioFocusActivity extends Activity {
+public class AudioFocusActivity extends FragmentActivity {
 
     private final String TAG = AudioFocusActivity.this.getClass().getSimpleName();
 
@@ -39,37 +44,21 @@ public class AudioFocusActivity extends Activity {
         setContentView(R.layout.activity_audio_focus);
 
         RxPermissions rxPermissions = new RxPermissions(this);
+
+
         rxPermissions.request(
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onSubscribe(@NotNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NotNull Boolean aBoolean) {
-                        if (aBoolean) {
-                            initData();
-                            initView();
-                        }else {
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
+                .subscribe(granted -> {
+                    if (granted) {
+                        initData();
+                        initView();
+                    } else {
                         finish();
-                    }
-
-                    @Override
-                    public void onComplete() {
                     }
                 });
 
-      ;
     }
 
 

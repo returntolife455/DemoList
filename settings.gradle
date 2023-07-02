@@ -1,1 +1,7 @@
 include ':app', ':toollibrary'
+
+include ':alpha'
+project(':alpha').projectDir = new File(rootDir,'otherlib/alpha')
+include ':glidepalette'
+project(':glidepalette').projectDir = new File(rootDir,'otherlib/glidepalette')
+include ':glidepalette2'

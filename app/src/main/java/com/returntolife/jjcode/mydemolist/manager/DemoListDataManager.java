@@ -48,6 +48,7 @@ import com.returntolife.jjcode.mydemolist.demo.widget.scaleview.ScaleViewActivit
 import com.returntolife.jjcode.mydemolist.demo.widget.superedittext.SuperEditTextActivity;
 
 
+import com.returntolife.jjcode.mydemolist.demo.widget.transparent.TransparentActivity;
 import com.tools.jj.tools.utils.DateUtil;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -132,6 +133,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("NestedScrolling机制","自定义控件","2020-06-04", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, NestedScrollingDemoActivity.class));
         demoListBeanList.add(new DemoListBean("自定义View系列","自定义控件","2020-12-14", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, CustomViewActivity.class));
         demoListBeanList.add(new DemoListBean("ImageSwitcher","系统控件","2021-04-26", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, ImageSwitcherActivity.class));
+        demoListBeanList.add(new DemoListBean("内容渐变效果","自定义控件","2023-03-10", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET, TransparentActivity.class));
 
         Collections.sort(demoListBeanList, new Comparator<DemoListBean>() {
             @Override
