@@ -3,12 +3,10 @@
     android:accessibilityEventTypes="typeAllMask|typeWindowStateChanged|typeWindowContentChanged"
     android:accessibilityFeedbackType="feedbackSpoken|feedbackGeneric"
     android:canRetrieveWindowContent="true"
-    android:accessibilityFlags="flagReportViewIds"
+    android:accessibilityFlags="flagDefault|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews|flagReportViewIds|flagRequestTouchExplorationMode"
+    android:canPerformGestures="true"
     android:description="@string/accessibility_desc"
     android:notificationTimeout="100" />
 
-<!--    feedbackGeneric  AccessibilityServiceInfo.FEEDBACK_GENERIC ： 通用的反馈-->
 
-<!--    feedbackAudible AccessibilityServiceInfo.FEEDBACK_AUDIBLE ： 声音反馈-->
 
-<!--    feedbackSpoken AccessibilityServiceInfo.FEEDBACK_SPOKEN  ：  语音反馈-->

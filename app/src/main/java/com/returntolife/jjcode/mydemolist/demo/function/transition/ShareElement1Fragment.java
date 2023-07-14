@@ -46,18 +46,23 @@ public class ShareElement1Fragment extends Fragment {
                 Slide slideTransition = new Slide(Gravity.START);
                 slideTransition.setDuration(1000);
 
-                ChangeBounds changeBoundsTransition = new ChangeBounds();
-                changeBoundsTransition.setDuration(1000);
+//                ChangeBounds changeBoundsTransition = new ChangeBounds();
+//                changeBoundsTransition.setDuration(1000);
+//
+//                sharedElementFragment2.setEnterTransition(slideTransition);
+//                sharedElementFragment2.setAllowEnterTransitionOverlap(false);
+//                sharedElementFragment2.setAllowReturnTransitionOverlap(false);
+//                sharedElementFragment2.setSharedElementEnterTransition(changeBoundsTransition);
 
-                sharedElementFragment2.setEnterTransition(slideTransition);
-                sharedElementFragment2.setAllowEnterTransitionOverlap(false);
-                sharedElementFragment2.setAllowReturnTransitionOverlap(false);
-                sharedElementFragment2.setSharedElementEnterTransition(changeBoundsTransition);
-                getFragmentManager().beginTransaction()
+                btnNext.setTransitionName("fragment_btn_next");
+                tvText.setTransitionName("fragment_text");
+                ((ShareElementByFragmentActivity)getActivity()).getFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .addSharedElement(btnNext, "fragment_btn_next")
+                        .addSharedElement(tvText,"fragment_text")
                         .replace(R.id.fragment, sharedElementFragment2)
                         .addToBackStack(null)
-                        .addSharedElement(btnNext, "fragment_btn_next")
-                        .addSharedElement(tvText,"fragment_text").commit();
+                    .commit();
             }
         });
 
