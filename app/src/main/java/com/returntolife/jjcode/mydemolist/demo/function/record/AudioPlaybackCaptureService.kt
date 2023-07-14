@@ -1,56 +1,24 @@
 package com.returntolife.jjcode.mydemolist.demo.function.record
 
-import android.Manifest
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
-import android.content.Context
-import android.content.Context.MEDIA_PROJECTION_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.media.AudioAttributes
-import android.media.AudioFormat
-import android.media.AudioPlaybackCaptureConfiguration
-import android.media.AudioRecord
-import android.media.AudioTrack
-import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
-import com.tools.jj.tools.utils.LogUtil
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.concurrent.ConcurrentLinkedQueue
-import java.util.concurrent.LinkedBlockingQueue
-import java.util.concurrent.ThreadPoolExecutor
-import java.util.concurrent.TimeUnit
 
 
-class AudioRecordService : Service() {
-
-//    /**
-//     * 录音数队列
-//     */
-//    private val audioQueue = ConcurrentLinkedQueue<ByteArray>()
-//    private val mExecutor = ThreadPoolExecutor(
-//        2, 2, 60, TimeUnit.SECONDS,
-//        LinkedBlockingQueue()
-//    )
-
-
+class AudioPlaybackCaptureService : Service() {
 
 
     override fun onCreate() {
         super.onCreate()
 
-        AudioRecordManager.context = this
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             initNotification()
         }
@@ -60,7 +28,7 @@ class AudioRecordService : Service() {
         val currentResultCode = intent?.getIntExtra("resultCode", 0)?:0
         val resultData = intent?.getParcelableExtra<Intent>("resultData")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            AudioRecordManager.initAudioRecord(currentResultCode, resultData)
+            AudioRecordManager.initAudioRecord(currentResultCode, resultData,0)
         }
 
         return super.onStartCommand(intent, flags, startId)

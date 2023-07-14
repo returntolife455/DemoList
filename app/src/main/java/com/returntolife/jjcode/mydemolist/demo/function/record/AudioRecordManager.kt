@@ -1,21 +1,21 @@
 package com.returntolife.jjcode.mydemolist.demo.function.record
 
-import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioManager
+import android.media.AudioPlaybackCaptureConfiguration
 import android.media.AudioRecord
 import android.media.AudioRecordingConfiguration
-import android.media.AudioTrack
-import android.media.MediaRecorder.AudioSource.MIC
-import android.media.MediaRecorder.AudioSource.VOICE_COMMUNICATION
-import android.media.MediaRecorder.AudioSource.VOICE_RECOGNITION
+import android.media.MediaPlayer
+import android.media.projection.MediaProjectionManager
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
+import com.returntolife.jjcode.mydemolist.AppApplication
 import com.tools.jj.tools.utils.LogUtil
 import java.io.File
 import java.io.FileInputStream
@@ -28,31 +28,33 @@ import java.util.concurrent.Executors
 object AudioRecordManager {
 
     private val executor = Executors.newSingleThreadExecutor()
-    private var mAudioTrack: AudioTrack? = null
+
     private var mAudioRecord: AudioRecord? = null
     private var mRecorderBufferSize = 0
-    private var mAudioData: ByteArray? =null
+    private var mAudioData: ByteArray? = null
 
     /*默认数据*/
-    private val mSampleRateInHZ = 8000 //采样率
+    private const val mSampleRateInHZ = 8000 //采样率
 
-    private val mAudioFormat = AudioFormat.ENCODING_PCM_16BIT //位数
+    private const val mAudioFormat = AudioFormat.ENCODING_PCM_16BIT //位数
 
-    private val mChannelConfig = AudioFormat.CHANNEL_IN_MONO //声道
+    private const val mChannelConfig = AudioFormat.CHANNEL_IN_MONO //声道
 
-     var isRecording = false
+    var isRecording = false
 
 
-     lateinit var context: Context
+    private var init = false
 
-     private var init = false
+    private var filePath = ""
+
+    private var player: MediaPlayer? = null
 
     /**
      * 初始化录音器
      */
     @RequiresApi(Build.VERSION_CODES.Q)
-    fun initAudioRecord(resultCode: Int, intent: Intent?) {
-        if(isRecording){
+    fun initAudioRecord(resultCode: Int, intent: Intent?, audioSource: Int) {
+        if (isRecording) {
             return
         }
 
@@ -60,42 +62,47 @@ object AudioRecordManager {
             AudioRecord.getMinBufferSize(mSampleRateInHZ, mChannelConfig, mAudioFormat)
         mAudioData = ByteArray(320)
 
-
-
-
         //设置应用程序录制系统音频的能力
 
-//        val builder = AudioRecord.Builder()
-//        builder.setAudioFormat(AudioFormat.Builder()
-//            .setSampleRate(mSampleRateInHZ) //设置采样率（一般为可选的三个-> 8000Hz 、16000Hz、44100Hz）
-//            .setChannelMask(AudioFormat.CHANNEL_IN_FRONT) //音频通道的配置，可选的有-> AudioFormat.CHANNEL_IN_MONO 单声道，CHANNEL_IN_STEREO为双声道，立体声道，选择单声道就行
-//            .setEncoding(AudioFormat.ENCODING_PCM_16BIT).build()) //音频数据的格式，可选的有-> AudioFormat.ENCODING_PCM_8BIT，AudioFormat.ENCODING_PCM_16BIT
-//            .setBufferSizeInBytes(mRecorderBufferSize) //设置最小缓存区域
-//            .setAudioSource(MIC)
+        val builder = AudioRecord.Builder()
+        builder.setAudioFormat(
+            AudioFormat.Builder()
+                .setSampleRate(mSampleRateInHZ) //设置采样率（一般为可选的三个-> 8000Hz 、16000Hz、44100Hz）
+                .setChannelMask(AudioFormat.CHANNEL_IN_FRONT) //音频通道的配置，可选的有-> AudioFormat.CHANNEL_IN_MONO 单声道，CHANNEL_IN_STEREO为双声道，立体声道，选择单声道就行
+                .setEncoding(AudioFormat.ENCODING_PCM_16BIT).build()
+        ) //音频数据的格式，可选的有-> AudioFormat.ENCODING_PCM_8BIT，AudioFormat.ENCODING_PCM_16BIT
+            .setBufferSizeInBytes(mRecorderBufferSize) //设置最小缓存区域
 
-//        val mediaProjectionManager = context.getSystemService(Service.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-//        val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, intent)
-//        val config = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
-//            .addMatchingUsage(AudioAttributes.USAGE_MEDIA) //设置捕获多媒体音频
-//            .addMatchingUsage(AudioAttributes.USAGE_GAME) //设置捕获游戏音频
-//
-//            .build()
-//        //将 AudioRecord 设置为录制其他应用播放的音频
-//        builder.setAudioPlaybackCaptureConfig(config)
+
+        if (intent != null) {
+            //媒体音录制，类似录屏
+            val mediaProjectionManager =
+                AppApplication.pAppContext.getSystemService(Service.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+            val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, intent)
+            val config = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
+                .addMatchingUsage(AudioAttributes.USAGE_MEDIA) //设置捕获多媒体音频
+                .addMatchingUsage(AudioAttributes.USAGE_GAME) //设置捕获游戏音频
+
+                .build()
+            //将 AudioRecord 设置为录制其他应用播放的音频
+            builder.setAudioPlaybackCaptureConfig(config)
+        } else {
+            builder.setAudioSource(audioSource)
+        }
+
         try {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-//                mAudioRecord = builder.build()
-                mAudioRecord = AudioRecord(VOICE_COMMUNICATION, mSampleRateInHZ, 16, 2, mRecorderBufferSize)
+            mAudioRecord = builder.build().apply {
+                LogUtil.d("mAudioRecord id=${audioSessionId}")
 
-                LogUtil.d("mAudioRecord id=${mAudioRecord!!.audioSessionId}")
-                mAudioRecord?.registerAudioRecordingCallback(executor,object:
+                registerAudioRecordingCallback(executor, object :
                     AudioManager.AudioRecordingCallback() {
 
                     override fun onRecordingConfigChanged(configs: MutableList<AudioRecordingConfiguration>?) {
                         super.onRecordingConfigChanged(configs)
-                        configs?:return
+                        configs ?: return
 
-                        val service = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                        val service =
+                            AppApplication.pAppContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
                         service.mode.let {
                             LogUtil.d("service mode=${it}")
                         }
@@ -103,32 +110,36 @@ object AudioRecordManager {
 
                         configs.forEach {
 
-                            LogUtil.d("isClientSilenced=${it.isClientSilenced} \n" +
-                                    "id=${it.clientAudioSessionId} \n" +
-                                    "effect=${it.effects.size} \n" +
-                                    "format=${it.format} \n" +
-                                    "audioSource=${it.audioSource}")
+                            LogUtil.d(
+                                "isClientSilenced=${it.isClientSilenced} \n" +
+                                        "id=${it.clientAudioSessionId} \n" +
+                                        "effect=${it.effects.size} \n" +
+                                        "format=${it.format} \n" +
+                                        "audioSource=${it.audioSource}"
+                            )
 
                         }
 
                     }
                 })
             }
+
         } catch (e: Exception) {
             e.printStackTrace()
-            LogUtil.d( "录音器错误, 录音器初始化失败")
+            LogUtil.d("录音器错误, 录音器初始化失败")
         }
 
-        LogUtil.d( "录音器初始化成功")
+        LogUtil.d("录音器初始化成功")
         init = true
 
     }
+
 
     /**
      * 开始录音
      */
     fun startRecord() {
-        if(init.not()){
+        if (init.not()) {
             return
         }
 
@@ -144,9 +155,10 @@ object AudioRecordManager {
         //保存到本地录音文件名
         val tmpName = System.currentTimeMillis().toString()
         //新建文件，承接音频数据
-        val tmpFile = createFile(context,"$tmpName.pcm")
+        val tmpFile = createFile(AppApplication.pAppContext, "$tmpName.pcm")
         //新建文件，后面会把音频数据转换为.wav格式，写入到该文件
-        val tmpOutFile = createFile(context,"$tmpName.wav")
+        val tmpOutFile = createFile(AppApplication.pAppContext, "$tmpName.wav")
+        filePath = tmpOutFile?.absolutePath ?: ""
         //开始录音
         mAudioRecord?.startRecording()
         Thread {
@@ -168,18 +180,26 @@ object AudioRecordManager {
     }
 
 
-    fun stopRecord(){
+    fun stopRecord() {
         if (!isRecording) {
             LogUtil.d("已结束，别点了")
-            return;
+            return
         }
         LogUtil.d("已结束")
         isRecording = false
         mAudioRecord?.stop()
     }
 
+    fun getFileName(): String {
+        if (!isRecording) {
+            return filePath
+        }
 
-     fun createFile(context: Context,name: String): File? {
+        return ""
+    }
+
+
+    fun createFile(context: Context, name: String): File? {
         val dirPath = context.externalCacheDir?.absolutePath + "/AudioRecord/"
         val file = File(dirPath)
         if (!file.exists()) {
@@ -198,7 +218,7 @@ object AudioRecordManager {
         return null
     }
 
-     fun pcmToWave(inFileName: String, outFileName: String) {
+    fun pcmToWave(inFileName: String, outFileName: String) {
         var `in`: FileInputStream? = null
         var out: FileOutputStream? = null
         var totalAudioLen: Long = 0
@@ -298,5 +318,22 @@ object AudioRecordManager {
         header[42] = (totalAudioLen shr 16 and 0xffL).toByte()
         header[43] = (totalAudioLen shr 24 and 0xffL).toByte()
         out.write(header, 0, 44)
+    }
+
+     fun startPlaying() {
+        player = MediaPlayer().apply {
+            try {
+                setDataSource(getFileName())
+                prepare()
+                start()
+            } catch (e: IOException) {
+                LogUtil.d("prepare() failed")
+            }
+        }
+    }
+
+     fun stopPlaying() {
+        player?.release()
+        player = null
     }
 }

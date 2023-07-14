@@ -3,7 +3,6 @@ package com.returntolife.jjcode.mydemolist.manager;
 import com.returntolife.jjcode.mydemolist.R;
 import com.returntolife.jjcode.mydemolist.bean.DemoListBean;
 import com.returntolife.jjcode.mydemolist.demo.function.AnnotateMvp.AnnotateActivity;
-import com.returntolife.jjcode.mydemolist.demo.function.AspectButton.AspectButtonActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.accessibility.AccessibilityActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.aidl.AIDLClientActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.alibabaAlpha.AlphaActivity;
@@ -12,7 +11,6 @@ import com.returntolife.jjcode.mydemolist.demo.function.audiofocus.AudioFocusAct
 import com.returntolife.jjcode.mydemolist.demo.function.baiduai.ImageSearchActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.changetheme.ChangeThemeActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest1;
-import com.returntolife.jjcode.mydemolist.demo.function.coroutine.CoroutineTest3;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingAdapterActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.databinding.DataBindingFActivity;
@@ -22,8 +20,7 @@ import com.returntolife.jjcode.mydemolist.demo.function.mergeActivity.MergeActiv
 import com.returntolife.jjcode.mydemolist.demo.function.multiItem.MultiItemActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mvvm.MvvmDemoActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.mycontentprovider.ContentProviderClientActivity;
-import com.returntolife.jjcode.mydemolist.demo.function.record.AudioRecordTest;
-import com.returntolife.jjcode.mydemolist.demo.function.record.MediaRecorderTest;
+import com.returntolife.jjcode.mydemolist.demo.function.record.RecordActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.resumedownload.ResumeDownloadActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.section.SectionActivity;
 import com.returntolife.jjcode.mydemolist.demo.function.service.MyForegroundService;
@@ -119,8 +116,7 @@ public class DemoListDataManager {
         demoListBeanList.add(new DemoListBean("merge","merge的使用","2021-05-24",DemoListBean.TYPE_FUNCTION, MergeActivity.class));
         demoListBeanList.add(new DemoListBean("ASM","asm相关demo","2022-10-12",DemoListBean.TYPE_FUNCTION, AsmHookActivity.class));
         demoListBeanList.add(new DemoListBean("Share","原生文件分享","2023-7-12",DemoListBean.TYPE_FUNCTION, ShareFileActivity.class));
-        demoListBeanList.add(new DemoListBean("录音","捕获录音","2023-7-12",DemoListBean.TYPE_FUNCTION, AudioRecordTest.class));
-        demoListBeanList.add(new DemoListBean("录音MediaRecord","捕获录音","2023-7-12",DemoListBean.TYPE_FUNCTION, MediaRecorderTest.class));
+        demoListBeanList.add(new DemoListBean("Record","Record Voices","2023-7-14",DemoListBean.TYPE_FUNCTION, RecordActivity.class));
 
         //控件类型
         demoListBeanList.add(new DemoListBean("下拉刷新","自定义listview的下拉刷新","2017-08-9", R.drawable.bg_md_test,DemoListBean.TYPE_WIDGET,PutoRefreshActivity.class));

@@ -128,8 +128,10 @@
         <activity android:name=".demo.function.asmhook.AsmHookActivity" />
         <activity android:name=".demo.function.share.ShareFileActivity" />
         <activity android:name=".demo.widget.transparent.TransparentActivity" />
-        <activity android:name=".demo.function.record.AudioRecordTest" />
+        <activity android:name=".demo.function.record.AudioPlaybackCaptureActivity" />
         <activity android:name=".demo.function.record.MediaRecorderTest" />
+        <activity android:name=".demo.function.record.RecordActivity" />
+        <activity android:name=".demo.function.record.RecordAccessibilityActivity" />
 
         <service android:name=".demo.function.resumedownload.ResumeDownloadService"/>
         <service android:name=".demo.function.aidl.AIDLService"
@@ -149,10 +151,10 @@
                 android:resource="@xml/accessibility_config" />
         </service>
         <service android:name=".demo.function.service.MyService" />
-        <service android:name=".demo.function.record.AudioRecordService"
+        <service android:name=".demo.function.record.AudioPlaybackCaptureService"
             android:foregroundServiceType="mediaProjection"/>
-        <service android:name=".demo.function.record.MyAccessibilityService2"
-            android:label="@string/accessibility_tip22"
+        <service android:name=".demo.function.record.CallAccessibilityService"
+            android:label="@string/accessibility_recode"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 
             <intent-filter>
@@ -160,8 +162,8 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.accessibility_tip22"
-                android:resource="@xml/accessibility_config2" />
+                android:name="android.CallAccessibilityService"
+                android:resource="@xml/accessibility_config_record" />
 
         </service>
 

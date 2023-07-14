@@ -19,5 +19,7 @@
     <string name="fab">fab</string>
     <string name="accessibility_tip">辅助测试</string>
     <string name="accessibility_tip22">辅助测试22</string>
+    <string name="accessibility_recode">辅助录音</string>
     <string name="accessibility_desc">开启辅助功能，让你的手机更智能一点</string>
+    <string name="accessibility_desc_record">开启辅助，能够录制语音通话</string>
 </resources>

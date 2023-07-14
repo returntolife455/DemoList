@@ -1,12 +1,9 @@
 package com.returntolife.jjcode.mydemolist.demo.function.record
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
-import android.media.MediaRecorder
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.Bundle
@@ -15,67 +12,31 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import com.tools.jj.tools.utils.LogUtil
 import java.io.IOException
 
-class AudioRecordTest : AppCompatActivity() {
+class AudioPlaybackCaptureActivity : AppCompatActivity() {
 
-    private val REQUEST_RECORD_AUDIO_PERMISSION = 999
-    private val REQUEST_RECORD_AUDIO_PERMISSION2 = 998
+    companion object{
+        private const val REQUEST_RECORD_AUDIO_PERMISSION = 998
+    }
     private val LOG_TAG: String = "AudioRecordTest"
-    private var fileName: String = ""
+
 
     private var recordButton: RecordButton? = null
 
-
     private var playButton: PlayButton? = null
-    private var player: MediaPlayer? = null
 
-    // Requesting permission to RECORD_AUDIO
-    private var permissionToRecordAccepted = false
-    private var permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO,
-        Manifest.permission.READ_PHONE_STATE,
-        Manifest.permission.CALL_PHONE,
-        Manifest.permission.PROCESS_OUTGOING_CALLS,
-        Manifest.permission.READ_CALL_LOG,
-        Manifest.permission.READ_CALENDAR)
-
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if(requestCode == REQUEST_RECORD_AUDIO_PERMISSION){
-            permissionToRecordAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-
-            if (!permissionToRecordAccepted)
-                finish()
-            else{
-                if(AudioRecordManager.isRecording.not()){
-                    val mProjectionManager = this.getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-                    val screenCaptureIntent = mProjectionManager.createScreenCaptureIntent()
-                    startActivityForResult(screenCaptureIntent, REQUEST_RECORD_AUDIO_PERMISSION2)
-                }
-
-            }
-        }
-    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode ==  REQUEST_RECORD_AUDIO_PERMISSION2){
+        if (requestCode ==  REQUEST_RECORD_AUDIO_PERMISSION){
 
             data?.let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && resultCode == Activity.RESULT_OK) {
-                    LogUtil.d("onActivityResult initAudioRecord")
-                    val intent = Intent(this, AudioRecordService::class.java)
+
+                    val intent = Intent(this, AudioPlaybackCaptureService::class.java)
                     intent.putExtra("resultData", data)
                     intent.putExtra("resultCode", resultCode)
                     startForegroundService(intent)
@@ -88,35 +49,18 @@ class AudioRecordTest : AppCompatActivity() {
 
 
     private fun onRecord(start: Boolean) = if (start) {
-//        audioRecordService?.startRecord()
         AudioRecordManager.startRecord()
     } else {
-        AudioRecordManager.startRecord()
-//        audioRecordService?.startRecord()
+        AudioRecordManager.stopRecord()
     }
 
     private fun onPlay(start: Boolean) = if (start) {
-        startPlaying()
+        AudioRecordManager.startPlaying()
     } else {
-        stopPlaying()
+        AudioRecordManager.stopPlaying()
     }
 
-    private fun startPlaying() {
-        player = MediaPlayer().apply {
-            try {
-                setDataSource(fileName)
-                prepare()
-                start()
-            } catch (e: IOException) {
-                Log.e(LOG_TAG, "prepare() failed")
-            }
-        }
-    }
 
-    private fun stopPlaying() {
-        player?.release()
-        player = null
-    }
 
 
 
@@ -159,12 +103,6 @@ class AudioRecordTest : AppCompatActivity() {
     override fun onCreate(icicle: Bundle?) {
         super.onCreate(icicle)
 
-        // Record to the external cache directory for visibility
-        fileName = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp"
-
-        ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION)
-
-
         recordButton = RecordButton(this)
         playButton = PlayButton(this)
         val ll = LinearLayout(this).apply {
@@ -180,12 +118,17 @@ class AudioRecordTest : AppCompatActivity() {
                     0f))
         }
         setContentView(ll)
+
+
+        AudioRecordManager.stopRecord()
+        val mProjectionManager =
+            this.getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        val screenCaptureIntent = mProjectionManager.createScreenCaptureIntent()
+        startActivityForResult(screenCaptureIntent, REQUEST_RECORD_AUDIO_PERMISSION)
+
     }
 
-    override fun onStop() {
-        super.onStop()
 
-        player?.release()
-        player = null
-    }
+
+
 }
