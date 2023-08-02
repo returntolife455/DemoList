@@ -9,3 +9,6 @@
 .externalNativeBuild
 .idea
 
+/buildSrc/.gradle/
+/buildSrc/.build/
+
