@@ -42,4 +42,19 @@
         android:text="share_element_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_scene"
+        android:text="Scene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <FrameLayout
+        android:id="@+id/fl_scene"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <include layout="@layout/layout_scene_1"/>
+    </FrameLayout>
 </LinearLayout>

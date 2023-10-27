@@ -1,5 +1,6 @@
 package com.returntolife.jjcode.mydemolist.demo.function.transition;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
